@@ -14,10 +14,10 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "paths": {
-      "@andy/common": [
+      "@q25a25q/common": [
         "./packages/common/src/index.ts"
       ],
-      "@andy/gis": [
+      "@q25a25q/gis": [
         "./packages/gis/src/index.ts"
       ],
     }

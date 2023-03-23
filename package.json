@@ -8,7 +8,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build-components": "pnpm --filter \"@andy/**\" build",
+    "build-components": "pnpm --filter \"@q25a25q/**\" build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "browserslist": [
