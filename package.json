@@ -1,0 +1,31 @@
+{
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "name": "core",
+  "packageManager": "pnpm@7.30.0",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build-components": "pnpm --filter \"@andy/**\" build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "Firefox ESR",
+    "> 1%",
+    "ie >= 11"
+  ],
+  "resolutions": {
+    "@types/responselike": "^1.0.0",
+    "prettier": "2.x",
+    "typescript": "~4.7.4"
+  },
+  "devDependencies": {
+    "father": "^4.1.7"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT"
+}
