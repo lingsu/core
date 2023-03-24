@@ -30,6 +30,16 @@ importers:
       '@q25a25q/common': link:../common
       gcoord: 1.0.5
 
+  packages/leaflet:
+    specifiers:
+      '@q25a25q/common': ^1.0.1
+      '@q25a25q/gis': '*'
+      leaflet: ^1.9.3
+    dependencies:
+      '@q25a25q/common': link:../common
+      '@q25a25q/gis': link:../gis
+      leaflet: 1.9.3
+
 packages:
 
   /@ampproject/remapping/2.2.0:
@@ -4616,6 +4626,10 @@ packages:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /leaflet/1.9.3:
+    resolution: {integrity: sha512-iB2cR9vAkDOu5l3HAay2obcUHZ7xwUBBjph8+PGtmW/2lYhbLizWtG7nTeYht36WfOslixQF9D/uSIzhZgGMfQ==}
+    dev: false
 
   /lerna/6.6.0:
     resolution: {integrity: sha512-E1uxpcKVkXPL7IZd8jXmoGlES878M7ConEpkX1o+KTs99ir9c3StIOnrhULYHP3VacUyjtxAPyPCCSg6rIipaw==}
