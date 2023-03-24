@@ -1,6 +1,6 @@
 {
   "name": "@q25a25q/gis",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -31,7 +31,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@q25a25q/common": "*",
+    "@q25a25q/common": "^1.0.1",
     "gcoord": "^1.0.5"
   }
 }

@@ -24,7 +24,7 @@ importers:
 
   packages/gis:
     specifiers:
-      '@q25a25q/common': workspace:*
+      '@q25a25q/common': ^1.0.1
       gcoord: ^1.0.5
     dependencies:
       '@q25a25q/common': link:../common
