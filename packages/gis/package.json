@@ -10,6 +10,10 @@
     "es",
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lingsu/core"
+  },
   "scripts": {
     "build": "father build",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -27,7 +31,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@andy/common": "workspace:*",
+    "@q25a25q/common": "*",
     "gcoord": "^1.0.5"
   }
 }
