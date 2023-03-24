@@ -20,6 +20,9 @@
       "@q25a25q/gis": [
         "./packages/gis/src/index.ts"
       ],
+      "@q25a25q/leaflet": [
+        "./packages/leaflet/src/index.ts"
+      ],
     }
   },
   "include": [
