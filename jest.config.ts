@@ -14,7 +14,6 @@ pkgList.forEach((shortName: string) => {
   moduleNameMapper[name] = join(__dirname, `./packages/${shortName}/src`);
 });
 
-console.log('moduleNameMapper',moduleNameMapper)
 /*
  * For a detailed explanation regarding each configuration property and type check, visit:
  * https://jestjs.io/docs/configuration
