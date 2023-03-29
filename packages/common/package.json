@@ -17,7 +17,7 @@
   "scripts": {
     "build": "father build"
   },
-  "author": "",
+  "author": "andy",
   "license": "MIT",
   "sideEffects": false,
   "browserslist": [
