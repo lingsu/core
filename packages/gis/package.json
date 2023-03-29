@@ -15,8 +15,7 @@
     "url": "https://github.com/lingsu/core"
   },
   "scripts": {
-    "build": "father build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "father build"
   },
   "author": "",
   "license": "MIT",
