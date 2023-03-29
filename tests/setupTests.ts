@@ -1,4 +1,5 @@
 import React from 'react';
+import { enableFetchMocks } from 'jest-fetch-mock';
 
 global.React = React;
 
@@ -36,6 +37,12 @@ if (typeof window !== 'undefined') {
   }
 }
 
+enableFetchMocks();
+
+
+Object.defineProperty(window, 'open', {
+  value: jest.fn,
+});
 // browserMocks.js
 export const localStorageMock = (() => {
   let store: any = {

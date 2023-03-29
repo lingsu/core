@@ -164,7 +164,7 @@ export default {
 
   // Options that will be passed to the testEnvironment
   testEnvironmentOptions: {
-    url: 'http://localhost?navTheme=realDark&layout=mix&colorPrimary=techBlue&splitMenus=false&fixedHeader=true',
+    url: 'http://localhost?a=1&b=2',
   },
 
   // Adds a location field to test results
