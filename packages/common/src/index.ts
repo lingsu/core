@@ -17,7 +17,9 @@ export function openWindow(
 
   window.open(url, target, feature.join(","));
 }
-
+export function cloneObject(obj: any) {
+  return JSON.parse(JSON.stringify(obj));
+}
 export const getSearchObj = (search: string) => {
   return Object.fromEntries(
     new URLSearchParams(search).entries()
