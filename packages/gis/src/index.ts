@@ -1,5 +1,5 @@
 import gcoord, { CRSTypes } from "gcoord";
-export * from './turf';
+export * from "./turf";
 import type { LatLngExpression } from "./typing";
 
 const ConverLatlng = (
@@ -126,4 +126,30 @@ export const ToLatLngLiteral = (latlng: LatLngExpression) => {
     return StringToLatlng(latlng);
   }
   return latlng;
-}
+};
+export const ToLatLngTuple = (latlng: LatLngExpression) => {
+  if (Array.isArray(latlng)) {
+    return StringToLatlng(latlng);
+  }
+  return latlng;
+};
+
+export const ToTurfLatlng = (latlng: LatLngExpression) => {
+  if (Array.isArray(latlng)) {
+    latlng = StringToLatlng(latlng);
+  }
+
+  return [latlng.lng, latlng.lat];
+};
+
+/**
+ * 把字符串转换成经纬度数据
+ * @param latlngs
+ * @param splitter
+ */
+export const StringToCoordinates = (latlngs: string, splitter = ";") => {
+  if (!latlngs) {
+    return [];
+  }
+  return latlngs.split(splitter).map(StringToLatlng);
+};

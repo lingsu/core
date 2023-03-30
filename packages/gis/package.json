@@ -34,6 +34,7 @@
     "@turf/destination": "^6.5.0",
     "@turf/distance": "^6.5.0",
     "@turf/helpers": "^6.5.0",
+    "@turf/boolean-point-in-polygon": "^6.5.0",
     "gcoord": "^1.0.5"
   }
 }

@@ -3,6 +3,7 @@ import {
   Distance,
   Destination,
   ToLatLngLiteral,
+  StringToCoordinates,
 } from "@q25a25q/gis";
 
 describe("gis", () => {
@@ -11,6 +12,34 @@ describe("gis", () => {
       lat: 28.002329,
       lng: 120.68713,
     });
+  });
+  it("StringToCoordinates", () => {
+    expect(
+      StringToCoordinates("120.687130,28.002329;120.1,28.1")
+    ).toEqual([
+      {
+        lat: 28.002329,
+        lng: 120.68713,
+      },
+      {
+        lat: 28.1,
+        lng: 120.1,
+      },
+    ]);
+
+    expect(
+      StringToCoordinates("120.687130,28.002329@120.1,28.1",'@')
+    ).toEqual([
+      {
+        lat: 28.002329,
+        lng: 120.68713,
+      },
+      {
+        lat: 28.1,
+        lng: 120.1,
+      },
+    ]);
+
   });
   it("ToLatLngLiteral", () => {
     expect(ToLatLngLiteral([120.68713, 28.002329])).toEqual({
@@ -21,7 +50,6 @@ describe("gis", () => {
       lat: 28.002329,
       lng: 120.68713,
     });
-
   });
 
   it("Distance", () => {
