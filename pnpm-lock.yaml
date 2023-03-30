@@ -99,7 +99,7 @@ importers:
   packages/leaflet:
     specifiers:
       '@q25a25q/common': ^1.3.0
-      '@q25a25q/gis': ^1.2.0
+      '@q25a25q/gis': ^1.3.0
       leaflet: ^1.9.3
     dependencies:
       '@q25a25q/common': link:../common
