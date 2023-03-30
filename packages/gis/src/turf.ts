@@ -66,3 +66,88 @@ export const BooleanPointInPolygon = (
   var poly = polygon([latlngs]);
   return booleanPointInPolygon(pt, poly, option);
 };
+
+// const getRectangle = (lng: any, lat: any, distance: number) => {
+
+//   var s = BdStringToGCJ02(`${lng},${lat}`);
+//   var center = [s.lng, s.lat];
+
+//   var bearing = -45;
+//   var coordinates: any[] = [];
+//   while (coordinates.length < 4) {
+//     var point = turf.point(center);
+//     var options: any = { units: "meters" };
+
+//     var destination = turf.destination(point, distance, bearing, options);
+
+//     coordinates.push(destination.geometry.coordinates.reverse());
+
+//     bearing += 90;
+//   }
+//   console.log("coordinates", coordinates);
+//   return coordinates;
+// };
+/**
+ * 生成一个矩形坐标
+ * @param len 长
+ * @param wide 宽
+ */
+export function RetCoordinateList({
+  len,
+  wide,
+  azimuth,
+  lat,
+  lng,
+}: {
+  len: any;
+  wide: any;
+  azimuth: any;
+  lat: any;
+  lng: any;
+}) {
+  lat = parseFloat(lat);
+  lng = parseFloat(lng);
+  len = (len * 0.9) / 100000.0;
+  wide = wide / 100000.0;
+  var outerCoords = new Array();
+  //List < Vector > outerCoords = new List<Vector>();
+  //Vector vector = new Vector(lat, lng, 0);
+  var vector = {
+    lat,
+    lng,
+  };
+  //左顶点
+  outerCoords.push(vector);
+  var bLat, bLng;
+  //右上角点
+  bLng = Math.sin((azimuth * Math.PI) / 180) * len;
+  bLat = Math.cos((azimuth * Math.PI) / 180) * len;
+  outerCoords.push({
+    lat: lat + bLat,
+    lng: lng + bLng,
+  });
+  //纬度偏移
+  var latShift = (lat + bLat - vector.lat) / 2;
+  //左下角点
+  bLng = Math.sin((azimuth * Math.PI) / 180 + (90 * Math.PI) / 180) * wide;
+  bLat = Math.cos((azimuth * Math.PI) / 180 + (90 * Math.PI) / 180) * wide;
+  //经度偏移
+  var lngShift = (lng + bLng - vector.lng) / 2;
+  //右下角点
+  outerCoords.push({
+    lat: lat + bLat + Math.cos((azimuth * Math.PI) / 180) * len,
+    lng: lng + bLng + Math.sin((azimuth * Math.PI) / 180) * len,
+  });
+  outerCoords.push({
+    lat: lat + bLat,
+    lng: lng + bLng,
+  });
+
+  //var outerCoords1 = new Array();
+  outerCoords.forEach(function (value) {
+    value.lat = value.lat - latShift;
+    value.lng = value.lng - lngShift;
+    //outerCoords1.push(L.latLng(value.Latitude + latShift, value.Longitude - lngShift))
+  });
+  return outerCoords;
+}
