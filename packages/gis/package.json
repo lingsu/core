@@ -31,6 +31,9 @@
   },
   "dependencies": {
     "@q25a25q/common": "^1.2.0",
+    "@turf/distance": "^6.5.0",
+    "@turf/helpers": "^6.5.0",
+    "@turf/destination": "^6.5.0",
     "gcoord": "^1.0.5"
   }
 }

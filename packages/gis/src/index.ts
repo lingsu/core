@@ -1,4 +1,6 @@
 import gcoord, { CRSTypes } from "gcoord";
+export * from './turf';
+import type { LatLngExpression } from "./typing";
 
 const ConverLatlng = (
   latlng: [number, number] | { lat: number; lng: number },
@@ -119,3 +121,9 @@ export const LatlngToString = (
 
   return `${latlng.lng.toFixed(6)},${latlng.lat.toFixed(6)}`;
 };
+export const ToLatLngLiteral = (latlng: LatLngExpression) => {
+  if (Array.isArray(latlng)) {
+    return StringToLatlng(latlng);
+  }
+  return latlng;
+}
