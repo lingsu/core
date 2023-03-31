@@ -1,4 +1,5 @@
 import {
+  defHttp,
   downloadByUrl,
   getSearchObj,
   intOrStringArrayToStringConver,
@@ -42,4 +43,9 @@ describe("common", () => {
       new Date()
     );
   });
+
+  // it("http", async () => {
+  //   var result = await defHttp.get("/api?a=1&b=2");
+  //   expect(result).toEqual(true);
+  // });
 });

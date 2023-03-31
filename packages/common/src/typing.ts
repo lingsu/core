@@ -1,3 +1,4 @@
+
 export type TargetContext = '_self' | '_blank';
 declare global {
     interface Navigator {

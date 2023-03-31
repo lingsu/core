@@ -1,6 +1,6 @@
 {
-  "name": "@q25a25q/common",
-  "version": "1.4.0",
+  "name": "@q25a25q/blade",
+  "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -29,13 +29,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "devDependencies": {
-    "@types/lodash.clonedeep": "^4.5.7"
-  
-  },
   "dependencies": {
-    "lodash.clonedeep": "^4.5.0",
-    "dayjs": "^1.11.7",
-    "axios": "^1.3.4"
+    "@q25a25q/common": "*"
   }
 }
