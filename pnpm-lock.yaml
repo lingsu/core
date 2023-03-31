@@ -34,6 +34,7 @@ importers:
       jest-fetch-mock: ^3.0.3
       jsdom: ^19.0.0
       lerna: ^6.6.0
+      mockdate: ^3.0.5
       react: ^18.2.0
       react-dom: ^18.2.0
       react-layout-kit: ^1.5.1
@@ -68,6 +69,7 @@ importers:
       jest-fetch-mock: 3.0.3
       jsdom: 19.0.0
       lerna: 6.6.0
+      mockdate: 3.0.5
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-layout-kit: 1.5.1_react@18.2.0
@@ -78,7 +80,10 @@ importers:
       ts-node: 10.9.1_@types+node@14.18.41
 
   packages/common:
-    specifiers: {}
+    specifiers:
+      dayjs: ^1.11.7
+    dependencies:
+      dayjs: 1.11.7
 
   packages/gis:
     specifiers:
@@ -5066,6 +5071,10 @@ packages:
     resolution: {integrity: sha512-jyCETtSl3VMZMWeRo7iY1FL19ges1t55hMo5yaam4Jrsm5EPL89UQkoQRyiI+Yf4k8r2ZpdngkV8hr1lIdjb3Q==}
     dev: true
 
+  /dayjs/1.11.7:
+    resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==}
+    dev: false
+
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
     peerDependencies:
@@ -9021,6 +9030,10 @@ packages:
     resolution: {integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==}
     engines: {node: '>=10'}
     hasBin: true
+    dev: true
+
+  /mockdate/3.0.5:
+    resolution: {integrity: sha512-iniQP4rj1FhBdBYS/+eQv7j1tadJ9lJtdzgOpvsOHng/GbcDh2Fhdeq+ZRldrPYdXvCyfFUmFeEwEGXZB5I/AQ==}
     dev: true
 
   /modify-values/1.0.1:

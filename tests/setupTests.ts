@@ -1,5 +1,6 @@
 import React from 'react';
 import { enableFetchMocks } from 'jest-fetch-mock';
+import MockDate from 'mockdate';
 
 global.React = React;
 
@@ -69,6 +70,12 @@ Object.defineProperty(window, 'localStorage', {
   value: localStorageMock,
   writable: true,
 });
+
+// 2016-11-22 15:22:44
+MockDate.set(1479828164000);
+
+Math.random = () => 0.8404419276253765;
+
 
 if (process.env.TEST_LOG === 'none') {
   console.error = () => {};

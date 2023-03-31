@@ -1,6 +1,13 @@
 import { WebStorage } from "./cache";
 import type { TargetContext } from "./typing";
-export * from './file';
+export * from "./file";
+import {
+  intOrStringArrayToStringConver,
+  optionConver,
+  stringToIntArrayConver,
+  stringToDateTimeConver,
+} from "./conver";
+
 export function openWindow(
   url: string,
   opt?: {
@@ -21,8 +28,12 @@ export function cloneObject(obj: any) {
   return JSON.parse(JSON.stringify(obj));
 }
 export const getSearchObj = (search: string) => {
-  return Object.fromEntries(
-    new URLSearchParams(search).entries()
-  );
+  return Object.fromEntries(new URLSearchParams(search).entries());
 };
-export { WebStorage };
+export {
+  WebStorage,
+  intOrStringArrayToStringConver,
+  optionConver,
+  stringToIntArrayConver,
+  stringToDateTimeConver,
+};
