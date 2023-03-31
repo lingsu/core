@@ -1,8 +1,8 @@
-import distance from "@turf/distance";
-import destination from "@turf/destination";
-import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
-import { point, polygon } from "@turf/helpers";
-import { ToLatLngLiteral, ToTurfLatlng } from ".";
+import _distance from "@turf/distance";
+import _destination from "@turf/destination";
+import _booleanPointInPolygon from "@turf/boolean-point-in-polygon";
+import * as turf from "@turf/helpers";
+import { toLatLngLiteral, toTurfLatlng } from ".";
 import type { LatLngExpression } from "./typing";
 
 /**
@@ -12,18 +12,18 @@ import type { LatLngExpression } from "./typing";
  * @param options
  * @return 默认返回米
  */
-export const Distance = (
+export const distance = (
   from: LatLngExpression,
   to: LatLngExpression,
   options: { units: any } = { units: "meters" }
 ) => {
-  from = ToLatLngLiteral(from);
-  to = ToLatLngLiteral(to);
+  from = toLatLngLiteral(from);
+  to = toLatLngLiteral(to);
 
-  var fromPoint = point([from.lng, from.lat]);
-  var toPoint = point([to.lng, to.lat]);
+  var fromPoint = turf.point([from.lng, from.lat]);
+  var toPoint = turf.point([to.lng, to.lat]);
 
-  return distance(fromPoint, toPoint, options);
+  return _distance(fromPoint, toPoint, options);
 };
 /**
  * 获取一个点并计算给定距离(以度、弧度、英里或公里为单位)的目标点的位置。
@@ -32,18 +32,18 @@ export const Distance = (
  * @param bearing
  * @param options
  */
-export const Destination = (
+export const destination = (
   origin: LatLngExpression,
   distance: number,
   bearing: number,
   options: {} = { units: "meters" }
 ) => {
-  origin = ToLatLngLiteral(origin);
+  origin = toLatLngLiteral(origin);
 
-  var originPoint = point(ToTurfLatlng(origin));
+  var originPoint = turf.point(toTurfLatlng(origin));
 
-  var result = destination(originPoint, distance, bearing, options);
-  return ToLatLngLiteral(result.geometry.coordinates as [number, number]);
+  var result = _destination(originPoint, distance, bearing, options);
+  return toLatLngLiteral(result.geometry.coordinates as [number, number]);
 };
 
 /**
@@ -52,7 +52,7 @@ export const Destination = (
  * @param polygonLatlngs
  * @param options
  */
-export const BooleanPointInPolygon = (
+export const booleanPointInPolygon = (
   latlng: LatLngExpression,
   polygonLatlngs: LatLngExpression[],
   option = { ignoreBoundary: false }
@@ -60,11 +60,11 @@ export const BooleanPointInPolygon = (
   if (!latlng || !polygonLatlngs || polygonLatlngs.length === 0) {
     return false;
   }
-  var pt = point(ToTurfLatlng(latlng));
-  var latlngs = polygonLatlngs.map(ToTurfLatlng);
+  var pt = turf.point(toTurfLatlng(latlng));
+  var latlngs = polygonLatlngs.map(toTurfLatlng);
   latlngs.push(latlngs[0]);
-  var poly = polygon([latlngs]);
-  return booleanPointInPolygon(pt, poly, option);
+  var poly = turf.polygon([latlngs]);
+  return _booleanPointInPolygon(pt, poly, option);
 };
 
 // const getRectangle = (lng: any, lat: any, distance: number) => {
@@ -92,7 +92,7 @@ export const BooleanPointInPolygon = (
  * @param len 长
  * @param wide 宽
  */
-export function RetCoordinateList({
+export function retCoordinateList({
   len,
   wide,
   azimuth,

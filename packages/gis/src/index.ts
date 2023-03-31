@@ -2,7 +2,7 @@ import gcoord, { CRSTypes } from "gcoord";
 export * from "./turf";
 import type { LatLngExpression } from "./typing";
 
-const ConverLatlng = (
+const converLatlng = (
   latlng: [number, number] | { lat: number; lng: number },
   crsFrom: CRSTypes,
   crsTo: CRSTypes
@@ -31,23 +31,23 @@ const ConverLatlng = (
 export const WGS84ToGCJ02 = (
   latlng: [number, number] | { lat: number; lng: number }
 ) => {
-  return ConverLatlng(latlng, gcoord.WGS84, gcoord.GCJ02);
+  return converLatlng(latlng, gcoord.WGS84, gcoord.GCJ02);
 };
-export const BdToGCJ02 = (
+export const BD09ToGCJ02 = (
   latlng: [number, number] | { lat: number; lng: number }
 ) => {
-  return ConverLatlng(latlng, gcoord.BD09, gcoord.GCJ02);
+  return converLatlng(latlng, gcoord.BD09, gcoord.GCJ02);
 };
 export const GCJ02ToBd = (
   latlng: [number, number] | { lat: number; lng: number }
 ) => {
-  return ConverLatlng(latlng, gcoord.GCJ02, gcoord.BD09);
+  return converLatlng(latlng, gcoord.GCJ02, gcoord.BD09);
 };
 
 export const GCJ02ToWGS84 = (
   latlng: [number, number] | { lat: number; lng: number }
 ) => {
-  return ConverLatlng(latlng, gcoord.GCJ02, gcoord.WGS84);
+  return converLatlng(latlng, gcoord.GCJ02, gcoord.WGS84);
 };
 
 export const WGS84StringToGCJ02 = (latlngStr: string) => {
@@ -56,8 +56,8 @@ export const WGS84StringToGCJ02 = (latlngStr: string) => {
   return WGS84ToGCJ02(latlng as [number, number]);
 };
 
-export const BdStringToGCJ02 = (latlngStr: string) => {
-  var latlng = StringToLatlng(latlngStr);
+export const BD09StringToGCJ02 = (latlngStr: string) => {
+  var latlng = stringToLatlng(latlngStr);
   var result: [number, number] = gcoord.transform(
     [latlng.lng, latlng.lat], // 经纬度坐标
     gcoord.BD09, // 当前坐标系
@@ -69,7 +69,7 @@ export const BdStringToGCJ02 = (latlngStr: string) => {
   };
 };
 export const GCJ02StringToWGS84 = (latlngStr: string) => {
-  var latlng = StringToLatlng(latlngStr);
+  var latlng = stringToLatlng(latlngStr);
   var result: [number, number] = gcoord.transform(
     [latlng.lng, latlng.lat], // 经纬度坐标
     gcoord.GCJ02, // 当前坐标系
@@ -81,7 +81,7 @@ export const GCJ02StringToWGS84 = (latlngStr: string) => {
   };
 };
 
-export const StringToLatlng = (str: string | [number, number]) => {
+export const stringToLatlng = (str: string | [number, number]) => {
   if (str == null) {
     throw new Error("值不能为空");
   }
@@ -112,31 +112,31 @@ export const StringToLatlng = (str: string | [number, number]) => {
   throw new Error("格式错误");
 };
 
-export const LatlngToString = (
+export const latlngToString = (
   latlng: { lat: number; lng: number } | [number, number]
 ) => {
   if (Array.isArray(latlng)) {
-    latlng = StringToLatlng(latlng);
+    latlng = stringToLatlng(latlng);
   }
 
   return `${latlng.lng.toFixed(6)},${latlng.lat.toFixed(6)}`;
 };
-export const ToLatLngLiteral = (latlng: LatLngExpression) => {
+export const toLatLngLiteral = (latlng: LatLngExpression) => {
   if (Array.isArray(latlng)) {
-    return StringToLatlng(latlng);
+    return stringToLatlng(latlng);
   }
   return latlng;
 };
-export const ToLatLngTuple = (latlng: LatLngExpression) => {
+export const toLatLngTuple = (latlng: LatLngExpression) => {
   if (Array.isArray(latlng)) {
-    return StringToLatlng(latlng);
+    return stringToLatlng(latlng);
   }
   return latlng;
 };
 
-export const ToTurfLatlng = (latlng: LatLngExpression) => {
+export const toTurfLatlng = (latlng: LatLngExpression) => {
   if (Array.isArray(latlng)) {
-    latlng = StringToLatlng(latlng);
+    latlng = stringToLatlng(latlng);
   }
 
   return [latlng.lng, latlng.lat];
@@ -147,9 +147,9 @@ export const ToTurfLatlng = (latlng: LatLngExpression) => {
  * @param latlngs
  * @param splitter
  */
-export const StringToCoordinates = (latlngs: string, splitter = ";") => {
+export const stringToCoordinates = (latlngs: string, splitter = ";") => {
   if (!latlngs) {
     return [];
   }
-  return latlngs.split(splitter).map(StringToLatlng);
+  return latlngs.split(splitter).map(stringToLatlng);
 };
