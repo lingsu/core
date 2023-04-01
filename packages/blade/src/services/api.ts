@@ -6,11 +6,13 @@ import type { OauthService } from "./oauthService";
 import { Auth } from "../auth";
 import { bladeUserService, BladeUserService } from "./system/bladeUserService";
 import { dictService, DictService } from "./system/dictService";
+import { menuService, MenuService } from "./system/menuService";
 
 export type ServiceTypes = {
   oauth: OauthService;
   bladeUser: BladeUserService;
   dict: DictService;
+  menu: MenuService;
 };
 
 export type ServiceParams = {
@@ -41,6 +43,7 @@ export const createWebApi = <T>(
     withInstall("oauth", oauthService);
     withInstall("bladeUser", bladeUserService);
     withInstall("dict", dictService);
+    withInstall("menu", menuService);
   };
   installDefault();
 
