@@ -2,11 +2,11 @@ import type { HttpClient } from "@q25a25q/common";
 import type { WebsiteConfig } from "..";
 
 export const userService = ({
-  defHttp,
-  website,
+  httpClient,
+  websiteConfig,
 }: {
-  defHttp: HttpClient;
-  website: WebsiteConfig;
+  httpClient: HttpClient;
+  websiteConfig: WebsiteConfig;
 }) => {
   const loginByUsername = (
     tenantId: string,
@@ -18,13 +18,13 @@ export const userService = ({
     key: string,
     code: string
   ) =>
-    defHttp.post(
+    httpClient.post(
       "/api/blade-auth/oauth/token",
       {
         headers: {
           "Tenant-Id": tenantId,
-          "Dept-Id": website.switchMode ? deptId : "",
-          "Role-Id": website.switchMode ? roleId : "",
+          "Dept-Id": websiteConfig.switchMode ? deptId : "",
+          "Role-Id": websiteConfig.switchMode ? roleId : "",
           "Captcha-Key": key,
           "Captcha-Code": code,
         },
@@ -33,7 +33,7 @@ export const userService = ({
           tenantId,
           username,
           password,
-          grant_type: website.captchaMode ? "captcha" : "password",
+          grant_type: websiteConfig.captchaMode ? "captcha" : "password",
           scope: "all",
           type,
         },
@@ -48,8 +48,8 @@ export const userService = ({
   //     noWarp: true,
   //     headers: {
   //       'Tenant-Id': tenantId,
-  //       'Dept-Id': website.switchMode ? deptId : '',
-  //       'Role-Id': website.switchMode ? roleId : '',
+  //       'Dept-Id': websiteConfig.switchMode ? deptId : '',
+  //       'Role-Id': websiteConfig.switchMode ? roleId : '',
   //       'Captcha-Key': key,
   //       'Captcha-Code': code,
   //     },
@@ -57,7 +57,7 @@ export const userService = ({
   //       tenantId,
   //       username,
   //       password,
-  //       grant_type: website.captchaMode ? 'captcha' : 'password',
+  //       grant_type: websiteConfig.captchaMode ? 'captcha' : 'password',
   //       scope: 'all',
   //       type,
   //     },
@@ -117,7 +117,7 @@ export const userService = ({
   //   });
 
   const getCaptcha = () =>
-    defHttp.get(
+    httpClient.get(
       "/api/blade-auth/oauth/captcha",
       {},
       { isTransformResponse: false }
