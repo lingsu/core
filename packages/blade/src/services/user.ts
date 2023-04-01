@@ -19,6 +19,7 @@ export type LoginInfo = {
   expires_in: number;
   license: string;
   detail: { type: string };
+  error_description?: string;
 };
 
 export type Captcha = {
