@@ -1,26 +1,27 @@
 import type { HttpClient } from "@q25a25q/common";
 import type { WebsiteConfig } from "..";
 
-export type LoginInfo = {
-  tenant_id: string;
-  user_id: string;
-  dept_id: string;
-  post_id: string;
-  role_id: string;
-  oauth_id: string;
-  account: string;
-  user_name: string;
-  nick_name: string;
-  role_name: string;
-  avatar: string;
-  access_token: string;
-  refresh_token: string;
-  token_type: string;
-  expires_in: number;
-  license: string;
-  detail: { type: string };
-  error_description?: string;
-};
+export type LoginInfo =
+  {
+      tenant_id: string;
+      user_id: string;
+      dept_id: string;
+      post_id: string;
+      role_id: string;
+      oauth_id: string;
+      account: string;
+      user_name: string;
+      nick_name: string;
+      role_name: string;
+      avatar: string;
+      access_token: string;
+      refresh_token: string;
+      token_type: string;
+      expires_in: number;
+      license: string;
+      detail: { type: string };
+    }
+  | { error_description?: string };
 
 export type Captcha = {
   image: string;
