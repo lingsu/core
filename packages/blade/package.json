@@ -1,6 +1,6 @@
 {
   "name": "@q25a25q/blade",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -30,8 +30,8 @@
     "access": "public"
   },
   "dependencies": {
+    "@q25a25q/common": "^1.5.0",
     "js-base64": "^3.7.5",
-    "js-md5": "^0.7.3",
-    "@q25a25q/common": "*"
+    "js-md5": "^0.7.3"
   }
 }

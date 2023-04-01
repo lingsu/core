@@ -81,7 +81,7 @@ importers:
 
   packages/blade:
     specifiers:
-      '@q25a25q/common': '*'
+      '@q25a25q/common': ^1.5.0
       js-base64: ^3.7.5
       js-md5: ^0.7.3
     dependencies:
@@ -104,7 +104,7 @@ importers:
 
   packages/gis:
     specifiers:
-      '@q25a25q/common': ^1.4.0
+      '@q25a25q/common': ^1.5.0
       '@turf/boolean-point-in-polygon': ^6.5.0
       '@turf/destination': ^6.5.0
       '@turf/distance': ^6.5.0
@@ -120,8 +120,8 @@ importers:
 
   packages/leaflet:
     specifiers:
-      '@q25a25q/common': ^1.4.0
-      '@q25a25q/gis': ^2.0.0
+      '@q25a25q/common': ^1.5.0
+      '@q25a25q/gis': ^2.0.1
       leaflet: ^1.9.3
     dependencies:
       '@q25a25q/common': link:../common
