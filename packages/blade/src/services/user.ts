@@ -78,7 +78,7 @@ export const userService = ({
           type,
         },
       },
-      { isTransformResponse: true }
+      { isTransformResponse: false }
     );
 
   // export const loginByUsername = (tenantId, deptId, roleId, username, password, type, key, code) =>
