@@ -1,5 +1,6 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from "axios";
 // import { getSafeCode, getTenantId, getToken, getTokenHeader } from '../auth';
+import type { HttpClient } from "./Axios";
 import { VAxios } from "./Axios";
 import { ContentTypeEnum, ResultEnum } from "./httpEnum";
 import { deepMerge } from "../index";
@@ -119,7 +120,7 @@ export type UploadFileCallBack = {
   isReturnResponse?: boolean;
 };
 
-const transform: AxiosTransform = {};
+// const transform: HttpTransform = {};
 // const instance = axios.create({
 //   baseURL: '/api',
 //   headers: { 'Content-Type': ContentTypeEnum.JSON },
@@ -215,9 +216,11 @@ function createAxios(opt?: CreateHttpOptions) {
 }
 export const defHttp = createAxios();
 
-export const createHttp = (options: CreateHttpOptions) => {
+export const createHttp = (options: CreateHttpOptions): HttpClient => {
   return createAxios(options);
 };
 
 // export default instance;
+
+export type { HttpClient };
 export default defHttp;

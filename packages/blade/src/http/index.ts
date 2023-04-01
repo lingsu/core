@@ -5,7 +5,7 @@ import {
   RequestOptions,
   ResultEnum,
 } from "@q25a25q/common";
-import { Auth } from "../auth";
+import type { Auth } from "../auth";
 
 export type Result<T = any> = {
   code: number;
@@ -59,7 +59,7 @@ export type Result<T = any> = {
 //   },
 // );
 
-export const createApiHttp = (auth: Auth, options: CreateHttpOptions) => {
+export const createApiHttp = (auth: Auth, options?: CreateHttpOptions) => {
   const transform = {
     /**
      * @description: 处理请求数据。如果数据不是预期格式，可直接抛出错误

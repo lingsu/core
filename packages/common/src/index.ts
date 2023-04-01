@@ -19,6 +19,7 @@ import type {
   UploadFileParams,
   UploadFileCallBack,
   HttpResponse,
+  HttpClient,
 } from "./http";
 
 import {
@@ -70,6 +71,7 @@ export type {
   UploadFileParams,
   UploadFileCallBack,
   HttpResponse,
+  HttpClient,
 };
 export {
   WebStorage,

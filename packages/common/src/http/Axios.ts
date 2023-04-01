@@ -4,6 +4,13 @@ import { ContentTypeEnum, RequestEnum } from './httpEnum';
 import { CreateHttpOptions, RequestOptions, UploadFileCallBack, UploadFileParams } from './interfaces';
 import cloneDeep from 'lodash.clonedeep';
 
+
+export type HttpClient = {
+  get: <T>(url: string, config?: AxiosRequestConfig, options?: RequestOptions) =>  Promise<T>;
+  post: <T>(url: string, config?: AxiosRequestConfig, options?: RequestOptions) =>  Promise<T>;
+  put: <T>(url: string, config?: AxiosRequestConfig, options?: RequestOptions) =>  Promise<T>;
+  delete: <T>(url: string, config?: AxiosRequestConfig, options?: RequestOptions) =>  Promise<T>;
+}
 /**
  * @description:  axios module
  */

@@ -1,3 +1,31 @@
 import creatAuth from "./auth";
+import {createWebApi} from "./services/api";
 
-export { creatAuth };
+export type WebsiteConfig = {
+  title: string;
+  logo: string;
+  key: string;
+  indexTitle: string;
+  clientId: string;
+  clientSecret: string;
+  tenantMode: string;
+  tenantId: string;
+  captchaMode: string;
+  switchMode: string;
+  lockPage: string;
+  apiUrl: string;
+  uploadUrl: string;
+  tokenTime: string;
+  tokenHeader: string;
+  //http的status默认放行列表:string;
+  statusWhiteList: string[];
+  //配置首页不可关闭:string;
+  isFirstPage: string;
+  // 第三方系统授权地址:string;
+  authUrl: string;
+  // 流程设计器地址:string;
+  flowDesignUrl: string;
+  // 报表设计器地址(cloud端口为8108,boot端口为80):string;
+  reportUrl: string;
+};
+export { creatAuth, createWebApi };
