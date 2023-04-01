@@ -1,13 +1,21 @@
-import { CreateHttpOptions } from "@q25a25q/common";
+import { CreateHttpOptions, HttpClient } from "@q25a25q/common";
 import { creatAuth, WebsiteConfig } from "..";
 import { createApiHttp } from "../http";
-import { userService } from "./user";
-import type { UserService } from "./user";
+import { oauthService } from "./oauthService";
+import type { OauthService } from "./oauthService";
+import { Auth } from "../auth";
+import { bladeUserService, BladeUserService } from "./system/bladeUser";
 
 export type ServiceTypes = {
-  user: UserService;
+  oauth: OauthService;
+  bladeUser: BladeUserService;
 };
 
+export type ServiceParams = {
+  auth: Auth;
+  httpClient: HttpClient;
+  websiteConfig: WebsiteConfig;
+};
 export const createWebApi = <T>(
   websiteConfig: WebsiteConfig,
   options?: CreateHttpOptions
@@ -15,7 +23,7 @@ export const createWebApi = <T>(
   var services = {};
   var auth = creatAuth(websiteConfig);
   var httpClient = createApiHttp(auth, options);
-  var params = {
+  var params: ServiceParams = {
     auth: auth,
     httpClient: httpClient,
     websiteConfig: websiteConfig,
@@ -25,7 +33,8 @@ export const createWebApi = <T>(
   };
 
   const installDefault = () => {
-    withInstall("user", userService);
+    withInstall("oauth", oauthService);
+    withInstall("bladeUser", bladeUserService);
   };
   installDefault();
 

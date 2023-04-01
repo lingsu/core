@@ -1,8 +1,9 @@
 import type { HttpClient } from "@q25a25q/common";
 import type { WebsiteConfig } from "..";
+import { ServiceParams } from "./api";
 
-export type LoginInfo =
-  {
+export type Token =
+  | {
       tenant_id: string;
       user_id: string;
       dept_id: string;
@@ -28,7 +29,7 @@ export type Captcha = {
   key: string;
 };
 
-export type UserService = {
+export type OauthService = {
   loginByUsername: (
     tenantId: string,
     deptId: string,
@@ -38,16 +39,13 @@ export type UserService = {
     type: string,
     key: string,
     code: string
-  ) => Promise<LoginInfo>;
+  ) => Promise<Token>;
   getCaptcha: () => Promise<Captcha>;
 };
-export const userService = ({
+export const oauthService = ({
   httpClient,
   websiteConfig,
-}: {
-  httpClient: HttpClient;
-  websiteConfig: WebsiteConfig;
-}) => {
+}: ServiceParams): OauthService => {
   const loginByUsername = (
     tenantId: string,
     deptId: string,
@@ -58,7 +56,7 @@ export const userService = ({
     key: string,
     code: string
   ) =>
-    httpClient.post<LoginInfo>(
+    httpClient.post<Token>(
       "/api/blade-auth/oauth/token",
       {
         headers: {
