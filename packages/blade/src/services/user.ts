@@ -76,7 +76,7 @@ export const userService = ({
           type,
         },
       },
-      { isReturnNativeResponse: true }
+      { isTransformResponse: true }
     );
 
   // export const loginByUsername = (tenantId, deptId, roleId, username, password, type, key, code) =>
