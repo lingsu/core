@@ -7,12 +7,14 @@ import { Auth } from "../auth";
 import { bladeUserService, BladeUserService } from "./system/bladeUserService";
 import { dictService, DictService } from "./system/dictService";
 import { menuService, MenuService } from "./system/menuService";
+import { RegionService, regionService } from "./system/regionService";
 
 export type ServiceTypes = {
   oauth: OauthService;
   bladeUser: BladeUserService;
   dict: DictService;
   menu: MenuService;
+  region: RegionService;
 };
 
 export type ServiceParams = {
@@ -44,6 +46,7 @@ export const createWebApi = <T>(
     withInstall("bladeUser", bladeUserService);
     withInstall("dict", dictService);
     withInstall("menu", menuService);
+    withInstall("region", regionService);
   };
   installDefault();
 
