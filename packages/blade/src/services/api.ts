@@ -4,7 +4,7 @@ import { createApiHttp } from "../http";
 import { oauthService } from "./oauthService";
 import type { OauthService } from "./oauthService";
 import { Auth } from "../auth";
-import { bladeUserService, BladeUserService } from "./system/bladeUser";
+import { bladeUserService, BladeUserService } from "./system/bladeUserService";
 
 export type ServiceTypes = {
   oauth: OauthService;
