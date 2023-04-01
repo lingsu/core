@@ -2,18 +2,23 @@ import { CreateHttpOptions } from "@q25a25q/common";
 import { creatAuth, WebsiteConfig } from "..";
 import { createApiHttp } from "../http";
 import { userService } from "./user";
+import type { UserService } from "./user";
 
-export const createWebApi = (
+export type ServiceTypes = {
+  user: UserService;
+};
+
+export const createWebApi = <T>(
   websiteConfig: WebsiteConfig,
   options?: CreateHttpOptions
 ) => {
-  var services: Record<string, any> = {};
+  var services = {};
   var auth = creatAuth(websiteConfig);
   var httpClient = createApiHttp(auth, options);
   var params = {
     auth: auth,
     httpClient: httpClient,
-    websiteConfig: websiteConfig
+    websiteConfig: websiteConfig,
   };
   const withInstall = (name: string, func: any) => {
     services[name] = func(params);
@@ -27,7 +32,7 @@ export const createWebApi = (
   return {
     auth,
     // httpClient,
-    services,
+    services: services as T & ServiceTypes,
     withInstall,
   };
 };

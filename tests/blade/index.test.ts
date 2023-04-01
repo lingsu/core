@@ -1,4 +1,4 @@
-import { creatAuth } from "@q25a25q/blade";
+import { creatAuth, createWebApi } from "@q25a25q/blade";
 import website from "./website";
 
 describe("blade", () => {
@@ -30,5 +30,11 @@ describe("blade", () => {
     auth.removeAuthorization();
     expect(auth.getToken()).toEqual(undefined);
   });
+
+  // it("createWebApi", async () => {
+  //    var api = createWebApi(website);
+  //    var s = await api.services.user.getCaptcha();
+  //   expect(s).toEqual('123');
+  // });
 
 });

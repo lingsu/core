@@ -1,6 +1,44 @@
 import type { HttpClient } from "@q25a25q/common";
 import type { WebsiteConfig } from "..";
 
+export type LoginInfo = {
+  tenant_id: string;
+  user_id: string;
+  dept_id: string;
+  post_id: string;
+  role_id: string;
+  oauth_id: string;
+  account: string;
+  user_name: string;
+  nick_name: string;
+  role_name: string;
+  avatar: string;
+  access_token: string;
+  refresh_token: string;
+  token_type: string;
+  expires_in: number;
+  license: string;
+  detail: { type: string };
+};
+
+export type Captcha = {
+  image: string;
+  key: string;
+};
+
+export type UserService = {
+  loginByUsername: (
+    tenantId: string,
+    deptId: string,
+    roleId: string,
+    username: string,
+    password: string,
+    type: string,
+    key: string,
+    code: string
+  ) => Promise<LoginInfo>;
+  getCaptcha: () => Promise<Captcha>;
+};
 export const userService = ({
   httpClient,
   websiteConfig,
@@ -18,7 +56,7 @@ export const userService = ({
     key: string,
     code: string
   ) =>
-    httpClient.post(
+    httpClient.post<LoginInfo>(
       "/api/blade-auth/oauth/token",
       {
         headers: {
@@ -117,7 +155,7 @@ export const userService = ({
   //   });
 
   const getCaptcha = () =>
-    httpClient.get(
+    httpClient.get<Captcha>(
       "/api/blade-auth/oauth/captcha",
       {},
       { isTransformResponse: false }
