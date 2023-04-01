@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { isFunction } from '../is';
 import { ContentTypeEnum, RequestEnum } from './httpEnum';
-import { CreateAxiosOptions, RequestOptions, Result, UploadFileCallBack, UploadFileParams } from './interfaces';
+import { CreateHttpOptions, RequestOptions, UploadFileCallBack, UploadFileParams } from './interfaces';
 import cloneDeep from 'lodash.clonedeep';
 
 /**
@@ -9,9 +9,9 @@ import cloneDeep from 'lodash.clonedeep';
  */
  export class VAxios {
     private axiosInstance: AxiosInstance;
-    private readonly options: CreateAxiosOptions;
+    private readonly options: CreateHttpOptions;
   
-    constructor(options: CreateAxiosOptions) {
+    constructor(options: CreateHttpOptions) {
       this.options = options;
       this.axiosInstance = axios.create(options);
       this.setupInterceptors();
@@ -20,7 +20,7 @@ import cloneDeep from 'lodash.clonedeep';
     /**
      * @description:  Create axios instance
      */
-    private createAxios(config: CreateAxiosOptions): void {
+    private createAxios(config: CreateHttpOptions): void {
       this.axiosInstance = axios.create(config);
     }
   
@@ -36,7 +36,7 @@ import cloneDeep from 'lodash.clonedeep';
     /**
      * @description: Reconfigure axios
      */
-    configAxios(config: CreateAxiosOptions) {
+    configAxios(config: CreateHttpOptions) {
       if (!this.axiosInstance) {
         return;
       }
@@ -101,7 +101,7 @@ import cloneDeep from 'lodash.clonedeep';
      * 文件上传
      */
     //--@updateBy-begin----author:liusq---date:20211117------for:增加上传回调参数callback------
-    uploadFile<T = any>(config: CreateAxiosOptions, params: UploadFileParams, callback?: UploadFileCallBack) {
+    uploadFile<T = any>(config: CreateHttpOptions, params: UploadFileParams, callback?: UploadFileCallBack) {
       //--@updateBy-end----author:liusq---date:20211117------for:增加上传回调参数callback------
       const formData = new window.FormData();
       const customFilename = params.name || 'file';
@@ -185,7 +185,7 @@ import cloneDeep from 'lodash.clonedeep';
     }
   
     request<T = any>(config: AxiosRequestConfig, options?: RequestOptions): Promise<T> {
-      let conf: CreateAxiosOptions = cloneDeep(config);
+      let conf: CreateHttpOptions = cloneDeep(config);
       const transform = this.getTransform();
   
       const { requestOptions } = this.options;
@@ -202,8 +202,8 @@ import cloneDeep from 'lodash.clonedeep';
   
       return new Promise((resolve, reject) => {
         this.axiosInstance
-          .request<any, AxiosResponse<Result>>(conf)
-          .then((res: AxiosResponse<Result>) => {
+          .request<any, AxiosResponse<any>>(conf)
+          .then((res: AxiosResponse<any>) => {
             if (transformRequestHook && isFunction(transformRequestHook)) {
               try {
                 const ret = transformRequestHook(res, opt);

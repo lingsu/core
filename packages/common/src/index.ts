@@ -3,7 +3,24 @@ import type { TargetContext } from "./typing";
 export * from "./file";
 export * from "./is";
 import { isObject } from "./is";
-import defHttp, {createHttp} from './http'
+import defHttp, {
+  createHttp,
+  ResultEnum,
+  RequestEnum,
+  ContentTypeEnum,
+  ConfigEnum,
+} from "./http";
+import type {
+  CreateHttpOptions,
+  HttpTransform,
+  ErrorMessageMode,
+  SuccessMessageMode,
+  RequestOptions,
+  UploadFileParams,
+  UploadFileCallBack,
+  HttpResponse,
+} from "./http";
+
 import {
   intOrStringArrayToStringConver,
   optionConver,
@@ -14,7 +31,9 @@ import {
 export function deepMerge<T = any>(src: any = {}, target: any = {}): T {
   let key: string;
   for (key in target) {
-    src[key] = isObject(src[key]) ? deepMerge(src[key], target[key]) : (src[key] = target[key]);
+    src[key] = isObject(src[key])
+      ? deepMerge(src[key], target[key])
+      : (src[key] = target[key]);
   }
   return src;
 }
@@ -41,6 +60,17 @@ export function cloneObject(obj: any) {
 export const getSearchObj = (search: string) => {
   return Object.fromEntries(new URLSearchParams(search).entries());
 };
+
+export type {
+  CreateHttpOptions,
+  HttpTransform,
+  ErrorMessageMode,
+  SuccessMessageMode,
+  RequestOptions,
+  UploadFileParams,
+  UploadFileCallBack,
+  HttpResponse,
+};
 export {
   WebStorage,
   intOrStringArrayToStringConver,
@@ -48,5 +78,9 @@ export {
   stringToIntArrayConver,
   stringToDateTimeConver,
   defHttp,
-  createHttp
+  createHttp,
+  ResultEnum,
+  RequestEnum,
+  ContentTypeEnum,
+  ConfigEnum,
 };
