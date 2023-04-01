@@ -5,10 +5,12 @@ import { oauthService } from "./oauthService";
 import type { OauthService } from "./oauthService";
 import { Auth } from "../auth";
 import { bladeUserService, BladeUserService } from "./system/bladeUserService";
+import { dictService, DictService } from "./system/dictService";
 
 export type ServiceTypes = {
   oauth: OauthService;
   bladeUser: BladeUserService;
+  dict: DictService;
 };
 
 export type ServiceParams = {
@@ -29,12 +31,16 @@ export const createWebApi = <T>(
     websiteConfig: websiteConfig,
   };
   const withInstall = (name: string, func: any) => {
+    if (services[name]) {
+      console.log(`${name} 服务重复安装`);
+    }
     services[name] = func(params);
   };
 
   const installDefault = () => {
     withInstall("oauth", oauthService);
     withInstall("bladeUser", bladeUserService);
+    withInstall("dict", dictService);
   };
   installDefault();
 

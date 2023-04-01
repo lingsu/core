@@ -13,6 +13,20 @@ export type Result<T = any> = {
   msg: string;
   result: T;
 };
+export type PageResult<T = any> = Result & {
+  result: {
+    records: T[];
+    total: number;
+    size: number;
+    current: number;
+    orders: string[];
+    optimizeCountSql: boolean;
+    searchCount: boolean;
+    countId: string;
+    maxLimit: number;
+    pages: number;
+  };
+};
 
 // const instance = axios.create({
 //   baseURL: '/api',
@@ -154,6 +168,6 @@ export const createApiHttp = (auth: Auth, options?: CreateHttpOptions) => {
 
   return createHttp({
     transform,
-    ...options
+    ...options,
   });
 };
