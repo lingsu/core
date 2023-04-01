@@ -10,8 +10,8 @@ export type WebsiteConfig = {
   clientSecret: string;
   tenantMode: boolean;
   tenantId: string;
-  captchaMode: string;
-  switchMode: string;
+  captchaMode: boolean;
+  switchMode: boolean;
   lockPage: string;
   apiUrl: string;
   uploadUrl: string;
