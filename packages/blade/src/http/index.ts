@@ -8,27 +8,6 @@ import {
 } from "@q25a25q/common";
 import type { Auth } from "../auth";
 
-export type Result<T = any> = {
-  code: number;
-  type: "success" | "error" | "warning";
-  msg: string;
-  result: T;
-};
-export type PageResult<T> = Result<PageWarp<T>>;
-
-export type PageWarp<T = any> = {
-  records: T[];
-  total: number;
-  size: number;
-  current: number;
-  orders: string[];
-  optimizeCountSql: boolean;
-  searchCount: boolean;
-  countId: string;
-  maxLimit: number;
-  pages: number;
-};
-
 // const instance = axios.create({
 //   baseURL: '/api',
 //   headers: { 'Content-Type': ContentTypeEnum.JSON },

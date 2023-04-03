@@ -1,6 +1,4 @@
 import type { ServiceTypes, ServiceParams } from "./services/api";
-import type { Result, PageResult, PageWarp } from "./http";
-import type { Auth } from "./auth";
 import type { BladeUser } from "./services/system/bladeUserService";
 import type { Dict } from "./services/system/dictService";
 import type { Menu } from "./services/system/menuService";
@@ -32,7 +30,40 @@ type WebsiteConfig = {
   // 报表设计器地址(cloud端口为8108,boot端口为80):string;
   reportUrl: string;
 };
+
+export type Result<T = any> = {
+  code: number;
+  type: "success" | "error" | "warning";
+  msg: string;
+  result: T;
+};
+export type PageResult<T> = Result<PageWarp<T>>;
+
+export type PageWarp<T = any> = {
+  records: T[];
+  total: number;
+  size: number;
+  current: number;
+  orders: string[];
+  optimizeCountSql: boolean;
+  searchCount: boolean;
+  countId: string;
+  maxLimit: number;
+  pages: number;
+};
+
 type CurrentUser = BladeUser & { access?: string[] };
+
+
+export type Auth = {
+  setAuthorization: (auth: any) => void;
+  removeAuthorization: () => void;
+  getTenantId: () => string;
+  getTokenHeader: () => string;
+  getToken: () => string;
+  getSafeCode: () => string;
+  checkAuthorization: () => boolean;
+};
 export type {
   ServiceTypes,
   ServiceParams,

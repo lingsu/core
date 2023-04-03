@@ -1,18 +1,8 @@
 import { WebStorage } from "@q25a25q/common";
 import { Base64 } from "js-base64";
+import { Auth } from "../typing";
 
 const xsrfHeaderName = "Authorization";
-
-export type Auth = {
-  setAuthorization: (auth: any) => void;
-  removeAuthorization: () => void;
-  getTenantId: () => string;
-  getTokenHeader: () => string;
-  getToken: () => string;
-  getSafeCode: () => string;
-  checkAuthorization: () => boolean;
-};
-
 export default (option: {
   xsrfHeaderName?: string;
   clientId: string;
