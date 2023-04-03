@@ -57,7 +57,7 @@ export type DictService = {
 };
 export function dictService({ httpClient }: ServiceParams): DictService {
   const getList = (params: any) => {
-    return httpClient.get<PageWarp<Dict>>("/api/blade-system/dict/list", {
+    return httpClient.get<Dict[]>("/api/blade-system/dict/list", {
       params: {
         ...params,
       },
