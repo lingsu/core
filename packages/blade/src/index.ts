@@ -1,6 +1,8 @@
 import creatAuth from "./auth";
 import { createWebApi } from "./services/api";
 import type { ServiceTypes, ServiceParams } from "./services/api";
+import type { Result, PageResult } from "./http";
+import type { Auth } from "./auth";
 type WebsiteConfig = {
   title: string;
   logo: string;
@@ -29,5 +31,12 @@ type WebsiteConfig = {
   reportUrl: string;
 };
 
-export type { ServiceTypes, ServiceParams, WebsiteConfig };
+export type {
+  ServiceTypes,
+  ServiceParams,
+  WebsiteConfig,
+  Result,
+  PageResult,
+  Auth,
+};
 export { creatAuth, createWebApi };
