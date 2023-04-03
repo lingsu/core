@@ -6,7 +6,7 @@ import {
   RequestOptions,
   ResultEnum,
 } from "@q25a25q/common";
-import type { Auth } from "../auth";
+import { Auth } from "../typing";
 
 // const instance = axios.create({
 //   baseURL: '/api',
