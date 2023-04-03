@@ -52,7 +52,7 @@ export const createWebApi = <T>(
 
   return {
     auth,
-    // httpClient,
+    httpClient,
     services: services as T & ServiceTypes,
     withInstall,
   };
