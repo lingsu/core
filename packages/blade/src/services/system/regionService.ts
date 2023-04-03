@@ -1,4 +1,4 @@
-import { PageResult } from "../../http";
+import { PageWarp } from "../../typing";
 import { ServiceParams } from "../api";
 
 export type Region = {
@@ -52,12 +52,12 @@ export type Region = {
   sort: number;
 };
 export type RegionService = {
-  getList: (params: any) => Promise<PageResult<Region>>;
+  getList: (params: any) => Promise<PageWarp<Region>>;
   getSelectList: (code?: any) => Promise<Region[]>;
 };
 export const regionService = ({ httpClient }: ServiceParams): RegionService => {
   const getList = (params: any) => {
-    return httpClient.get<PageResult<Region>>("/api/blade-system/region/list", {
+    return httpClient.get<PageWarp<Region>>("/api/blade-system/region/list", {
       params: {
         ...params,
       },

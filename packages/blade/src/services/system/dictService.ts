@@ -1,4 +1,4 @@
-import { PageResult } from "../../http";
+import { PageWarp } from "../../typing";
 import { ServiceParams } from "../api";
 
 export type Dict = {
@@ -53,11 +53,11 @@ export type Dict = {
 };
 
 export type DictService = {
-  getList: (params: any) => Promise<PageResult<Dict>>;
+  getList: (params: any) => Promise<PageWarp<Dict>>;
 };
 export function dictService({ httpClient }: ServiceParams): DictService {
   const getList = (params: any) => {
-    return httpClient.get<PageResult<Dict>>("/api/blade-system/dict/list", {
+    return httpClient.get<PageWarp<Dict>>("/api/blade-system/dict/list", {
       params: {
         ...params,
       },
