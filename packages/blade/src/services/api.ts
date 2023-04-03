@@ -1,5 +1,5 @@
 import { CreateHttpOptions, HttpClient } from "@q25a25q/common";
-import { creatAuth, WebsiteConfig } from "..";
+import { creatAuth } from "..";
 import { createApiHttp } from "../http";
 import { oauthService } from "./oauthService";
 import type { OauthService } from "./oauthService";
@@ -8,6 +8,7 @@ import { bladeUserService, BladeUserService } from "./system/bladeUserService";
 import { dictService, DictService } from "./system/dictService";
 import { menuService, MenuService } from "./system/menuService";
 import { RegionService, regionService } from "./system/regionService";
+import { WebsiteConfig } from "../typing";
 
 export type ServiceTypes = {
   oauth: OauthService;

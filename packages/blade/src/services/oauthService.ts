@@ -1,5 +1,3 @@
-import type { HttpClient } from "@q25a25q/common";
-import type { WebsiteConfig } from "..";
 import { ServiceParams } from "./api";
 
 export type Token =
