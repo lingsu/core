@@ -1,8 +1,12 @@
 import creatAuth from "./auth";
 import { createWebApi } from "./services/api";
 import type { ServiceTypes, ServiceParams } from "./services/api";
-import type { Result, PageResult,PageWarp } from "./http";
+import type { Result, PageResult, PageWarp } from "./http";
 import type { Auth } from "./auth";
+import type { BladeUser } from "./services/system/bladeUserService";
+import type { Dict } from "./services/system/dictService";
+import type { Menu } from "./services/system/menuService";
+import type { Region } from "./services/system/regionService";
 type WebsiteConfig = {
   title: string;
   logo: string;
@@ -38,6 +42,10 @@ export type {
   Result,
   PageResult,
   Auth,
-  PageWarp
+  PageWarp,
+  BladeUser,
+  Dict,
+  Menu,
+  Region,
 };
 export { creatAuth, createWebApi };
