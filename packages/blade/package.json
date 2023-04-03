@@ -1,6 +1,6 @@
 {
   "name": "@q25a25q/blade",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
