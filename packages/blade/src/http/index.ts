@@ -1,6 +1,7 @@
 import {
   createHttp,
   CreateHttpOptions,
+  deepMerge,
   HttpResponse,
   RequestOptions,
   ResultEnum,
@@ -144,7 +145,9 @@ export const createApiHttp = (auth: Auth, options?: CreateHttpOptions) => {
 
       throw new Error(timeoutMsg || "sys.api.apiRequestFailed");
     },
+    // requestCatchHook: () => {
 
+    // },
     requestInterceptors: (config: any, options: any) => {
       const token = auth.getToken();
       const safeCode = auth.getSafeCode();
@@ -166,8 +169,5 @@ export const createApiHttp = (auth: Auth, options?: CreateHttpOptions) => {
     },
   };
 
-  return createHttp({
-    transform,
-    ...options,
-  });
+  return createHttp(deepMerge({ transform }, options || {}));
 };
