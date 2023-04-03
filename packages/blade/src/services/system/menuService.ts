@@ -125,7 +125,7 @@ export const menuService = ({ httpClient }: ServiceParams): MenuService => {
   //   });
 
   const getRoutes = (topMenuId?: string) =>
-    httpClient.get<Menu[]>("/api/blade-system/menu/routes/routes", {
+    httpClient.get<Menu[]>("/api/blade-system/menu/routes", {
       params: {
         topMenuId: topMenuId,
       },
