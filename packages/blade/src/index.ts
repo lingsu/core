@@ -1,7 +1,7 @@
 import creatAuth from "./auth";
-import {createWebApi} from "./services/api";
-
-export type WebsiteConfig = {
+import { createWebApi } from "./services/api";
+import type { ServiceTypes, ServiceParams } from "./services/api";
+type WebsiteConfig = {
   title: string;
   logo: string;
   key: string;
@@ -28,4 +28,6 @@ export type WebsiteConfig = {
   // 报表设计器地址(cloud端口为8108,boot端口为80):string;
   reportUrl: string;
 };
+
+export type { ServiceTypes, ServiceParams, WebsiteConfig };
 export { creatAuth, createWebApi };

@@ -34,7 +34,7 @@ export const createWebApi = <T>(
     httpClient: httpClient,
     websiteConfig: websiteConfig,
   };
-  const withInstall = (name: string, func: any) => {
+  const withInstall = (name: string, func: (params: ServiceParams) => any) => {
     if (services[name]) {
       console.log(`${name} 服务重复安装`);
     }
