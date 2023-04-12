@@ -3,12 +3,11 @@ import { creatAuth } from "..";
 import { createApiHttp } from "../http";
 import { oauthService } from "./oauthService";
 import type { OauthService } from "./oauthService";
-import { Auth } from "../auth";
 import { bladeUserService, BladeUserService } from "./system/bladeUserService";
 import { dictService, DictService } from "./system/dictService";
 import { menuService, MenuService } from "./system/menuService";
 import { RegionService, regionService } from "./system/regionService";
-import { WebsiteConfig } from "../typing";
+import type { Auth, WebsiteConfig } from "../typing";
 
 export type ServiceTypes = {
   oauth: OauthService;
