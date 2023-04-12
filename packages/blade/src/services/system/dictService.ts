@@ -53,7 +53,7 @@ export type Dict = {
 };
 
 export type DictService = {
-  getList: (params: any) => Promise<PageWarp<Dict>>;
+  getList: (params: any) => Promise<Dict[]>;
 };
 export function dictService({ httpClient }: ServiceParams): DictService {
   const getList = (params: any) => {
