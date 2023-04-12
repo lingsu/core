@@ -31,15 +31,15 @@ type WebsiteConfig = {
   reportUrl: string;
 };
 
-export type Result<T = any> = {
+type Result<T = any> = {
   code: number;
   type: "success" | "error" | "warning";
   msg: string;
   result: T;
 };
-export type PageResult<T> = Result<PageWarp<T>>;
+type PageResult<T> = Result<PageWarp<T>>;
 
-export type PageWarp<T = any> = {
+type PageWarp<T = any> = {
   records: T[];
   total: number;
   size: number;
@@ -54,8 +54,7 @@ export type PageWarp<T = any> = {
 
 type CurrentUser = BladeUser & { access?: string[] };
 
-
-export type Auth = {
+type Auth = {
   setAuthorization: (auth: any) => void;
   removeAuthorization: () => void;
   getTenantId: () => string;
