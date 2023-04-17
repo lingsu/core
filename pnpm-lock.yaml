@@ -23,6 +23,7 @@ importers:
       '@testing-library/user-event': ^14.4.3
       '@types/jest': ^27.5.2
       '@types/node': ^14.18.40
+      chalk: ^4.1.2
       dumi: ^2.0.2
       esbuild: ^0.15.18
       esbuild-jest: ^0.5.0
@@ -62,6 +63,7 @@ importers:
       '@testing-library/user-event': 14.4.3_yxlyej73nftwmh2fiao7paxmlm
       '@types/jest': 27.5.2
       '@types/node': 14.18.41
+      chalk: 4.1.2
       dumi: 2.1.21_xfngeave5omtr5vrorbqvam2je
       esbuild: 0.15.18
       esbuild-jest: 0.5.0_esbuild@0.15.18
