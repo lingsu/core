@@ -14,6 +14,7 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "paths": {
+      "@@/*": [".dumi/tmp/*"],
       "@q25a25q/common": [
         "./packages/common/src/index.ts"
       ],
@@ -25,6 +26,9 @@
       ],
       "@q25a25q/blade": [
         "./packages/blade/src/index.ts"
+      ],
+      "@q25a25q/jsonschema-generate-form": [
+        "packages/jsonschema-generate-form/src/index.tsx"
       ],
     }
   },
@@ -43,6 +47,6 @@
     "jest.config.ts",
     "**/fixtures",
     "./tests/no-duplicated.ts",
-    "packages/descriptions/src/demos/.tsx"
+    "packages/jsonschema-generate-form/src/demos/.tsx"
   ]
 }

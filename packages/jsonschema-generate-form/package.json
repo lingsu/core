@@ -1,0 +1,39 @@
+{
+  "name": "@q25a25q/jsonschema-generate-form",
+  "version": "0.0.1",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "files": [
+    "lib",
+    "es",
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lingsu/core"
+  },
+  "scripts": {
+    "build": "father build"
+  },
+  "author": "andy",
+  "license": "MIT",
+  "sideEffects": false,
+  "browserslist": [
+    "last 2 versions",
+    "Firefox ESR",
+    "> 1%",
+    "ie >= 11"
+  ],
+  "peerDependencies": {
+    "antd": ">=5.0.0",
+    "react": ">=16.9.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.18.0"
+  }
+}
