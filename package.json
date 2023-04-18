@@ -77,6 +77,8 @@
   "author": "andy",
   "license": "MIT",
   "dependencies": {
+    "@ant-design/pro-components": "^2.4.4",
+    "antd": "^5.4.2",
     "babel-types": "^6.26.0",
     "glob": "^10.2.1",
     "slash2": "^2.0.0"
