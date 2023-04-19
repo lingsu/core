@@ -27,6 +27,7 @@
     "ie >= 11"
   ],
   "peerDependencies": {
+    "lodash": ">=4.17.15",
     "@ant-design/pro-components": ">=2.4.4",
     "antd": ">=5.0.0",
     "react": ">=16.9.0"
