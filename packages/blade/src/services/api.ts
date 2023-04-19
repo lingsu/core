@@ -8,6 +8,7 @@ import { dictService, DictService } from "./system/dictService";
 import { menuService, MenuService } from "./system/menuService";
 import { RegionService, regionService } from "./system/regionService";
 import type { Auth, WebsiteConfig } from "../typing";
+import { FileService, fileService } from "./fileService";
 
 export type ServiceTypes = {
   oauth: OauthService;
@@ -15,6 +16,7 @@ export type ServiceTypes = {
   dict: DictService;
   menu: MenuService;
   region: RegionService;
+  file: FileService;
 };
 
 export type ServiceParams = {
@@ -47,6 +49,7 @@ export const createWebApi = <T>(
     withInstall("dict", dictService);
     withInstall("menu", menuService);
     withInstall("region", regionService);
+    withInstall("file", fileService);
   };
   installDefault();
 
