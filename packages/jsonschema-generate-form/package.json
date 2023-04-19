@@ -1,6 +1,6 @@
 {
   "name": "@q25a25q/jsonschema-generate-form",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -27,15 +27,15 @@
     "ie >= 11"
   ],
   "peerDependencies": {
-    "antd": ">=5.0.0",
     "@ant-design/pro-components": ">=2.4.4",
+    "antd": ">=5.0.0",
     "react": ">=16.9.0"
   },
   "devDependencies": {
+    "@monaco-editor/react": "^4.4.6",
     "@types/json-schema": "^7.0.9",
     "html": "^1.0.0",
-    "monaco-editor": "^0.37.0",
-    "@monaco-editor/react": "^4.4.6"
+    "monaco-editor": "^0.37.0"
   },
   "publishConfig": {
     "access": "public"
