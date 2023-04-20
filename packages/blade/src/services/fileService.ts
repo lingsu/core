@@ -8,8 +8,9 @@ export type Captcha = {
 
 export type FileService = {
   download: (url: string) => Promise<boolean>;
+  uploadFile: <T>(url: string, data: any) => Promise<T>;
 };
-export const fileService = ({ auth }: ServiceParams): FileService => {
+export const fileService = ({ auth, httpClient }: ServiceParams): FileService => {
   const download = async (url: string) => {
     var token = auth.getTokenHeader() + "=" + auth.getToken();
     if (url.indexOf("?") > -1) {
@@ -23,9 +24,19 @@ export const fileService = ({ auth }: ServiceParams): FileService => {
       url: url + token,
     });
   };
+
+  const uploadFile = <T>(url: string, data: any) => {
+    return httpClient.post<T>(url, {
+      data,
+      headers: {
+        'Content-type': 'multipart/form-data;charset=UTF-8',
+      },
+    });
+
+  }
   return {
     download,
-
+    uploadFile
     // logout,
     // getUserInfo,
     // sendLogs,
