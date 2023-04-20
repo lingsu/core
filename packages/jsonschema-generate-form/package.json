@@ -1,6 +1,6 @@
 {
   "name": "@q25a25q/jsonschema-generate-form",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -27,9 +27,9 @@
     "ie >= 11"
   ],
   "peerDependencies": {
-    "lodash": ">=4.17.15",
     "@ant-design/pro-components": ">=2.4.4",
     "antd": ">=5.0.0",
+    "lodash": ">=4.17.15",
     "react": ">=16.9.0"
   },
   "devDependencies": {
