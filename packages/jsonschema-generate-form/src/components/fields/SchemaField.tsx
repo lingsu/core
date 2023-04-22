@@ -58,6 +58,10 @@ export default (props: FieldProps) => {
       // rawErrors={__errors}
     />
   );
+
+  const fieldProps = {
+    
+  }
   return <FieldTemplate id="">
     {field}
   </FieldTemplate>;

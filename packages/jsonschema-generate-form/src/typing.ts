@@ -31,6 +31,25 @@ export type FieldTemplateProps = {
   id: string;
   children: ReactElement;
 };
+
+export type ObjectFieldTemplatePropertyType = {
+    /** The html for the property's content */
+    content: ReactElement;
+    /** A string representing the property name */
+    name: string;
+    /** A boolean value stating if the object property is disabled */
+    disabled: boolean;
+    /** A boolean value stating if the property is read-only */
+    readonly: boolean;
+    /** A boolean value stating if the property should be hidden */
+    hidden: boolean;
+}
+export type ObjectFieldTemplateProps = {
+  properties:ObjectFieldTemplatePropertyType[];
+  schema: Schema;
+  registry: Registry;
+};
 export type TemplatesType = {
   FieldTemplate: ComponentType<FieldTemplateProps>;
+  ObjectFieldTemplate: ComponentType<ObjectFieldTemplateProps>;
 };

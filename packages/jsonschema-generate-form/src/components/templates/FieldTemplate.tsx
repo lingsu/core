@@ -4,7 +4,7 @@ export default (props: FieldTemplateProps) => {
   const { children } = props;
   return (
     <div>
-      FieldTemplate
+      Field Template:
       {children}
     </div>
   );
