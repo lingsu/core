@@ -35,7 +35,7 @@ export default (props: FieldProps) => {
     schema: _schema,
     // idSchema: _idSchema,
     // uiSchema,
-    // formData,
+    formData,
   } = props;
 
   const FieldTemplate = getTemplate('FieldTemplate', registry);

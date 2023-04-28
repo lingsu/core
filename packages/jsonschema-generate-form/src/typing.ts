@@ -17,6 +17,7 @@ export type FieldProps = {
   name: string;
   schema: Schema;
   registry: Registry;
+  formData:any;
 };
 export type Field = ComponentType<FieldProps>;
 export type RegistryFieldsType = {
