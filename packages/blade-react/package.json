@@ -1,6 +1,6 @@
 {
   "name": "@q25a25q/blade-react",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -32,12 +32,11 @@
     "lodash": ">=4.17.15",
     "react": ">=16.9.0"
   },
-  
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@q25a25q/common": "^1.5.1",
-    "@q25a25q/blade": "^2.4.0"
+    "@q25a25q/blade": "^3.0.0",
+    "@q25a25q/common": "^1.5.1"
   }
 }
