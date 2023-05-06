@@ -1,4 +1,8 @@
 import creatAuth from "./auth";
-import { createWebApi } from "./services/api";
+import {
+  createDefaultWebApi,
+  // replaceDefaultWebApi,
+  // withInstallService,
+} from "./services/api";
 
-export { creatAuth, createWebApi };
+export { creatAuth, createDefaultWebApi };

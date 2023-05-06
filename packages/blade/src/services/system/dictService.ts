@@ -52,8 +52,16 @@ export type Dict = {
   sort: number;
 };
 
+export type DictParams = {
+  code?: string;
+  dictKey?: string;
+  dictValue?: string;
+  id?: number;
+  parentId?: number;
+};
 export type DictService = {
-  getList: (params: any) => Promise<Dict[]>;
+  getList: (params?: DictParams) => Promise<Dict[]>;
+  getDictionary: (params?: DictParams) => Promise<Dict[]>;
 };
 export function dictService({ httpClient }: ServiceParams): DictService {
   const getList = (params: any) => {
@@ -139,13 +147,11 @@ export function dictService({ httpClient }: ServiceParams): DictService {
   //   };
   //   return loop(res);
   // };
-  //  const getDictionary = (params) => {
-  //   return request({
-  //     url: '/api/blade-system/dict/dictionary',
-  //     method: 'get',
-  //     params,
-  //   });
-  // };
+  const getDictionary = (params?: DictParams) => {
+    return httpClient.get<Dict[]>("/api/blade-system/dict/dictionary", {
+      params,
+    });
+  };
   //  const getDictionaryTree = (params) => {
   //   return request({
   //     url: '/api//blade-system/dict-biz/dictionary-tree',
@@ -164,6 +170,7 @@ export function dictService({ httpClient }: ServiceParams): DictService {
   // };
   return {
     getList,
+    getDictionary,
     // getParentList,
     // getChildList,
     // remove,

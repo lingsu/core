@@ -27,6 +27,9 @@
       "@q25a25q/blade": [
         "./packages/blade/src/index.ts"
       ],
+      "@q25a25q/blade-react": [
+        "./packages/blade-react/src/index.ts"
+      ],
       "@q25a25q/jsonschema-generate-form": [
         "packages/jsonschema-generate-form/src/index.tsx"
       ],

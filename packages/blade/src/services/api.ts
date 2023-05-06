@@ -7,9 +7,9 @@ import { bladeUserService, BladeUserService } from "./system/bladeUserService";
 import { dictService, DictService } from "./system/dictService";
 import { menuService, MenuService } from "./system/menuService";
 import { RegionService, regionService } from "./system/regionService";
-import type { Auth, WebsiteConfig } from "../typing";
+import type { Auth, WebApiService, WebsiteConfig } from "../typing";
 import { FileService, fileService } from "./fileService";
-
+import defaultConfig from "./defaultConfig";
 export type ServiceTypes = {
   oauth: OauthService;
   bladeUser: BladeUserService;
@@ -24,11 +24,9 @@ export type ServiceParams = {
   httpClient: HttpClient;
   websiteConfig: WebsiteConfig;
 };
-export const createWebApi = <T>(
-  websiteConfig: WebsiteConfig,
-  options?: CreateHttpOptions
-) => {
+export function createDefaultWebApi<T>(websiteConfig?: WebsiteConfig, options?: CreateHttpOptions): WebApiService<T> {
   var services = {};
+  websiteConfig = { ...defaultConfig, ...websiteConfig };
   var auth = creatAuth(websiteConfig);
   var httpClient = createApiHttp(auth, options);
   var params: ServiceParams = {
@@ -59,4 +57,16 @@ export const createWebApi = <T>(
     services: services as T & ServiceTypes,
     withInstall,
   };
-};
+}
+
+// let defaultWebApi = createDefaultWebApi<any>();
+
+// export const replaceDefaultWebApi = <T>(newWebApi: WebApiService<T>) => {
+//   defaultWebApi = newWebApi;
+// };
+// export const withInstall = (name: string, func: (params: ServiceParams) => any) => {
+//   defaultWebApi.withInstall(name, func);
+// }
+// export default <T = ServiceTypes>() => {
+//   return defaultWebApi as WebApiService<T>;
+// };

@@ -1,3 +1,4 @@
+import { HttpClient } from "@q25a25q/common";
 import type { ServiceTypes, ServiceParams } from "./services/api";
 import type { BladeUser } from "./services/system/bladeUserService";
 import type { Dict } from "./services/system/dictService";
@@ -63,6 +64,14 @@ type Auth = {
   getSafeCode: () => string;
   checkAuthorization: () => boolean;
 };
+
+type WebApiService<T> = {
+  auth: Auth;
+  httpClient: HttpClient;
+  services: T & ServiceTypes;
+  withInstall: (name: string, func: (params: ServiceParams) => any) => void;
+};
+
 export type {
   ServiceTypes,
   ServiceParams,
@@ -76,4 +85,5 @@ export type {
   Menu,
   Region,
   CurrentUser,
+  WebApiService
 };
