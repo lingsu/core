@@ -1,16 +1,28 @@
 // import { useSystemDictIntMap } from '@/andy/hooks/useSystemDict';
-import { ProFormSelect, ProFormSelectProps } from '@ant-design/pro-components';
-import { createApi } from '../../../';
+import {
+  ProFormSelect,
+  ProFormSelectProps,
+  RequestOptionsType,
+} from "@ant-design/pro-components";
+import { Options, optionsConvert, OptionsConvertOption } from "@q25a25q/common";
+import { createApi } from "../../../";
 
 // import createApi from "@q25a25q/blade"
-export default (props: ProFormSelectProps & { dictKey: 'string' }) => {
-  const { dictKey, ...rest } = props;
+
+// const api = createApi();
+export default (
+  props: ProFormSelectProps & {
+    dictKey: "string";
+    dickOption?: OptionsConvertOption;
+  }
+) => {
+  const { dictKey, dickOption, ...rest } = props;
   // const qualificationsEnumValue = useSystemDictIntMap(dictKey);
 
   // createApi().services.dict.getList(dictKey)
   // webApi
   // webApi.services.dict.getList({
-  //   current: 1, 
+  //   current: 1,
   //   size:100
   // }).then((data) => {
   //   console.log('dict', data);
@@ -18,5 +30,17 @@ export default (props: ProFormSelectProps & { dictKey: 'string' }) => {
   // });
   // createApi()
 
-  return <ProFormSelect  {...rest} />;
+  return (
+    <ProFormSelect
+      request={async () => {
+        var api = createApi();
+        var items = await api.services.dict.getDictionaryTree({
+          code: dictKey,
+        });
+
+        return optionsConvert(items, dickOption) as RequestOptionsType[];
+      }}
+      {...rest}
+    />
+  );
 };
