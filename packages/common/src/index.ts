@@ -22,12 +22,14 @@ import type {
   HttpClient,
 } from "./http";
 
-import {
-  intOrStringArrayToStringConver,
-  optionConver,
-  stringToIntArrayConver,
-  stringToDateTimeConver,
-} from "./conver";
+export {
+  intOrStringArrayToStringConvert,
+  optionsConvert,
+  Options,
+  OptionsConvertOption,
+  stringToIntArrayConvert,
+  stringToDateTimeConvert,
+} from "./converts";
 
 export function deepMerge<T = any>(src: any = {}, target: any = {}): T {
   let key: string;
@@ -75,10 +77,10 @@ export type {
 };
 export {
   WebStorage,
-  intOrStringArrayToStringConver,
-  optionConver,
-  stringToIntArrayConver,
-  stringToDateTimeConver,
+  // intOrStringArrayToStringConvert,
+  // optionsConvert,
+  // stringToIntArrayConvert,
+  // stringToDateTimeConvert,
   defHttp,
   createHttp,
   ResultEnum,

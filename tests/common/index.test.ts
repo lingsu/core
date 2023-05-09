@@ -2,10 +2,10 @@ import {
   defHttp,
   downloadByUrl,
   getSearchObj,
-  intOrStringArrayToStringConver,
-  optionConver,
-  stringToDateTimeConver,
-  stringToIntArrayConver,
+  intOrStringArrayToStringConvert,
+  optionsConvert,
+  stringToDateTimeConvert,
+  stringToIntArrayConvert,
   WebStorage,
 } from "@q25a25q/common";
 
@@ -30,16 +30,16 @@ describe("common", () => {
     ).toEqual(true);
   });
 
-  it("conver", () => {
-    expect(intOrStringArrayToStringConver([1, 2, 3])).toEqual("1,2,3");
+  it("convert", () => {
+    expect(intOrStringArrayToStringConvert([1, 2, 3])).toEqual("1,2,3");
 
     expect(
-      optionConver({ name: "a", id: "a" }, { isNumber: false })?.value
+      optionsConvert([{ name: "a", id: "a" }], { isNumber: false })![0].value
     ).toEqual("a");
 
-    expect(stringToIntArrayConver("1,2,3")).toEqual([1, 2, 3]);
+    expect(stringToIntArrayConvert("1,2,3")).toEqual([1, 2, 3]);
 
-    expect(stringToDateTimeConver("2016-11-22T15:22:44.000Z")).toEqual(
+    expect(stringToDateTimeConvert("2016-11-22T15:22:44.000Z")).toEqual(
       new Date()
     );
   });
