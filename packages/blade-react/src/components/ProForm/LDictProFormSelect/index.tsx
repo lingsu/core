@@ -38,7 +38,7 @@ export default (
           code: dictKey,
         });
 
-        return optionsConvert(items, dickOption) as RequestOptionsType[];
+        return optionsConvert(items, { valueKey:'dictKey', labelKey:'dictValue', ...dickOption}) as RequestOptionsType[];
       }}
       {...rest}
     />
