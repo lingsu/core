@@ -29,6 +29,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "peerDependencies": {
+    "dayjs": ">=1.11.7",
+    "lodash": ">=4.17.15"
+  },
   "dependencies": {
     "@q25a25q/common": "^1.6.0",
     "js-base64": "^3.7.5",
