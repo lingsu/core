@@ -3,7 +3,7 @@ import { optionsConvert, OptionsConvertOption } from "@q25a25q/common";
 import { useEffect, useState } from "react";
 import { createApi } from "..";
 
-export default (dictKey: string, dickOption?: OptionsConvertOption) => {
+export default (dictKey: string, dictOption?: OptionsConvertOption) => {
   const [dataSource, setDataSource] = useState<RequestOptionsType[]>(
     [] as RequestOptionsType[]
   );
@@ -18,7 +18,7 @@ export default (dictKey: string, dickOption?: OptionsConvertOption) => {
       optionsConvert(items, {
         valueKey: "dictKey",
         labelKey: "dictValue",
-        ...dickOption,
+        ...dictOption,
       }) as RequestOptionsType[]
     );
   };
