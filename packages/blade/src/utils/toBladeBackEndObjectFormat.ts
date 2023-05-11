@@ -4,12 +4,17 @@ export default (result: any, ignoreFields: string[] = []) => {
   return Object.keys(result).reduce((acc, key: string) => {
     if (ignoreFields.includes(key)) {
       acc[key] = result[key];
-    }else if (result[key] && result[key] instanceof Date) {
+    } else if (result[key] instanceof Date) {
       acc[key] = dayjs(result[key]).format("YYYY-MM-DD HH:mm:ss");
-    } else if (result[key] && Array.isArray(result[key])) {
+    } else if (Array.isArray(result[key])) {
       if (result[key].length > 0) {
-        if (typeof result[key][0] === "string") {
+        if (
+          typeof result[key][0] === "string" ||
+          typeof result[key][0] === "number"
+        ) {
           acc[key] = result[key].join(",");
+        } else {
+          acc[key] = JSON.stringify(result[key]);
         }
       }
     } else if (
