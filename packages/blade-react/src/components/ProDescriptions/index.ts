@@ -1,3 +1,3 @@
-import ProDescriptionsDictSelect from "./ProDescriptionsDictSelect";
+import LProDescriptionsDictSelectItem from "./LProDescriptionsDictSelectItem";
 
-export { ProDescriptionsDictSelect };
+export { LProDescriptionsDictSelectItem };
