@@ -1,6 +1,6 @@
 {
   "name": "@q25a25q/leaflet",
-  "version": "1.2.11",
+  "version": "1.2.12",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@q25a25q/common": "^1.6.3",
-    "@q25a25q/gis": "^2.0.9",
+    "@q25a25q/gis": "^2.0.10",
     "leaflet": "^1.9.3"
   }
 }
