@@ -74,8 +74,8 @@ export const booleanPointInPolygon = (
  * @returns 返回其面积平方米
  */
 export const area = (polygonLatlngs: LatLngExpression[]) => {
-  if(polygonLatlngs.length < 4){
-    throw new Error(`坐标不能少于4点,当前长度: ${polygonLatlngs.length}`)
+  if(polygonLatlngs.length < 3){
+    throw new Error(`坐标不能少于3点,当前长度: ${polygonLatlngs.length}`)
   }
   var latlngs = polygonLatlngs.map(toTurfLatlng);
   latlngs.push(latlngs[0]);
