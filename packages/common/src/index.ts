@@ -22,7 +22,14 @@ import type {
   HttpClient,
 } from "./http";
 
-export * from "./converts";
+export {
+  intOrStringArrayToStringConvert,
+  optionsConvert,
+  stringToIntArrayConvert,
+  stringToDateTimeConvert,
+} from "./converts";
+
+export type { Options, OptionsConvertOption } from "./converts";
 
 export function deepMerge<T = any>(src: any = {}, target: any = {}): T {
   let key: string;

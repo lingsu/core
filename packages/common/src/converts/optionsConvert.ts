@@ -9,7 +9,7 @@ export type OptionsConvertOption = {
   isNumber?: boolean;
 };
 
-export const optionsConvert = (
+const optionsConvert = (
     items: any,
     options?: OptionsConvertOption
   ): Options[] | null => {
