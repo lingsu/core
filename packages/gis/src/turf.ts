@@ -160,7 +160,6 @@ export function retCoordinateList({
     lng: lng + bLng,
   });
 
-  //var outerCoords1 = new Array();
   outerCoords.forEach(function (value) {
     value.lat = value.lat - latShift;
     value.lng = value.lng - lngShift;
