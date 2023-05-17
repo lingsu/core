@@ -1,6 +1,6 @@
 {
   "name": "@q25a25q/gis",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -31,11 +31,11 @@
   },
   "dependencies": {
     "@q25a25q/common": "^1.6.0",
+    "@turf/area": "^6.5.0",
     "@turf/boolean-point-in-polygon": "^6.5.0",
     "@turf/destination": "^6.5.0",
     "@turf/distance": "^6.5.0",
     "@turf/helpers": "^6.5.0",
-    "@turf/area": "^6.5.0",
     "gcoord": "^1.0.5"
   }
 }
