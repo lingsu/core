@@ -1,6 +1,6 @@
 {
   "name": "@q25a25q/common",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",

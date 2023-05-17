@@ -169,7 +169,7 @@ importers:
   packages/blade:
     dependencies:
       "@q25a25q/common":
-        specifier: ^1.6.0
+        specifier: ^1.6.1
         version: link:../common
       dayjs:
         specifier: ">=1.11.7"
@@ -190,10 +190,10 @@ importers:
         specifier: ">=2.4.4"
         version: 2.4.4(antd@5.4.2)(prop-types@15.8.1)(rc-field-form@1.29.2)(react-dom@17.0.2)(react@18.2.0)
       "@q25a25q/blade":
-        specifier: ^3.1.4
+        specifier: ^3.1.5
         version: link:../blade
       "@q25a25q/common":
-        specifier: ^1.6.0
+        specifier: ^1.6.1
         version: link:../common
       antd:
         specifier: ">=5.0.0"
@@ -224,7 +224,7 @@ importers:
   packages/gis:
     dependencies:
       "@q25a25q/common":
-        specifier: ^1.6.0
+        specifier: ^1.6.1
         version: link:../common
       "@turf/area":
         specifier: ^6.5.0
@@ -279,10 +279,10 @@ importers:
   packages/leaflet:
     dependencies:
       "@q25a25q/common":
-        specifier: ^1.6.0
+        specifier: ^1.6.1
         version: link:../common
       "@q25a25q/gis":
-        specifier: ^2.0.6
+        specifier: ^2.0.7
         version: link:../gis
       leaflet:
         specifier: ^1.9.3
