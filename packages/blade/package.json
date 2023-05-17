@@ -1,6 +1,6 @@
 {
   "name": "@q25a25q/blade",
-  "version": "3.1.6",
+  "version": "3.1.7",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -34,7 +34,7 @@
     "lodash": ">=4.17.15"
   },
   "dependencies": {
-    "@q25a25q/common": "^1.6.2",
+    "@q25a25q/common": "^1.6.3",
     "js-base64": "^3.7.5",
     "js-md5": "^0.7.3"
   }
