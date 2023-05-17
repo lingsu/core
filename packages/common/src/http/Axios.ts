@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { isFunction } from '../is';
 import { ContentTypeEnum, RequestEnum } from './httpEnum';
-import { CreateHttpOptions, RequestOptions, UploadFileCallBack, UploadFileParams } from './interfaces';
+import { CreateHttpOptions, RequestOptions, UploadFileCallBack, UploadFileParams } from '.';
 import cloneDeep from 'lodash.clonedeep';
 
 
