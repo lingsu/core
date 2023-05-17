@@ -282,7 +282,7 @@ importers:
         specifier: ^1.6.0
         version: link:../common
       "@q25a25q/gis":
-        specifier: ^2.0.5
+        specifier: ^2.0.6
         version: link:../gis
       leaflet:
         specifier: ^1.9.3
