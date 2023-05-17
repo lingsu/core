@@ -4,6 +4,7 @@ import {
   destination,
   toLatLngLiteral,
   stringToCoordinates,
+  area
 } from "@q25a25q/gis";
 
 describe("gis", () => {
@@ -62,5 +63,14 @@ describe("gis", () => {
       lat: 27.998040913651455,
       lng: 120.67885020578812,
     });
+  });
+  it("area", () => {
+    expect(area([
+      [108.09876, 37.200787], // 注意：polygon首尾坐标要一致
+      [106.398901, 33.648651],
+      [114.972103, 33.340483],
+      [113.715685, 37.845557],
+      [108.09876, 37.200787]
+    ])).toEqual(287883719772.89166);
   });
 });

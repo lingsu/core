@@ -1,5 +1,6 @@
 import _distance from "@turf/distance";
 import _destination from "@turf/destination";
+import _area from "@turf/area";
 import _booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 import * as turf from "@turf/helpers";
 import { toLatLngLiteral, toTurfLatlng } from ".";
@@ -67,6 +68,22 @@ export const booleanPointInPolygon = (
   return _booleanPointInPolygon(pt, poly, option);
 };
 
+/**
+ * 计算面积
+ * @param polygonLatlngs 
+ * @returns 返回其面积平方米
+ */
+export const area = (polygonLatlngs: LatLngExpression[]) => {
+  if(polygonLatlngs.length < 4){
+    throw new Error(`坐标不能少于4点,当前长度: ${polygonLatlngs.length}`)
+  }
+  var latlngs = polygonLatlngs.map(toTurfLatlng);
+  latlngs.push(latlngs[0]);
+
+   return _area(turf.polygon([
+    latlngs
+  ]));
+}
 // const getRectangle = (lng: any, lat: any, distance: number) => {
 
 //   var s = BdStringToGCJ02(`${lng},${lat}`);
