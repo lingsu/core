@@ -26,6 +26,7 @@ const toIdSchemaInternal = (
       const fieldId = idSchema[ID_KEY] + idSeparator + key;
       idSchema[key] = toIdSchemaInternal(
         isObject(field) ? field : {},
+        idSeparator,
         fieldId,
         rootSchema
       );
