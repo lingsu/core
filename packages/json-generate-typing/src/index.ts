@@ -1,4 +1,5 @@
 import getDefaultRegistry from "./getDefaultRegistry";
+import definitionsUrils from "./utils/definitionsUrils";
 import schemaUtils from "./utils/schemaUtils";
 
 const jsonGenerateTyping = (schema: any): string => {
@@ -16,9 +17,12 @@ const jsonGenerateTyping = (schema: any): string => {
       rootSchema: schema,
     };
 
+
+    const definitionsUrilsbb = definitionsUrils();
+    
     const { SchemaField } = registry.fields;
     const idSchema = registry.schemaUtils.toIdSchema(schema, "root", schema);
-    console.log("root idSchema",idSchema);
+    console.log("root idSchema",idSchema, definitionsUrilsbb.toDefinitions(schema, idSchema, "root", schema));
 
     // var body = SchemaField({ name: "root", schema, registry, idSchema });
 
