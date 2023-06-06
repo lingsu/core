@@ -33,6 +33,9 @@
       "@q25a25q/jsonschema-generate-form": [
         "packages/jsonschema-generate-form/src/index.tsx"
       ],
+      "@q25a25q/json-generate-typing": [
+        "packages/json-generate-typing/src/index.tsx"
+      ],
     }
   },
   "include": [
