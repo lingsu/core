@@ -20,15 +20,20 @@ const toIdSchemaInternal = (
 
   var type = guessType(schema);
 
+  // if (type === 'array') {
+    
+  // }
+
   if (type === "object") {
     Object.keys(schema).forEach((key) => {
       const field = schema[key];
-      const fieldId = idSchema[ID_KEY] + idSeparator + key;
+      const fieldId = idSchema[ID_KEY] + idSeparator + key[0].toUpperCase() + key.substring(1);
       idSchema[key] = toIdSchemaInternal(
         isObject(field) ? field : {},
         idSeparator,
         fieldId,
-        rootSchema
+        rootSchema,
+        _recurseList
       );
     });
     // for (const name in schema.properties) {
@@ -52,5 +57,5 @@ const toIdSchemaInternal = (
   return idSchema;
 };
 export default (schema: any, id?: string | null, rootSchema?: any,idSeparator = '_') => {
-  return toIdSchemaInternal(schema, idSeparator, id, rootSchema,);
+  return toIdSchemaInternal(schema, idSeparator, id, rootSchema);
 };

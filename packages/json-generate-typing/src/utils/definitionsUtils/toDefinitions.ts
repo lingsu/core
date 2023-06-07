@@ -1,7 +1,9 @@
-import { ID_KEY } from "../../constants";
+import { ID_KEY, REF_KEY } from "../../constants";
 import { IdSchema } from "../../typing";
 import guessType from "../guessType";
 import isObject from "../isObject";
+import mergeObjects from "../mergeObjects";
+import schemaUtils from "../schemaUtils";
 
 const COMPONENT_TYPES: any = {
   array: (
@@ -12,82 +14,124 @@ const COMPONENT_TYPES: any = {
     id?: string | null,
     rootSchema?: any
   ) => {
-    toDefinitionsInternal(schema[0], idSeparator, idSchema, definitions, id, rootSchema);
-    return {
-      type: "array",
-      ref: id,
-      // format: "int64",
-      description: "",
-    };
+    var fieldType = guessType(schema[0]);
+
+    if (fieldType === "object") {
+      const _idSchema = mergeObjects(
+        schemaUtils().toIdSchema(schema[0], id, schema, idSeparator),
+        idSchema
+      ) as IdSchema;
+
+      toDefinitionsInternal(
+        schema[0],
+        idSeparator,
+        _idSchema,
+        definitions,
+        id,
+        rootSchema
+      );
+    }
+
+    return fieldType === "object"
+      ? {
+          type: "array",
+          // [REF_KEY]: id,
+          // format: "int64",
+          description: "",
+          items: {
+            [REF_KEY]: id,
+          },
+        }
+      : {
+          type: "array",
+          // [REF_KEY]: id,
+          // format: "int64",
+          description: "",
+          items: {
+            type: fieldType,
+          },
+        };
   },
-  boolean: (schema: any,
+  boolean: (
+    schema: any,
     idSeparator: string,
     idSchema: IdSchema,
     definitions: any,
     id?: string | null,
-    rootSchema?: any) => {
+    rootSchema?: any
+  ) => {
     return {
-      type: "object",
+      type: "boolean",
       // format: "int64",
       description: "",
     };
   },
-  integer: (schema: any,
+  integer: (
+    schema: any,
     idSeparator: string,
     idSchema: IdSchema,
     definitions: any,
     id?: string | null,
-    rootSchema?: any) => {
+    rootSchema?: any
+  ) => {
     return {
       type: "integer",
-      ref: id,
+      [REF_KEY]: id,
       format: "int64",
       description: "",
     };
   },
-  number: (schema: any,
+  number: (
+    schema: any,
     idSeparator: string,
     idSchema: IdSchema,
     definitions: any,
     id?: string | null,
-    rootSchema?: any) => {
+    rootSchema?: any
+  ) => {
     return {
       type: "integer",
       format: "int64",
       description: "",
     };
   },
-  object: (schema: any,
+  object: (
+    schema: any,
     idSeparator: string,
     idSchema: IdSchema,
     definitions: any,
     id?: string | null,
-    rootSchema?: any) => {
+    rootSchema?: any
+  ) => {
     return {
       type: "object",
-      ref: id,
+      [REF_KEY]: id,
       // format: "int64",
       description: "",
     };
   },
-  string: (schema: any,
+  string: (
+    schema: any,
     idSeparator: string,
     idSchema: IdSchema,
     definitions: any,
     id?: string | null,
-    rootSchema?: any) => {
+    rootSchema?: any
+  ) => {
     return {
       type: "string",
       // format: "int64",
       description: "",
     };
   },
-  null: (schema: any,
+  null: (
+    schema: any,
     idSeparator: string,
     idSchema: IdSchema,
     definitions: any,
     id?: string | null,
-    rootSchema?: any) => {
+    rootSchema?: any
+  ) => {
     return {
       type: "string",
       // format: "int64",
@@ -106,6 +150,7 @@ const toDefinitionsInternal = (
 ) => {
   var type = guessType(schema);
 
+  // console.log("toDefinitionsInternal", idSchema);
   if (type === "object") {
     definitions[id!] = Object.keys(schema).reduce(
       (acc, key) => {
@@ -140,12 +185,9 @@ const toDefinitionsInternal = (
             fieldIdSchema,
             definitions,
             fieldId,
-            rootSchema,
-
-
+            rootSchema
 
             // fieldType,
-
           );
         }
 

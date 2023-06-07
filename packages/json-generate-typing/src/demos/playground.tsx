@@ -1,5 +1,5 @@
 import { useState, useMemo, useCallback } from "react";
-import { Card, Input, Button } from "antd";
+import { Card, Input, Button,message } from "antd";
 import { ProCard } from "@ant-design/pro-components";
 import jsonGenerateType from "@q25a25q/json-generate-typing";
 
@@ -43,6 +43,10 @@ export default () => {
   //   }
   //   return "fff";
   // }, [setValid, setJsonStr]);
+  const copy = async () => {
+    await navigator.clipboard.writeText(typing)
+    message.success('ok')
+  }
   return (
     <ProCard>
       <ProCard title="复制JSON信息" colSpan="50%">
@@ -51,7 +55,7 @@ export default () => {
           onChange={(e) => onCodeChange(e.target.value)}
         />
       </ProCard>
-      <ProCard title="类型定义" extra={<Button disabled={valid === false}>复制</Button>}>
+      <ProCard title="类型定义" extra={<Button disabled={valid === false} onClick={copy}>复制</Button>}>
         <Input.TextArea
           style={{ width: "100%", height: 400 }}
           readOnly

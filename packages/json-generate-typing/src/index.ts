@@ -1,6 +1,11 @@
 import getDefaultRegistry from "./getDefaultRegistry";
-import definitionsUrils from "./utils/definitionsUrils";
+import definitionsUtils from "./utils/definitionsUtils";
 import schemaUtils from "./utils/schemaUtils";
+import typescriptTypingUtils from "./utils/typescriptTypingUtils";
+
+
+
+
 
 const jsonGenerateTyping = (schema: any): string => {
   try {
@@ -13,24 +18,29 @@ const jsonGenerateTyping = (schema: any): string => {
       fields,
       templates,
       schemaUtils: schemaUtils(),
+      definitionsUtils: definitionsUtils(),
       definitions: {},
       rootSchema: schema,
     };
 
 
-    const definitionsUrilsbb = definitionsUrils();
     
     const { SchemaField } = registry.fields;
-    const idSchema = registry.schemaUtils.toIdSchema(schema, "root", schema);
-    console.log("root idSchema",idSchema, definitionsUrilsbb.toDefinitions(schema, idSchema, "root", schema));
+
+    var id = "root" +  Date.now();
+    const idSchema = registry.schemaUtils.toIdSchema(schema, id, schema, "");
+    var definitions = registry.definitionsUtils.toDefinitions(schema, idSchema, id, schema,"");
+
+    console.log("root idSchema",idSchema, definitions);
 
     // var body = SchemaField({ name: "root", schema, registry, idSchema });
 
     // console.log("registry", registry.definitions, body);
-    return `
+    return typescriptTypingUtils().toTypingString(definitions);
+    // return `
 
-    export type xxxxxxx =
-    `;
+    // export type xxxxxxx =
+    // `;
   } catch (error) {
     console.log('error',error)
     throw error;
