@@ -1,7 +1,7 @@
 {
   "name": "@q25a25q/json-generate-typing",
   "version": "0.0.0",
-  "description": "从json生成ts定义",
+  "description": "JSON生成TS定义",
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "es/index.d.ts",
