@@ -15,6 +15,7 @@ type Config = {
   clearEmpty?: boolean;
   schema?: Schema;
   mode?: "edit" | "submit";
+  registry?: { [name: string]: (value: any, field: Field) => any };
 };
 
 const EDIT_COMPONENT_STRING_FORMAT = {
@@ -36,10 +37,10 @@ const SUBMIT_COMPONENT_STRING_FORMAT = {
 };
 
 const EDIT_COMPONENT_TYPES: any = {
-  array: (value: any, property: Field) => {
+  array: (value: any, field: Field) => {
     var type = guessType(value);
     if ("string" === type) {
-      var itemType = property.items!.type;
+      var itemType = field.items!.type;
 
       if (itemType === "string") {
         return value.split(",");
@@ -51,31 +52,31 @@ const EDIT_COMPONENT_TYPES: any = {
     }
     return value;
   },
-  string: (value: any, property: Field) => {
-    if (property.format) {
-      if (property.format in EDIT_COMPONENT_STRING_FORMAT) {
-        return EDIT_COMPONENT_STRING_FORMAT[property.format](value);
+  string: (value: any, field: Field) => {
+    if (field.format) {
+      if (field.format in EDIT_COMPONENT_STRING_FORMAT) {
+        return EDIT_COMPONENT_STRING_FORMAT[field.format](value);
       } else {
-        console.log(`不支持字符串格式'${property.format}'`);
+        console.log(`不支持字符串格式'${field.format}'`);
       }
     }
     return value;
   },
 };
 const SUBMIT_COMPONENT_TYPES: any = {
-  array: (value: any, property: Field) => {
+  array: (value: any, field: Field) => {
     var type = guessType(value);
     if ("array" === type) {
       return value.join(",");
     }
     return value;
   },
-  string: (value: any, property: Field) => {
-    if (property.format) {
-      if (property.format in SUBMIT_COMPONENT_STRING_FORMAT) {
-        return SUBMIT_COMPONENT_STRING_FORMAT[property.format](value);
+  string: (value: any, field: Field) => {
+    if (field.format) {
+      if (field.format in SUBMIT_COMPONENT_STRING_FORMAT) {
+        return SUBMIT_COMPONENT_STRING_FORMAT[field.format](value);
       } else {
-        console.log(`不支持字符串格式'${property.format}'`);
+        console.log(`不支持字符串格式'${field.format}'`);
       }
     }
     return value;
@@ -98,25 +99,18 @@ export default <T = any>(data: T, config: Config) => {
     });
   }
 
+  if (!config.registry) {
+    config.registry =
+      config.mode === "edit" ? EDIT_COMPONENT_TYPES : SUBMIT_COMPONENT_TYPES;
+  }
+
   if (config.schema) {
     Object.keys(config.schema).forEach((pKey) => {
       var schema = config.schema![pKey];
-
-      if (config.mode === "edit") {
-        if (schema.type in EDIT_COMPONENT_TYPES) {
-          value[pKey] = EDIT_COMPONENT_TYPES[schema.type](value[pKey], schema);
-        } else {
-          console.log(`不支持类型'${schema.type}'`);
-        }
+      if (schema.type in config.registry!) {
+        value[pKey] = config.registry![schema.type](value[pKey], schema);
       } else {
-        if (schema.type in SUBMIT_COMPONENT_TYPES) {
-          value[pKey] = SUBMIT_COMPONENT_TYPES[schema.type](
-            value[pKey],
-            schema
-          );
-        } else {
-          console.log(`不支持类型'${schema.type}'`);
-        }
+        console.log(`不支持schema类型'${schema.type}'`);
       }
     });
   }
