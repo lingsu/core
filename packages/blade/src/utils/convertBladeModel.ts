@@ -18,20 +18,61 @@ type Config = {
   registry?: { [name: string]: (value: any, field: Field) => any };
 };
 
+const convertUrlToFileList = (value: any) => {
+  const list = Array.isArray(value) ? value : value.split(",");
+  const fileList = list.map((item: any | string, index: number) => {
+    if (typeof item === "string") {
+      var findex = item.lastIndexOf("/");
+      var fileName = item.substring(findex + 1);
+
+      return {
+        uid: index.toString(),
+        status: "done",
+        name: fileName,
+        url: item,
+      };
+    }
+    if (item.status == "done" && item.response && item.response.code === 200) {
+      return {
+        uid: index.toString(),
+        status: "done",
+        name: item.response.data.name,
+        url: item.response.data.link,
+      };
+    }
+    return item;
+  });
+  return fileList;
+};
 const EDIT_COMPONENT_STRING_FORMAT = {
   date: (value: string) => {
-    if (value) {
+    if (value && typeof value === "string") {
       return value.split(" ")[0];
     }
+    return value;
+  },
+  'picture-card': (value: string) => {
+    if (value) {
+      return convertUrlToFileList(value);
+    }
+
     return value;
   },
 };
 const SUBMIT_COMPONENT_STRING_FORMAT = {
   date: (value: string) => {
-    if (value) {
+    if (value && typeof value === "string") {
       return value + " 00:00:00";
     }
 
+    return value;
+  },
+  'picture-card': (value: any) => {
+    if (value) {
+      return convertUrlToFileList(value)
+        .map((it) => it.url)
+        .join(",");
+    }
     return value;
   },
 };
