@@ -12,6 +12,7 @@
     "start": "dumi dev",
     "release": "node ./scripts/release.js",
     "lerna-release": "pnpm build-components && pnpm lerna publish",
+    "lerna-from-package": "pnpm lerna publish from-package",
     "build-components": "pnpm --filter \"@q25a25q/**\" build",
     "test": "jest"
   },
