@@ -190,7 +190,7 @@ importers:
         specifier: ">=2.4.4"
         version: 2.4.4(antd@5.4.2)(prop-types@15.8.1)(rc-field-form@1.29.2)(react-dom@17.0.2)(react@18.2.0)
       "@q25a25q/blade":
-        specifier: ^3.1.7
+        specifier: ^3.1.8
         version: link:../blade
       "@q25a25q/common":
         specifier: ^1.6.3
@@ -245,6 +245,12 @@ importers:
         specifier: ^1.0.5
         version: 1.0.5
 
+  packages/json-generate-typing:
+    dependencies:
+      lodash:
+        specifier: ">=4.17.15"
+        version: 4.17.21
+
   packages/jsonschema-generate-form:
     dependencies:
       "@ant-design/pro-components":
@@ -282,7 +288,7 @@ importers:
         specifier: ^1.6.3
         version: link:../common
       "@q25a25q/gis":
-        specifier: ^2.0.10
+        specifier: ^2.0.11
         version: link:../gis
       leaflet:
         specifier: ^1.9.3
