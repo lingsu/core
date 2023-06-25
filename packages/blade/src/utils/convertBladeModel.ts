@@ -89,9 +89,9 @@ const EDIT_COMPONENT_TYPES: any = {
       if (itemType === "number") {
         return value.split(",").map(Number);
       }
-      throw new Error("Invalid type");
+      throw new Error(`Invalid item type'${itemType}'`);
     }
-    return value;
+    return value === null ? undefined : value;
   },
   string: (value: any, field: Field) => {
     if (field.format) {
