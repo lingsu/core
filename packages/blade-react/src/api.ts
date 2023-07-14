@@ -2,8 +2,9 @@ import { createDefaultWebApi } from "@q25a25q/blade";
 import { message } from "antd";
 import { WebsiteConfig, WebApiService, ServiceParams, ServiceTypes } from "packages/blade/src/typing";
 
-const createApi = (websiteConfig?: WebsiteConfig) => {
+const createApi = (websiteConfig?: WebsiteConfig, option?: any) => {
   var api = createDefaultWebApi<any>(websiteConfig, {
+    ...option,
     transform: {
       requestCatchHook: async (error: any) => {
         // console.log('requestCatchHook', error);
@@ -34,8 +35,8 @@ const createApi = (websiteConfig?: WebsiteConfig) => {
 
 let defaultWebApi = createApi();
 
-export const updateWebApiConfig = (websiteConfig?: WebsiteConfig) => {
-  defaultWebApi = createApi(websiteConfig);
+export const updateWebApiConfig = (websiteConfig?: WebsiteConfig, option?: any) => {
+  defaultWebApi = createApi(websiteConfig,option);
   return defaultWebApi
 };
 export const withInstallService = (name: string, func: (params: ServiceParams) => any) => {
