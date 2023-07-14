@@ -6,7 +6,7 @@ const createApi = (websiteConfig?: WebsiteConfig) => {
   var api = createDefaultWebApi<any>(websiteConfig, {
     transform: {
       requestCatchHook: async (error: any) => {
-        console.log('requestCatchHook', error);
+        // console.log('requestCatchHook', error);
         if (error.response) {
           // if (error.response.status === 401) {
           //   await window.location.reload();
@@ -34,8 +34,9 @@ const createApi = (websiteConfig?: WebsiteConfig) => {
 
 let defaultWebApi = createApi();
 
-export const replaceDefaultWebApi = <T>(newWebApi: WebApiService<T>) => {
-  defaultWebApi = newWebApi;
+export const updateWebApiConfig = (websiteConfig?: WebsiteConfig) => {
+  defaultWebApi = createApi(websiteConfig);
+  return defaultWebApi
 };
 export const withInstallService = (name: string, func: (params: ServiceParams) => any) => {
   defaultWebApi.withInstall(name, func);
