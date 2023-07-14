@@ -221,6 +221,12 @@ importers:
         specifier: ^4.5.7
         version: 4.5.7
 
+  packages/data-v:
+    dependencies:
+      lodash:
+        specifier: ">=4.17.15"
+        version: 4.17.21
+
   packages/gis:
     dependencies:
       "@q25a25q/common":
