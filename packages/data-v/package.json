@@ -1,0 +1,35 @@
+{
+  "name": "@q25a25q/data-v",
+  "version": "0.0.1",
+  "description": "大屏扩展",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "files": [
+    "lib",
+    "es",
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lingsu/core"
+  },
+  "scripts": {
+    "build": "father build"
+  },
+  "author": "andy",
+  "license": "MIT",
+  "sideEffects": false,
+  "browserslist": [
+    "last 2 versions",
+    "Firefox ESR",
+    "> 1%",
+    "ie >= 11"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "lodash": ">=4.17.15"
+  }
+}

@@ -36,6 +36,9 @@
       "@q25a25q/json-generate-typing": [
         "packages/json-generate-typing/src/index.tsx"
       ],
+      "@q25a25q/data-v": [
+        "packages/data-v/src/index.tsx"
+      ],
     }
   },
   "include": [
