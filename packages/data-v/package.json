@@ -31,5 +31,8 @@
   },
   "peerDependencies": {
     "lodash": ">=4.17.15"
+  },
+  "dependencies": {
+    "@emotion/css": "^11.11.2"
   }
 }

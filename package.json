@@ -9,7 +9,7 @@
   "description": "",
   "scripts": {
     "check-deps": "node ./scripts/checkDeps.js",
-    "start": "dumi dev",
+    "dev": "dumi dev",
     "release": "node ./scripts/release.js",
     "lerna-release": "pnpm build-components && pnpm lerna publish",
     "lerna-from-package": "pnpm lerna publish from-package",
@@ -50,7 +50,7 @@
     "@types/react-intl": "^3.0.0",
     "@types/react-responsive": "^8.0.5",
     "chalk": "^4.1.2",
-    "dumi": "^2.0.2",
+    "dumi": "^2.2.4",
     "esbuild": "^0.15.18",
     "esbuild-jest": "^0.5.0",
     "execa": "^5.1.1",

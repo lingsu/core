@@ -26,7 +26,7 @@ export default defineConfig({
   outputPath: "docs-dist",
   themeConfig: {
     name: "core",
-    nav: [{ title: "Playground", link: "/playground" }],
+    nav: [{ title: "demos", link: "/demos" },{ title: "Playground", link: "/playground" },],
   },
   alias,
   resolve: {
