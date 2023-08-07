@@ -1,8 +1,8 @@
-import { DataVConfig, IProps } from "../../typing";
+import { DatavConfig, IProps } from "../../typing";
 
 type MainColorBlockProps = {
 
-} & DataVConfig;
+} & DatavConfig;
 
 export default (props: MainColorBlockProps) => {
 

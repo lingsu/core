@@ -1,9 +1,9 @@
-import { DataVConfig } from "../../typing";
+import { DatavConfig } from "../../typing";
 import { css } from "@emotion/css";
 
 type DatavComWrapperProps = {
   children: React.ReactNode;
-} & DataVConfig;
+} & DatavConfig;
 
 export default ({ props, children }: DatavComWrapperProps) => {
   const { background, filter } = props;

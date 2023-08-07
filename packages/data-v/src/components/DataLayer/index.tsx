@@ -1,7 +1,7 @@
 import { css } from "@emotion/css";
 import { CSSProperties } from "react";
 
-import { DataVConfig, IAttr, ICommon } from "../../typing";
+import { DatavConfig, IAttr, ICommon } from "../../typing";
 import DatavCommonHoc from "../DatavCommonHoc";
 
 type DataLayerProps = {
@@ -10,7 +10,7 @@ type DataLayerProps = {
   onMouseLeave?: () => void;
   children?: React.ReactNode;
   style?: CSSProperties;
-} & DataVConfig;
+} & DatavConfig;
 
 export default ({
   onClick,

@@ -3,7 +3,7 @@ import { css } from "@emotion/css";
 import _ from "lodash";
 import toArray from "rc-util/lib/Children/toArray";
 import DataLayer from "../DataLayer";
-import { DataVConfig, Display, IProps } from "../../typing";
+import { DatavConfig, Display, IProps } from "../../typing";
 
 type HtmlNode = HTMLElement & {
   innerWidth?: number;
@@ -114,7 +114,7 @@ var resizeWidth = function (node: HtmlNode, node2: Config) {
 
 type AbsoluteContainerProps = {
   children?: React.ReactNode;
-} & DataVConfig;
+} & DatavConfig;
 const AbsoluteContainer = forwardRef(
   (
     {

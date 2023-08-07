@@ -1,9 +1,9 @@
-import { DataVConfig } from "../../typing";
+import { DatavConfig } from "../../typing";
 import DatavComWrapper from "../DatavComWrapper";
 
 type MainColorBlockProps = {
   children: React.ReactNode;
-} & DataVConfig;
+} & DatavConfig;
 
 export default (props: MainColorBlockProps) => {
   const { common, children } = props;

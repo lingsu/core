@@ -17,7 +17,7 @@ export type IDataV = {
 }
 export type IConfig = {
   graph: IGraph
-  value: DataVConfig
+  value: DatavConfig
   preset: IPreset
   filters: any[]
 }
@@ -38,11 +38,11 @@ export type IPageConfig = {
   offset: number[]
   origin: string[]
 }
-export type DataVConfig = {
+export type DatavConfig = {
   id?: string
   attr: IAttr
   edit?: IEdit
-  list?: IListItem[]
+  list?: DatavItem[]
   name?: string
   type?: string | string[]
   props: IProps
@@ -100,7 +100,7 @@ export type IFont = {
   family: string
   weight: number
 }
-export type IListItem = {
+export type DatavItem = {
   id: string
   attr: IAttr
   edit: IEdit
@@ -271,7 +271,7 @@ export type IItems = {
 }
 export type IProperties = {
   name?: IName
-  value: DataVConfig
+  value: DatavConfig
   prefix?: IPrefix
   suffix?: ISuffix
   url?: IUrl
