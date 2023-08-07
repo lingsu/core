@@ -13,7 +13,9 @@ export default (result: any, ignoreFields: string[] = []) => {
           typeof result[key][0] === "number"
         ) {
           acc[key] = result[key].join(",");
-        } else {
+        } else if (typeof result[key][0] === "object"  && 'value' in result[key][0]) {
+          acc[key] =  result[key].map((it: any)=> it.value).join(",");
+        }else {
           acc[key] = JSON.stringify(result[key]);
         }
       }
