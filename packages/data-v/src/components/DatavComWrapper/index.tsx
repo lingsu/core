@@ -6,12 +6,22 @@ type DatavComWrapperProps = {
 } & DatavConfig;
 
 export default ({ props, children }: DatavComWrapperProps) => {
-  const { background, filter } = props;
+  const {
+    background,
+    filter,
+    ellipsis,
+    textAlign,
+    textStyle,
+    writingMode,
+    letterSpacing,
+    backgroundStyle,
+  } = props;
+  console.log('props',props)
   // pointer-events: ${onClick ? "initial" : "none"};
   const { type, value } =
-    typeof background == "string"
+    (typeof background == "string"
       ? { type: "flat", value: background }
-      : background;
+      : background) || {};
   return (
     <div
       className={css`
@@ -24,6 +34,10 @@ export default ({ props, children }: DatavComWrapperProps) => {
 `}
       style={{
         background: value,
+        textAlign: textAlign,
+        letterSpacing: letterSpacing,
+        writingMode: writingMode,
+        
       }}
     >
       {children}

@@ -127,10 +127,10 @@ export type IProps = {
   interaction?: IInteraction
   content?: string
   ellipsis?: boolean
-  textAlign?: string
+  textAlign?:"center" | "end" | "justify" | "left" | "match-parent" | "right" | "start"
   textStyle?: ITextStyle
   urlConfig?: IUrlConfig
-  writingMode?: string
+  writingMode?: "horizontal-tb" | "sideways-lr" | "sideways-rl" | "vertical-lr" | "vertical-rl"
   letterSpacing?: number
   backgroundStyle?: IBackgroundStyle
   display?: Display
