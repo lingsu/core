@@ -1,6 +1,9 @@
 import React, { forwardRef, useRef, useEffect, useCallback } from "react";
 import { css } from "@emotion/css";
 import _ from "lodash";
+import toArray from "rc-util/lib/Children/toArray";
+import DataLayer from "../DataLayer";
+import { DataVConfig, Display, IProps } from "../../typing";
 
 type HtmlNode = HTMLElement & {
   innerWidth?: number;
@@ -71,7 +74,7 @@ var noScale = function (_: HtmlNode, node2: Config) {
       height: `${node2.height}px`,
     },
     {},
-  ]
+  ];
 };
 
 var resizeWidth = function (node: HtmlNode, node2: Config) {
@@ -109,24 +112,40 @@ var resizeWidth = function (node: HtmlNode, node2: Config) {
 //   ];
 // }
 
-export enum Display {
-  NoScale,
-  ScaleByWidth,
-  ScaleByHeight,
-  FullScale,
-  ScaleByHeightWithScroll,
-  ScaleToCenter,
-  ResizeByPixel,
-}
-
 type AbsoluteContainerProps = {
   children?: React.ReactNode;
-  width: number;
-  height: number;
-  display? : Display;
-};
+} & DataVConfig;
 const AbsoluteContainer = forwardRef(
-  ({ children, width, height, display = Display.ScaleByWidth }: AbsoluteContainerProps, __) => {
+  (
+    {
+      children,
+      props,
+      // display = Display.ScaleByWidth,
+      attr,
+      common,
+    }: AbsoluteContainerProps,
+    __
+  ) => {
+    const { display = Display.ScaleByWidth, background } = props;
+    const {
+      x,
+      y,
+      h,
+      w,
+      hUnit = "px",
+      wUnit = "px",
+      xUnit = "px",
+      yUnit = "px",
+      // hide = false,
+      // degree = 0,
+    } = { ...attr };
+
+    const { hide = false, degree = 0, opacity = 1 } = { ...common };
+    const { type, value } =
+      (typeof background == "string"
+        ? { type: "flat", value: background }
+        : background) || {};
+
     var absolutePagWp = useRef<HTMLDivElement>(null);
     var absolutePage = useRef<HTMLDivElement>(null);
 
@@ -137,10 +156,10 @@ const AbsoluteContainer = forwardRef(
       const act: any = {
         [Display.ScaleByWidth]: resizeWidth,
         [Display.NoScale]: noScale,
-      }
+      };
       var config = {
-        width: width,
-        height: height,
+        width: w,
+        height: h,
         // display: display,
         // background: background,
       };
@@ -162,6 +181,22 @@ const AbsoluteContainer = forwardRef(
       };
     }, []);
 
+    const childNodes = toArray(children, { keepEmpty: true });
+    var nodes = childNodes.map((child, i) => {
+      var key = (child && child.key) || `item-${i}`;
+      console.log('child',child)
+      return (
+        <DataLayer
+          key={key}
+          common={child.props.common}
+          props={child.props.props}
+          attr={child.props.attr}
+        >
+          {child}
+        </DataLayer>
+      );
+    });
+
     return (
       <div
         ref={absolutePagWp}
@@ -170,9 +205,17 @@ const AbsoluteContainer = forwardRef(
           height: 100%;
           position: relative;
           overflow: hidden;
-          ::-webkit-scrollbar {height: 3px;  width: 3px;}
-          ::-webkit-scrollbar-track {background: transparent;}
-          ::-webkit-scrollbar-thumb {border-radius: 2px;background: gray;}
+          ::-webkit-scrollbar {
+            height: 3px;
+            width: 3px;
+          }
+          ::-webkit-scrollbar-track {
+            background: transparent;
+          }
+          ::-webkit-scrollbar-thumb {
+            border-radius: 2px;
+            background: gray;
+          }
         `}
       >
         <div
@@ -182,11 +225,18 @@ const AbsoluteContainer = forwardRef(
             transform-origin: left top;
           `}
           style={{
-            width: width,
-            height: height,
+            width: w,
+            height: h,
+            background: value,
           }}
         >
-          {children}
+          <div
+            style={{
+              background: value,
+            }}
+          >
+            {nodes}
+          </div>
         </div>
       </div>
     );

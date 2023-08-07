@@ -10,15 +10,26 @@ group: data-v
 
 ### 基础参数
 
-| 参数 | 说明 | 类型 | 默认值 | 版本 |
-| --- | --- | --- | --- | --- |
-| width | 宽度 | number | - | 0.0.1 |
-| height | 高度 | number | - | 0.0.1 |
-| rotate | 旋转的角度，单位 ° | number | 0 | 0.0.1 |
-| image | 背景图片源，建议导出 2 倍或 3 倍图 | `string` | - | 0.0.1 |
-| display | 缩放模式 | `Display` | Display.ScaleByWidth | 0.0.1 |
-| zIndex | 元素的 z-index | number | 0 | 0.0.1 |
+| 参数    | 说明                               | 类型      | 默认值               | 版本  |
+| ------- | ---------------------------------- | --------- | -------------------- | ----- |
+| width   | 宽度                               | number    | -                    | 0.0.1 |
+| height  | 高度                               | number    | -                    | 0.0.1 |
+| rotate  | 旋转的角度，单位 °                 | number    | 0                    | 0.0.1 |
+| image   | 背景图片源，建议导出 2 倍或 3 倍图 | `string`  | -                    | 0.0.1 |
+| display | 缩放模式                           | `Display` | Display.ScaleByWidth | 0.0.1 |
+| zIndex  | 元素的 z-index                     | number    | 0                    | 0.0.1 |
 
-```jsx | pure
-<AbsoluteContainer width={1920} height={1080} display={Display.ScaleByWidth}>content</AbsoluteContainer>
+```jsx
+/**
+ * background: '#f6f7f9'
+ */
+
+import { AbsoluteContainer, Display } from "@q25a25q/data-v";
+
+export default () => (
+  <AbsoluteContainer
+    props={{ display: Display.NoScale, background:{type:"flat",value:"#262626"}, }}
+    attr={{ w: 100, h: 100, }}
+  ></AbsoluteContainer>
+);
 ```

@@ -1,6 +1,8 @@
 import { css } from "@emotion/css";
 import { CSSProperties } from "react";
-import { IAttr } from "../../typing";
+
+import { DataVConfig, IAttr, ICommon } from "../../typing";
+import DatavCommonHoc from "../DatavCommonHoc";
 
 type DataLayerProps = {
   onClick?: () => void;
@@ -8,49 +10,63 @@ type DataLayerProps = {
   onMouseLeave?: () => void;
   children?: React.ReactNode;
   style?: CSSProperties;
-} & IAttr;
+} & DataVConfig;
 
-export default (props: DataLayerProps) => {
+export default ({
+  onClick,
+  onMouseEnter,
+  onMouseLeave,
+  attr,
+  common,
+  children,
+  props,
+}: DataLayerProps) => {
+  // pointer-events: ${onClick ? "initial" : "none"};
   const {
-    onClick,
-    onMouseEnter,
-    onMouseLeave,
     x,
     y,
-    deg = 0,
-    opacity = 1,
-    children,
-    ...rest
-  } = props;
-  // pointer-events: ${onClick ? "initial" : "none"};
+    h,
+    w,
+    hUnit = "px",
+    wUnit = "px",
+    xUnit = "px",
+    yUnit = "px",
+    // hide = false,
+    // degree = 0,
+  } = { ...attr };
+
+  // const { hide = false, degree = 0, opacity = 1 } = { ...common };
 
   return (
     <div
       style={{
-        ...rest,
+        // ...rest,
+        width: w,
+        height: h,
         transform: `translateX(${x}px) translateY(${y}px)`,
-        cursor: onClick ? "pointer" : undefined,
+        // cursor: onClick ? "pointer" : undefined,
       }}
-      className={css`
-        position: absolute;
-        will-change: transform;
-      `}
-      onClick={onClick}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
+      // className={css`
+      //   position: absolute;
+      //   will-change: transform;
+      // `}
+
     >
-      <div
+      <DatavCommonHoc attr={attr} props={props} common={common}>
+        {children}
+      </DatavCommonHoc>
+      {/* <div
         style={{
           display: "block",
           height: "100%",
           width: "100%",
           opacity: opacity,
           position: "relative",
-          transform: `rotate(${deg}deg) scaleX(1) scaleY(1) rotateZ(360deg)`,
+          transform: `rotate(${degree}deg) scaleX(1) scaleY(1) rotateZ(360deg)`,
         }}
       >
         {children}
-      </div>
+      </div> */}
     </div>
   );
 };

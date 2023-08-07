@@ -17,7 +17,7 @@ export type IDataV = {
 }
 export type IConfig = {
   graph: IGraph
-  value: IValue
+  value: DataVConfig
   preset: IPreset
   filters: any[]
 }
@@ -38,15 +38,15 @@ export type IPageConfig = {
   offset: number[]
   origin: string[]
 }
-export type IValue = {
+export type DataVConfig = {
   id?: string
-  attr?: IAttr
+  attr: IAttr
   edit?: IEdit
   list?: IListItem[]
   name?: string
-  type: string | string[]
-  props?: IProps
-  common?: ICommon
+  type?: string | string[]
+  props: IProps
+  common: ICommon
   version?: string
   isPortal?: boolean
   relation?: IRelation
@@ -64,7 +64,7 @@ export type IAttr = {
   flipV?: boolean
   hUnit: string
   wUnit: string
-  opacity?: number
+  // opacity?: number
   sizeLock?: boolean
   xUnit?: string
   yUnit?: string
@@ -133,10 +133,21 @@ export type IProps = {
   writingMode?: string
   letterSpacing?: number
   backgroundStyle?: IBackgroundStyle
-  display?: number
+  display?: Display
   backgroundColor?: string
   backgroundImage?: null
 }
+
+export enum Display {
+  NoScale,
+  ScaleByWidth,
+  ScaleByHeight,
+  FullScale,
+  ScaleByHeightWithScroll,
+  ScaleToCenter,
+  ResizeByPixel,
+}
+
 export type ICommon = {
   hide: boolean
   flipH?: boolean
@@ -153,6 +164,8 @@ export type IFilter = {
   saturate: number
   brightness: number
 }
+
+
 export type IRelation = {
   category: string[]
 }
@@ -258,7 +271,7 @@ export type IItems = {
 }
 export type IProperties = {
   name?: IName
-  value: IValue
+  value: DataVConfig
   prefix?: IPrefix
   suffix?: ISuffix
   url?: IUrl
