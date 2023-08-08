@@ -39,44 +39,40 @@ group: data-v
  * background: '#f6f7f9'
  */
 
-import { MainTitle, AbsoluteContainer, Display } from "@q25a25q/data-v";
+import { MainTitle, Stage, Display } from "@q25a25q/data-v";
 
 export default () => (
-  <AbsoluteContainer
-    props={{
-      display: Display.NoScale,
-      background: { type: "flat", value: "#262626" },
-    }}
-    attr={{ w: 400, h: 100 }}
-  >
+  <Stage>
     <MainTitle
-      common={{}}
-      attr={{ w: 400, h: 50, x: 0, y: 0 }}
-      props={{
-        content: "我是标题数据",
-        ellipsis: false,
-        textAlign: "right",
-        textStyle: {
-          color: "#fff",
-          fontSize: 24,
-          fontFamily: "arial",
-          fontWeight: "normal",
-        },
-        writingMode: "horizontal-tb",
-        letterSpacing: 20,
-        backgroundStyle: {
-          show: true,
-          bgColor: "#008bff",
-          bgBorder: {
+      widget={{
+        common: {},
+        attr: { w: 400, h: 50, x: 0, y: 0 },
+        props: {
+          content: "我是标题数据",
+          ellipsis: false,
+          textAlign: "center",
+          textStyle: {
             color: "#fff",
-            curve: "polyline",
-            style: "solid",
-            width: 1,
+            fontSize: 24,
+            fontFamily: "arial",
+            fontWeight: "normal",
           },
-          borderRadius: 10,
+          writingMode: "horizontal-tb",
+          letterSpacing: 20,
+          backgroundStyle: {
+            show: true,
+            bgColor: "#008bff",
+            bgBorder: {
+              color: "#fff",
+              curve: "polyline",
+              style: "solid",
+              width: 1,
+            },
+            borderRadius: 10,
+          },
         },
       }}
     ></MainTitle>
-  </AbsoluteContainer>
+  </Stage>
 );
 ```

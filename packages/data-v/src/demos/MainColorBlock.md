@@ -39,21 +39,20 @@ group: data-v
  * background: '#f6f7f9'
  */
 
-import { MainColorBlock, AbsoluteContainer, Display } from "@q25a25q/data-v";
+import { MainColorBlock, Stage } from "@q25a25q/data-v";
 
 export default () => (
-  <AbsoluteContainer
-    props={{
-      display: Display.NoScale,
-      background: { type: "flat", value: "#262626" },
-    }}
-    attr={{ w: 100, h: 100 }}
-  >
+  <Stage>
     <MainColorBlock
       common={{}}
-      attr={{ w: 50, h: 50, x: 0, y: 0 }}
-      props={{ background: "#319cff" }}
+      widget={{
+        common: {},
+        attr: { w: 50, h: 50, x: 0, y: 0 },
+        props: {
+          background: "#319cff",
+        },
+      }}
     ></MainColorBlock>
-  </AbsoluteContainer>
+  </Stage>
 );
 ```

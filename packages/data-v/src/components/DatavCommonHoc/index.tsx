@@ -1,13 +1,12 @@
-import { DatavConfig } from "../../typing";
+import { CommonWidgetProps } from "../../typing";
 import DatavComWrapper from "../DatavComWrapper";
 
-type MainColorBlockProps = {
-  children: React.ReactNode;
-} & DatavConfig;
+type MainColorBlockProps = {} & CommonWidgetProps;
 
-export default (props: MainColorBlockProps) => {
-  const { common, children } = props;
+export default ({ widget, children }: MainColorBlockProps) => {
+  const { common, props, attr } = widget;
   const { hide = false, degree = 0, opacity = 1 } = { ...common };
+
 
   return (
     <div
@@ -23,13 +22,7 @@ export default (props: MainColorBlockProps) => {
         // onMouseLeave={onMouseLeave}
       }}
     >
-      <DatavComWrapper
-        common={props.common}
-        props={props.props}
-        attr={props.attr}
-      >
-        {children}
-      </DatavComWrapper>
+      <DatavComWrapper widget={widget}>{children}</DatavComWrapper>
     </div>
   );
 };

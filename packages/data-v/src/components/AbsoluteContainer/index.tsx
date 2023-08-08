@@ -3,7 +3,7 @@ import { css } from "@emotion/css";
 import _ from "lodash";
 import toArray from "rc-util/lib/Children/toArray";
 import DataLayer from "../DataLayer";
-import { DatavConfig, Display, IProps } from "../../typing";
+import { CommonWidgetProps, DatavConfig, Display, IProps } from "../../typing";
 
 type HtmlNode = HTMLElement & {
   innerWidth?: number;
@@ -113,19 +113,23 @@ var resizeWidth = function (node: HtmlNode, node2: Config) {
 // }
 
 type AbsoluteContainerProps = {
-  children?: React.ReactNode;
-} & DatavConfig;
+} & CommonWidgetProps;
 const AbsoluteContainer = forwardRef(
   (
     {
       children,
+      widget,
+ 
+    }: AbsoluteContainerProps,
+    __
+  ) => {
+
+    const { 
       props,
       // display = Display.ScaleByWidth,
       attr,
       common,
-    }: AbsoluteContainerProps,
-    __
-  ) => {
+     } = widget;
     const { display = Display.ScaleByWidth, background } = props;
     const {
       x,
@@ -188,9 +192,7 @@ const AbsoluteContainer = forwardRef(
       return (
         <DataLayer
           key={key}
-          common={child.props.common}
-          props={child.props.props}
-          attr={child.props.attr}
+          widget={child.props.widget}
         >
           {child}
         </DataLayer>

@@ -1,29 +1,19 @@
-import { DatavConfig } from "../../typing";
+import { CommonWidgetProps, DatavConfig, IBackgroundStyle } from "../../typing";
 import { css } from "@emotion/css";
+import { useRef } from "react";
+import { DatavComWrapperContextProvider } from "./context";
 
-type DatavComWrapperProps = {
-  children: React.ReactNode;
-} & DatavConfig;
+type DatavComWrapperProps = {} & CommonWidgetProps;
 
-export default ({ props, children }: DatavComWrapperProps) => {
-  const {
-    background,
-    filter,
-    ellipsis,
-    textAlign,
-    textStyle,
-    writingMode,
-    letterSpacing,
-    backgroundStyle,
-  } = props;
-  console.log('props',props)
+export default ({ widget, children }: DatavComWrapperProps) => {
+  var container = useRef<HTMLDivElement>(null);
+
+  // console.log("props", widget);
   // pointer-events: ${onClick ? "initial" : "none"};
-  const { type, value } =
-    (typeof background == "string"
-      ? { type: "flat", value: background }
-      : background) || {};
+
   return (
     <div
+      ref={container}
       className={css`
   height: 100%;
   width: 100%;
@@ -32,15 +22,21 @@ export default ({ props, children }: DatavComWrapperProps) => {
   position: relative;
 }
 `}
-      style={{
-        background: value,
-        textAlign: textAlign,
-        letterSpacing: letterSpacing,
-        writingMode: writingMode,
-        
-      }}
+      // style={
+      //   {
+      //     ...getBackgroundStyle(widget.props),
+      //     ...textStyle,
+      //     ...getCustomStyle(backgroundStyle),
+      //     ...getEllipsisStyle(ellipsis),
+      //     textAlign: textAlign,
+      //     letterSpacing: letterSpacing,
+      //     writingMode: writingMode,
+      //   } as any
+      // }
     >
-      {children}
+      <DatavComWrapperContextProvider value={{ container: container }}>
+        {children}
+      </DatavComWrapperContextProvider>
     </div>
   );
 };

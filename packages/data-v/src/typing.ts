@@ -332,3 +332,10 @@ export type IMeta = {
   loadingBgColor: string
   passwordEnable: boolean
 }
+export type CommonWidgetProps = {
+  widget: DatavConfig,
+  // pluginManager: U,
+  disableLoading?: boolean,
+  LoadingComponent?: React.ReactNode;
+  children?: React.ReactNode;
+}
