@@ -3,6 +3,7 @@ import { CommonWidgetProps, DatavConfig, IBackgroundStyle } from "../../typing";
 import { DatavComWrapperContext } from "../DatavComWrapper/context";
 import getBackgroundStyle from "../../utils/getBackgroundStyle";
 import getBackground from "../../utils/getBackground";
+import getTextStyle from "../../utils/getTextStyle";
 
 type MainColorBlockProps = {} & CommonWidgetProps;
 
@@ -63,10 +64,7 @@ export default (props: MainColorBlockProps) => {
         ...getBackgroundStyle(widget.props),
         ...getCustomStyle(backgroundStyle),
         ...getEllipsisStyle(ellipsis),
-        fontWeight: textStyle.fontWeight,
-        fontFamily: textStyle.fontFamily,
-        color: getBackground(textStyle?.color),
-        fontSize: textStyle.fontSize ? `${textStyle.fontSize}px` : undefined,
+        ...getTextStyle(textStyle),
         letterSpacing: letterSpacing ? `${letterSpacing}px` : undefined,
         writingMode: writingMode,
         display: "flex",
