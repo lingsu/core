@@ -227,6 +227,9 @@ importers:
       '@emotion/css':
         specifier: ^11.11.2
         version: 11.11.2
+      countup.js:
+        specifier: ^2.7.0
+        version: 2.7.0
       echarts:
         specifier: ^5.4.2
         version: 5.4.2
@@ -6744,7 +6747,7 @@ packages:
       rc-tree-select: 5.8.0(react-dom@18.2.0)(react@18.2.0)
       rc-trigger: 5.3.4(react-dom@18.2.0)(react@18.2.0)
       rc-upload: 4.3.4(react-dom@18.2.0)(react@18.2.0)
-      rc-util: 5.32.0(react-dom@18.2.0)(react@18.2.0)
+      rc-util: 5.30.0(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       scroll-into-view-if-needed: 3.0.10
@@ -17928,6 +17931,18 @@ packages:
       '@babel/runtime': 7.21.0
       react: 18.2.0
       react-dom: 17.0.2(react@18.2.0)
+      react-is: 16.13.1
+    dev: false
+
+  /rc-util@5.30.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-uaWpF/CZGyXuhQG71MWxkU+0bWkPEgqZUxEv251Cu7p3kpHDNm5+Ygu/U8ux0a/zbfGW8PsKcJL0XVBOMrlIZg==}
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+    dependencies:
+      '@babel/runtime': 7.21.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
       react-is: 16.13.1
     dev: false
 
