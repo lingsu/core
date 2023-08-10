@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { CommonWidgetProps, ICounter } from "../../typing";
+import { CommonWidgetProps, ICounter, INumbers } from "../../typing";
 import { DatavComWrapperContext } from "../DatavComWrapper/context";
 import CountUp from "react-countup";
 import getTextStyle from "../../utils/getTextStyle";
@@ -7,30 +7,42 @@ import { css } from "@emotion/css";
 import React from "react";
 import { CountUp as CountUpJs } from "countup.js";
 
+// import { renderToString } from 'react-dom/server';
+
 // {"main-img_4bzfk/source":{"type": "static", "isError":false,"data":[{"img":"","url":""}]},
 // "main-title_qeqfb/source":{"type": "static", "isError":false,"data":[]},
 // "number-title-flop_d0upt/source":{"type": "static", "isError":false,"data":[{"name":"","value":232425}]}}
-export class SomePlugin {
+export class DatavPlugin {
   // ...some properties here
-  constructor(style: any) {
+  numbers: INumbers;
+  constructor(numbers: INumbers) {
     // ...setup code here if you need it
-    console.log("SomePlugin");
+    this.numbers = numbers;
   }
   render(elem: HTMLElement, formatted: string): void {
     // render DOM here
-    console.log("formatted", elem, formatted);
     // elem.innerHTML =
     var spans: string[] = [];
     for (let i = 0; i < formatted.length; i++) {
       const chat = formatted[i];
-      if (chat == ",") {
-        spans.push(`<span>${chat}</span>`);
+      if (
+        this.numbers.separatingBackground === false &&
+        [this.numbers.separatingSymbol, this.numbers.decimalSymbol].includes(
+          chat
+        )
+      ) {
+      
+        spans.push(
+          `<span style="display:inline-block;text-indent:0.02em;height:auto;line-height:normal;font-size:36px;font-weight:bolder;margin-right:0.2em;border-radius:0px;line-height: 1;">${chat}</span>`
+        );
       } else {
         spans.push(
-          `<span style="background:blue; border-radius: 10px">${chat}</span>`
+          `<span style="background-color:${this.numbers.backgroundColor.value};background-image:null;display:inline-block;text-indent:0.02em;height:auto;line-height:normal;font-size:36px;font-weight:bolder;margin-right:0.2em;border-radius:${this.numbers.backgroundRadius}px;line-height: 1">${chat}</span>`
         );
       }
     }
+    // const html = renderToString(<span style={{backgroundColor: 'red'}}>123</span>)
+    // console.log('html',html)
     elem.innerHTML = spans.join("");
   }
 }
@@ -38,7 +50,7 @@ export default (props: CommonWidgetProps) => {
   const { widget } = props;
   const [value, setValue] = useState(232425);
 
-  const containerRef = React.useRef<HTMLElement>(null);
+  const containerRef = React.useRef<HTMLDivElement>(null);
 
   const { title, counter = {} as ICounter } = widget.props;
   const { numbers, prefix, suffix, fontFamily, justifyContent, margin } =
@@ -57,7 +69,13 @@ export default (props: CommonWidgetProps) => {
 
   useEffect(() => {
     const countUp = new CountUpJs(containerRef.current!, 5234, {
-      plugin: new SomePlugin(numbersStyle),
+      separator: numbers.separatingChart ? numbers.separatingSymbol : undefined,
+      // decimals: numbers.decimal,
+      // decimalPlaces
+      decimal: numbers.decimalSymbol,
+      decimalPlaces: numbers.rounding ? 0 : numbers.decimal,
+      duration: numbers.animation ? numbers.duration / 1000 : 0,
+      plugin: new DatavPlugin(numbers),
     });
     countUp.start();
   }, []);
@@ -83,14 +101,15 @@ export default (props: CommonWidgetProps) => {
           </span>
         )}
 
-        <span
+        <div
           ref={containerRef}
           style={numbersStyle}
           className={css`
             letter-spacing: ${numbers.marginRight}em;
+            display: flex;
           `}
-        ></span>
-        <CountUp
+        ></div>
+        {/* <CountUp
           end={value}
           preserveValue={true}
           separator={
@@ -102,8 +121,8 @@ export default (props: CommonWidgetProps) => {
           className={css`
             letter-spacing: ${numbers.marginRight}em;
           `}
-          plugin={new SomePlugin(numbersStyle)}
-        />
+          plugin={new SomePlugin(numbers)}
+        /> */}
         {suffix && (
           <span
             style={suffixStyle}

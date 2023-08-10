@@ -19,6 +19,8 @@ export default () => (
   <Stage>
     <NumberTitleFlop
       widget={{
+        id: "number-title-flop_d0upt",
+        name: "number-title-flop",
         common: {},
         attr: { w: 400, h: 50, x: 0, y: 0 },
         props: {
@@ -83,6 +85,56 @@ export default () => (
             },
             fontFamily: "Microsoft Yahei",
             justifyContent: "flex-start",
+          },
+          dataConfig: {
+            source: {
+              name: "数据接口",
+              handler: "render",
+              useFilter: false,
+              dataSource: {
+                multiple: {
+                  api: {},
+                  $type: "static",
+                  static: {},
+                  $iterator: false,
+                },
+              },
+              dataRequire: {
+                type: "array",
+                items: {
+                  type: "object",
+                  required: ["value"],
+                  properties: {
+                    name: {
+                      type: ["string"],
+                      extension: {
+                        description: "标题",
+                      },
+                    },
+                    value: {
+                      type: ["number"],
+                      extension: {
+                        description: "数值",
+                      },
+                    },
+                    prefix: {
+                      type: ["string"],
+                      extension: {
+                        description: "前缀",
+                      },
+                    },
+                    suffix: {
+                      type: ["string"],
+                      extension: {
+                        description: "后缀",
+                      },
+                    },
+                  },
+                },
+              },
+              description: "数据接口",
+              dataSourceType: "multiple",
+            },
           },
           interaction: { cursor: false },
         },
