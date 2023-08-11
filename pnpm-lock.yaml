@@ -245,6 +245,9 @@ importers:
       react-countup:
         specifier: ^6.4.2
         version: 6.4.2(@babel/core@7.22.9)(react@18.2.0)
+      swr:
+        specifier: ^2.2.0
+        version: 2.2.0(react@18.2.0)
 
   packages/gis:
     dependencies:
@@ -603,7 +606,7 @@ packages:
       omit.js: 2.0.2
       rc-util: 5.32.0(react-dom@17.0.2)(react@18.2.0)
       react: 18.2.0
-      swr: 2.1.3(react@18.2.0)
+      swr: 2.2.0(react@18.2.0)
     transitivePeerDependencies:
       - prop-types
       - react-dom
@@ -627,7 +630,7 @@ packages:
       omit.js: 2.0.2
       rc-util: 5.32.0(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
-      swr: 2.1.3(react@18.2.0)
+      swr: 2.2.0(react@18.2.0)
     transitivePeerDependencies:
       - prop-types
       - react-dom
@@ -723,7 +726,7 @@ packages:
       rc-util: 5.32.0(react-dom@17.0.2)(react@18.2.0)
       react: 18.2.0
       react-dom: 17.0.2(react@18.2.0)
-      swr: 2.1.3(react@18.2.0)
+      swr: 2.2.0(react@18.2.0)
       use-json-comparison: 1.0.6(react@18.2.0)
       use-media-antd-query: 1.1.0(react@18.2.0)
       warning: 4.0.3
@@ -753,7 +756,7 @@ packages:
       rc-util: 5.32.0(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      swr: 2.1.3(react@18.2.0)
+      swr: 2.2.0(react@18.2.0)
       use-json-comparison: 1.0.6(react@18.2.0)
       use-media-antd-query: 1.1.0(react@18.2.0)
       warning: 4.0.3
@@ -827,7 +830,7 @@ packages:
       rc-util: 5.32.0(react-dom@17.0.2)(react@18.2.0)
       react: 18.2.0
       react-dom: 17.0.2(react@18.2.0)
-      swr: 2.1.3(react@18.2.0)
+      swr: 2.2.0(react@18.2.0)
     dev: false
 
   /@ant-design/pro-provider@2.7.0(antd@5.4.2)(react-dom@18.2.0)(react@18.2.0):
@@ -844,7 +847,7 @@ packages:
       rc-util: 5.32.0(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      swr: 2.1.3(react@18.2.0)
+      swr: 2.2.0(react@18.2.0)
     dev: false
 
   /@ant-design/pro-skeleton@2.1.0(antd@5.4.2)(react-dom@17.0.2)(react@18.2.0):
@@ -954,7 +957,7 @@ packages:
       react: 18.2.0
       react-dom: 17.0.2(react@18.2.0)
       react-sortable-hoc: 2.0.0(prop-types@15.8.1)(react-dom@17.0.2)(react@18.2.0)
-      swr: 2.1.3(react@18.2.0)
+      swr: 2.2.0(react@18.2.0)
     transitivePeerDependencies:
       - prop-types
     dev: false
@@ -976,7 +979,7 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-sortable-hoc: 2.0.0(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
-      swr: 2.1.3(react@18.2.0)
+      swr: 2.2.0(react@18.2.0)
     transitivePeerDependencies:
       - prop-types
     dev: false
@@ -19921,8 +19924,8 @@ packages:
       xml-reader: 2.4.3
     dev: true
 
-  /swr@2.1.3(react@18.2.0):
-    resolution: {integrity: sha512-g3ApxIM4Fjbd6vvEAlW60hJlKcYxHb+wtehogTygrh6Jsw7wNagv9m4Oj5Gq6zvvZw0tcyhVGL9L0oISvl3sUw==}
+  /swr@2.2.0(react@18.2.0):
+    resolution: {integrity: sha512-AjqHOv2lAhkuUdIiBu9xbuettzAzWXmCEcLONNKJRba87WAefz8Ca9d6ds/SzrPc235n1IxWYdhJ2zF3MNUaoQ==}
     peerDependencies:
       react: ^16.11.0 || ^17.0.0 || ^18.0.0
     dependencies:
