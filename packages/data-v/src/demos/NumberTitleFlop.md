@@ -95,7 +95,11 @@ export default () => (
                 multiple: {
                   api: {},
                   $type: "static",
-                  static: {},
+                  static: {
+                    type: "static",
+                    isError: false,
+                    data: [{ name: "", value: 232425 }],
+                  },
                   $iterator: false,
                 },
               },

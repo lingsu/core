@@ -6,6 +6,8 @@ import getTextStyle from "../../utils/getTextStyle";
 import { css } from "@emotion/css";
 import React from "react";
 import { CountUp as CountUpJs } from "countup.js";
+import { DatavDataSourceContext } from "../DatavCommonHoc/context";
+import getValue from "../../utils/getValue";
 
 // import { renderToString } from 'react-dom/server';
 
@@ -48,13 +50,19 @@ export class DatavPlugin {
 }
 export default (props: CommonWidgetProps) => {
   const { widget } = props;
-  const [value, setValue] = useState(232425);
 
   const containerRef = React.useRef<HTMLDivElement>(null);
 
-  const { title, counter = {} as ICounter } = widget.props;
+  const { title, counter = {} as ICounter,dataConfig } = widget.props;
   const { numbers, prefix, suffix, fontFamily, justifyContent, margin } =
     counter;
+
+  const dataSource = useContext(DatavDataSourceContext);
+
+
+  // const value = getValue(dataSource.data, dataConfig!.source.dataRequire)
+  const value = dataConfig!.source.dataRequire.type == 'array' ? dataSource.data[0].value : dataSource.data.value;
+
   const wrapper = useContext(DatavComWrapperContext);
   useEffect(() => {
     if (wrapper.container?.current) {
@@ -68,7 +76,7 @@ export default (props: CommonWidgetProps) => {
   const numbersStyle = getTextStyle(numbers?.textStyle);
 
   useEffect(() => {
-    const countUp = new CountUpJs(containerRef.current!, 5234, {
+    const countUp = new CountUpJs(containerRef.current!, value, {
       separator: numbers.separatingChart ? numbers.separatingSymbol : undefined,
       // decimals: numbers.decimal,
       // decimalPlaces

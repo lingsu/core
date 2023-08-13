@@ -50,7 +50,6 @@ export type DatavConfig = {
   version?: string
   isPortal?: boolean
   relation?: IRelation
-  dataConfig?: IDataConfig
   interaction?: IInteraction
   extension?: IExtension
 }
@@ -136,6 +135,7 @@ export type IProps = {
   display?: Display
   backgroundColor?: string
   backgroundImage?: null
+  dataConfig?: IDataConfig
 }
 
 export enum Display {
@@ -170,7 +170,7 @@ export type IRelation = {
   category: string[]
 }
 export type IDataConfig = {
-  source?: ISource
+  source: ISource
 }
 export type IInteraction = {
   events?: any[]
@@ -259,6 +259,7 @@ export type IDataSource = {
 }
 export type IMultiple = {
   $type: string
+  api?: {url?: string}
 }
 export type IDataRequire = {
   type: string
