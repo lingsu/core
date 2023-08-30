@@ -1,6 +1,6 @@
 {
   "name": "@q25a25q/data-v",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "大屏开发组件",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -33,12 +33,12 @@
     "lodash": ">=4.17.15"
   },
   "dependencies": {
-    "swr": "^2.2.0",
+    "@emotion/css": "^11.11.2",
+    "countup.js": "^2.7.0",
     "echarts": "^5.4.2",
     "echarts-for-react": "^3.0.2",
-    "countup.js": "^2.7.0",
-    "react-countup": "^6.4.2",
     "rc-util": "^5.32.0",
-    "@emotion/css": "^11.11.2"
+    "react-countup": "^6.4.2",
+    "swr": "^2.2.0"
   }
 }
