@@ -1,6 +1,8 @@
-export * from './auth';
-export * from './convertBladeModel';
-export * from './downloadByUrl';
-export * from './guessType';
-export * from './openWindow';
-export * from './request';
+export * from "./auth";
+import convertBladeModel from "./convertBladeModel";
+import downloadByUrl from "./downloadByUrl";
+import guessType from "./guessType";
+import openWindow from "./openWindow";
+import request from "./request";
+
+export { request, guessType, openWindow, downloadByUrl, convertBladeModel };
