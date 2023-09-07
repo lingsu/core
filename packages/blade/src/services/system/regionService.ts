@@ -54,6 +54,7 @@ export type Region = {
 export type RegionService = {
   getList: (params: any) => Promise<PageWarp<Region>>;
   getSelectList: (code?: any) => Promise<Region[]>;
+  getRegionLazyTree: (parentCode?: any) => Promise<Region[]>;
 };
 export const regionService = ({ httpClient }: ServiceParams): RegionService => {
   const getList = (params: any) => {
@@ -71,6 +72,13 @@ export const regionService = ({ httpClient }: ServiceParams): RegionService => {
     });
   };
 
+  const getRegionLazyTree = (parentCode?: any) => {
+    return httpClient.get<Region[]>("https://hatching.ouhaihr.com/api/blade-system/region/lazy-tree", {
+      params: {
+        parentCode,
+      },
+    });
+  };
   // const getParentList = (params) => {
   //   return request({
   //     url: '/api/blade-system/dict/parent-list',
@@ -186,5 +194,6 @@ export const regionService = ({ httpClient }: ServiceParams): RegionService => {
     // getParentList,
     // getChildList,
     // remove,
+    getRegionLazyTree
   };
 };
