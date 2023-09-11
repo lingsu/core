@@ -42,6 +42,9 @@
       "@q25a25q/data-v": [
         "packages/data-v/src/index.tsx"
       ],
+      "@q25a25q/utils": [
+        "packages/utils/src/index.tsx"
+      ],
     }
   },
   "include": [
