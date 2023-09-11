@@ -1,4 +1,4 @@
-export const log = async ({
+const log = async ({
   message,
   type,
   mention = false,
@@ -16,3 +16,4 @@ export const log = async ({
   /* Log a message to the console */
 
 };
+export default log;
