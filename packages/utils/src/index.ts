@@ -11,6 +11,7 @@ import log from "./log";
 import { buildUUID, buildShortUUID } from "./uuid";
 import numToUpper from "./numToUpper";
 import mitt from "./mitt";
+import replaceAll from "./replaceAll";
 
 export {
   getFirstAndLastDay,
@@ -27,4 +28,5 @@ export {
   buildShortUUID,
   numToUpper,
   mitt,
+  replaceAll,
 };
