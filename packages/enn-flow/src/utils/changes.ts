@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Node, Edge, EdgeChange, NodeChange } from '../typing';
 
 function handleParentExpand(res: any[], updateItem: any) {
