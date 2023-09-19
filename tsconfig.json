@@ -45,6 +45,9 @@
       "@q25a25q/utils": [
         "packages/utils/src/index.tsx"
       ],
+      "@q25a25q/enn-flow": [
+        "packages/enn-flow/src/index.ts"
+      ],
     }
   },
   "include": [

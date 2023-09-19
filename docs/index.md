@@ -5,8 +5,8 @@ hero:
   actions:
     - text: Hello
       link: /
-    - text: World
-      link: /
+    - text: enn-flow
+      link: /enn-flow
 features:
   - title: Hello
     emoji: 💎
