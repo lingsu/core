@@ -1,8 +1,13 @@
 import { useState, useMemo, useCallback } from "react";
 
-import { EnnFlow } from "@q25a25q/enn-flow";
+import {
+  EnnFlow,
+  addEdge,
+  useEdgesState,
+  useNodesState,
+} from "@q25a25q/enn-flow";
 
-export const nodes = [
+export const initialNodes = [
   {
     id: "1",
     type: "input",
@@ -81,7 +86,7 @@ export const nodes = [
   },
 ];
 
-export const edges = [
+export const initialEdges = [
   { id: "e1-2", source: "1", target: "2", label: "this is an edge label" },
   { id: "e1-3", source: "1", target: "3", animated: true },
   {
@@ -106,5 +111,22 @@ export const edges = [
   },
 ];
 export default () => {
-  return <EnnFlow></EnnFlow>;
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const onConnect = useCallback(
+    (params) => setEdges((eds) => addEdge(params, eds)),
+    [setEdges]
+  );
+
+  return (
+    <div style={{ width: "100vw", height: "100vh" }}>
+      <EnnFlow
+        nodes={nodes}
+        edges={edges}
+        onNodesChange={onNodesChange}
+        onEdgesChange={onEdgesChange}
+        onConnect={onConnect}
+      ></EnnFlow>
+    </div>
+  );
 };

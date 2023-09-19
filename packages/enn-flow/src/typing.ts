@@ -1,5 +1,5 @@
 import { CSSProperties, ReactNode } from "react";
-import { internalsSymbol } from "./constants";
+import { internalsSymbol } from "./utils";
 
 
 
@@ -196,3 +196,12 @@ export type EdgeResetChange<EdgeData = any> = {
   type: 'reset';
 };
 export type EdgeChange = EdgeSelectionChange | EdgeRemoveChange | EdgeAddChange | EdgeResetChange;
+
+
+
+export interface Connection {
+  source: string | null;
+  target: string | null;
+  sourceHandle: string | null;
+  targetHandle: string | null;
+}
