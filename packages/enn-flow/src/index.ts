@@ -1,4 +1,4 @@
-import EnnFlow from "./EnnFlow";
+import EnnFlow from "./container/EnnFlow";
 export * from './hooks/useNodesEdgesState';
 export {
     isNode,
