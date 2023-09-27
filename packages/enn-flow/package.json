@@ -1,6 +1,6 @@
 {
   "name": "@q25a25q/enn-flow",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Elegant Neural Network Flow Graph",
   "main": "lib/index.js",
   "module": "es/index.js",
