@@ -109,7 +109,7 @@ export function buildURL(url: string, params: any, options: Option) {
 
   var urlSearchParams = getParamObject(params || {});
 
-  if (urlSearchParams.size > 0) {
+  if (urlSearchParams.toString()) {
     const urlSign = url.indexOf("?") !== -1 ? "&" : "?";
     url = url + urlSign + urlSearchParams.toString();
   }
