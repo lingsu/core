@@ -2,41 +2,10 @@ import { message } from "antd";
 import downloadByUrl from "./downloadByUrl";
 import { RequestData } from "@ant-design/pro-components";
 import { getToken, getTokenHeader } from "./auth";
+import { AntdPage, BladeRequest, PageResult, RequestOption, RequestParams } from "../typing";
 
-export type Option = {
-  baseURL?: string;
-  isReturnNativeResponse?: boolean;
-  isTransformResponse?: boolean;
-  withToken?: boolean;
-  headers?: HeadersInit;
-  responseType: "arraybuffer" | "document" | "json" | "text" | "stream";
-  transformRequest: ((config: Option, data: any, headers: any) => any)[];
 
-  // `transformResponse` allows changes to the response data to be made before
-  // it is passed to then/catch
-  transformResponse: ((config: Option, data: any) => any)[];
 
-  // `paramsSerializer` is an optional function in charge of serializing `params`
-  // (e.g. https://www.npmjs.com/package/qs, http://api.jquery.com/jquery.param/)
-  // paramsSerializer: function (params) {
-  //   return Qs.stringify(params, {arrayFormat: 'brackets'})
-  // },
-
-  // handleError?: (error: ApiError, option: Option) => void;
-  // handler?: <T = any>(
-  //   url: string,
-  //   requestInit: RequestInit,
-  //   option: Option
-  // ) => Promise<T> | Promise<void>;
-};
-export type PageResult<T> = {
-  records: T[];
-  total: number;
-};
-type RequestParams = Omit<RequestInit, "body"> & {
-  params?: any;
-  data?: any;
-};
 
 // const basicKey = window.btoa(`${website.clientId}:${website.clientSecret}`);
 
@@ -46,7 +15,7 @@ export function isURLSearchParams(val: any) {
   );
 }
 
-const DefaultOption = {
+export const DefaultOption = {
   baseURL: "",
 
   // `transformRequest` allows changes to the request data before it is sent to the server
@@ -55,7 +24,7 @@ const DefaultOption = {
   // FormData or Stream
   // You may modify the headers object.
   transformRequest: [
-    function (config: Option, data: any, headers: any) {
+    function (config: RequestOption, data: any, headers: any) {
       // Do whatever you want to transform the data
 
       if (headers?.["Content-Type"] == "application/json") {
@@ -69,7 +38,7 @@ const DefaultOption = {
   // `transformResponse` allows changes to the response data to be made before
   // it is passed to then/catch
   transformResponse: [
-    function (config: Option, data: any) {
+    function (config: RequestOption, data: any) {
       // Do whatever you want to transform the data
       const { code } = data;
       if (code === 200) {
@@ -98,10 +67,10 @@ const DefaultOption = {
   isTransformResponse: false,
   isTransformRequest: true,
   withToken: true,
-} as Option;
+} as RequestOption;
 
 
-export function buildURL(url: string, params: any, options: Option) {
+export function buildURL(url: string, params: any, options: RequestOption) {
   /*eslint no-param-reassign:0*/
   if (!params) {
     return url;
@@ -135,11 +104,11 @@ const getParamObject = (val: any) => {
   return new URLSearchParams([...Object.entries(val)] as any);
 };
 
-const createInstance = (instanceConfig: Option) => {
+export const createInstance = (instanceConfig: RequestOption): BladeRequest => {
   const request = async <T>(
     url: string,
     init: RequestParams,
-    config?: Option
+    config?: RequestOption
   ) => {
     var { params, data, ...rest } = init;
 
@@ -217,7 +186,7 @@ const createInstance = (instanceConfig: Option) => {
   const get = async <T>(
     url: string,
     data?: RequestParams,
-    option?: Option
+    option?: RequestOption
   ): Promise<T> => {
     const requestInit = { method: "GET", ...data };
 
@@ -226,7 +195,7 @@ const createInstance = (instanceConfig: Option) => {
   const _delete = async <T>(
     url: string,
     data?: RequestParams,
-    option?: Option
+    option?: RequestOption
   ): Promise<T> => {
     const requestInit = { method: "DELETE", ...data };
 
@@ -235,7 +204,7 @@ const createInstance = (instanceConfig: Option) => {
   const put = async <T>(
     url: string,
     data?: RequestParams,
-    option?: Option
+    option?: RequestOption
   ): Promise<T> => {
     const requestInit = { method: "PUT", ...data };
 
@@ -244,8 +213,8 @@ const createInstance = (instanceConfig: Option) => {
   const getPage = async <T>(
     url: string,
     data?: RequestParams,
-    option?: Option
-  ): Promise<RequestData<T>> => {
+    option?: RequestOption
+  ): Promise<AntdPage<T>> => {
     const requestInit = { method: "GET", ...data };
     if (requestInit.params && "pageSize" in requestInit.params) {
       requestInit.params.size = requestInit.params.pageSize;
@@ -261,7 +230,7 @@ const createInstance = (instanceConfig: Option) => {
   const download = async (
     url: string,
     data?: RequestParams,
-    option?: Option
+    option?: RequestOption
   ) => {
     var urlSearchParams = getParamObject({
       ...data?.params,
@@ -279,7 +248,7 @@ const createInstance = (instanceConfig: Option) => {
   const post = async <T = any>(
     url: string,
     data?: RequestParams,
-    option?: Option
+    option?: RequestOption
   ): Promise<T> => {
     const requestInit: RequestParams = { method: "POST", ...data };
 

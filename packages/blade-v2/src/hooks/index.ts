@@ -1,3 +1,4 @@
 import useProTable from './useProTable';
+import useReactBlade from './useReactBlade';
 
-export {useProTable}
+export {useProTable,useReactBlade}
