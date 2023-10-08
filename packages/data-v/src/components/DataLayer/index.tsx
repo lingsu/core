@@ -43,6 +43,8 @@ export default ({
         width: w,
         height: h,
         transform: `translateX(${x}px) translateY(${y}px)`,
+        position: "absolute",
+        willChange: "transform",
       }}
       className="datav-layer"
     >
