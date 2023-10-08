@@ -48,7 +48,7 @@ const DataWrapper = (props: CommonWidgetProps) => {
       );
     });
   });
-  console.log("DataWrapper id", id, data, isLoading);
+  // console.log("DataWrapper id", id, data, isLoading);
 
   return (
     <DatavDataSourceContextProvider value={{ data: data }}>
@@ -66,9 +66,10 @@ export default ({
 }: MainColorBlockProps) => {
   const { common, props, attr, id } = widget;
   const { hide = false, degree = 0, opacity = 1 } = { ...common };
-  console.log("dataConfig", widget);
+  // console.log("dataConfig", widget);
   return (
     <div
+      className="datav-common-hoc"
       style={{
         display: "block",
         height: "100%",

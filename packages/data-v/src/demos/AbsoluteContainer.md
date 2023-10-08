@@ -24,12 +24,20 @@ group: data-v
  * background: '#f6f7f9'
  */
 
-import { AbsoluteContainer, Display } from "@q25a25q/data-v";
+import { AbsoluteContainer,Stage, Display } from "@q25a25q/data-v";
 
 export default () => (
-  <AbsoluteContainer
-    props={{ display: Display.NoScale, background:{type:"flat",value:"#262626"}, }}
-    attr={{ w: 100, h: 100, }}
-  ></AbsoluteContainer>
+  <Stage>
+    <AbsoluteContainer
+      widget={{
+          props: {
+            display: Display.ScaleByWidth,
+              background: { type: "flat", value: "#262626" },
+          },
+          attr: { w: 1920, h: 1080 },
+        }}
+
+    ></AbsoluteContainer>
+  </Stage>
 );
 ```

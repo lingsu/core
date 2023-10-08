@@ -9,7 +9,7 @@ type DataLayerProps = {
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
   style?: CSSProperties;
-} & CommonWidgetProps ;
+} & CommonWidgetProps;
 
 export default ({
   onClick,
@@ -19,10 +19,10 @@ export default ({
   widget,
 }: DataLayerProps) => {
   // pointer-events: ${onClick ? "initial" : "none"};
-  const {attr, } = widget;
+  const { attr } = widget;
   const {
-    x,
-    y,
+    x = 0,
+    y = 0,
     h,
     w,
     hUnit = "px",
@@ -33,7 +33,10 @@ export default ({
     // degree = 0,
   } = { ...attr };
 
-
+  // console.log('children',children.type.displayName)
+  if ((children! as any).type.displayName === 'AbsoluteContainer') {
+    return <DatavCommonHoc widget={widget}>{children}</DatavCommonHoc>;
+  }
   return (
     <div
       style={{
@@ -41,10 +44,9 @@ export default ({
         height: h,
         transform: `translateX(${x}px) translateY(${y}px)`,
       }}
+      className="datav-layer"
     >
-      <DatavCommonHoc widget={widget}>
-        {children}
-      </DatavCommonHoc>
+      <DatavCommonHoc widget={widget}>{children}</DatavCommonHoc>
     </div>
   );
 };

@@ -167,8 +167,11 @@ const AbsoluteContainer = forwardRef(
         // display: display,
         // background: background,
       };
-
+      // console.log('absolutePagWpNode',absolutePagWpNode, getInnerWidth(absolutePagWpNode))
+      // console.log('absolutePageNode',absolutePageNode)
       const result = act[display](absolutePagWpNode, config);
+      // console.log('result',display, result)
+
       setElementStyle(absolutePagWpNode, result[0]);
       setElementStyle(absolutePageNode, result[1]);
     }, []);
@@ -244,5 +247,7 @@ const AbsoluteContainer = forwardRef(
     );
   }
 );
+
+AbsoluteContainer.displayName = "AbsoluteContainer";
 
 export default AbsoluteContainer;
