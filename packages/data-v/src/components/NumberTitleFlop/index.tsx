@@ -271,7 +271,7 @@ export default (props: CommonWidgetProps) => {
   }, []);
   return (
     <>
-      {title && <div style={titleStyle}>{title.content}</div>}
+      {title.content && <div style={titleStyle}>{title.content}</div>}
       <div
         style={{
           display: "flex",
@@ -280,7 +280,7 @@ export default (props: CommonWidgetProps) => {
           alignItems: suffix?.suffixArrange || "baseline",
         }}
       >
-        {prefix && (
+        {prefix.content && (
           <span
             style={prefixStyle}
             className={css`
@@ -313,7 +313,7 @@ export default (props: CommonWidgetProps) => {
           `}
           plugin={new SomePlugin(numbers)}
         /> */}
-        {suffix && (
+        {suffix.content && (
           <span
             style={suffixStyle}
             className={css`
