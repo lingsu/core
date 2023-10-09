@@ -125,7 +125,10 @@ export type IProps = {
   counter?: ICounter
   interaction?: IInteraction
   content?: string
+  radius?: number
+  repeat?: "no-repeat" | "repeat" | "repeat-x" | "repeat-y" | "round" | "space"
   ellipsis?: boolean
+  cursor?: boolean
   textAlign?:"center" | "end" | "justify" | "left" | "match-parent" | "right" | "start"
   textStyle?: ITextStyle
   urlConfig?: IUrlConfig
