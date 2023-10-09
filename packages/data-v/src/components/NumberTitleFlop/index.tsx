@@ -95,7 +95,7 @@ export default (props: CommonWidgetProps) => {
           display: "flex",
           fontFamily: fontFamily,
           justifyContent: justifyContent,
-          alignItems: "baseline",
+          alignItems: suffix?.suffixArrange  || "baseline",
         }}
       >
         {prefix && (
