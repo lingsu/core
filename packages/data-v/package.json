@@ -1,6 +1,6 @@
 {
   "name": "@q25a25q/data-v",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "大屏开发组件",
   "main": "lib/index.js",
   "module": "es/index.js",
