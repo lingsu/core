@@ -233,12 +233,11 @@ export default (props: CommonWidgetProps) => {
 
   const containerRef = React.useRef<HTMLDivElement>(null);
 
-  const { title, counter = {} as ICounter, dataConfig } = _.defaultsDeep({},defaultProps.props, widget.props);
+  const { title, counter = {} as ICounter, dataConfig } = _.merge({},defaultProps.props, widget.props);
   const { numbers, prefix, suffix, fontFamily, justifyContent, margin } =
     counter;
 
   const dataSource = useContext(DatavDataSourceContext);
-
   // const value = getValue(dataSource.data, dataConfig!.source.dataRequire)
   const value =
     dataConfig!.source.dataRequire.type == "array"
