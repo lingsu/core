@@ -215,11 +215,11 @@ export class DatavPlugin {
         )
       ) {
         spans.push(
-          `<span style="display:inline-block;text-indent:0.02em;height:auto;line-height:normal;font-size:36px;font-weight:bolder;margin-right:${this.numbers.marginRight}em;border-radius:0px;line-height: 1;">${chat}</span>`
+          `<span style="display:inline-block;text-indent:0.02em;height:auto;line-height:normal;margin-right:${this.numbers.marginRight}em;border-radius:0px;line-height: 1;">${chat}</span>`
         );
       } else {
         spans.push(
-          `<span style="background-color:${this.numbers.backgroundColor.value};background-image:null;display:inline-block;text-indent:0.02em;height:auto;line-height:normal;font-size:36px;font-weight:bolder;margin-right:${this.numbers.marginRight}em;border-radius:${this.numbers.backgroundRadius}px;line-height: 1">${chat}</span>`
+          `<span style="background-color:${this.numbers.backgroundColor.value};background-image:null;display:inline-block;text-indent:0.02em;height:auto;line-height:normal;margin-right:${this.numbers.marginRight}em;border-radius:${this.numbers.backgroundRadius}px;line-height: 1">${chat}</span>`
         );
       }
     }
