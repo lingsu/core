@@ -1,14 +1,14 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { CommonWidgetProps, ICounter, INumbers } from "../../typing";
 import { DatavComWrapperContext } from "../DatavComWrapper/context";
-import CountUp from "react-countup";
 import getTextStyle from "../../utils/getTextStyle";
 import { css } from "@emotion/css";
 import React from "react";
 import { CountUp as CountUpJs } from "countup.js";
 import { DatavDataSourceContext } from "../DatavCommonHoc/context";
 import getValue from "../../utils/getValue";
-import _ from 'lodash';
+import _ from "lodash";
+import CountUp from "../../CountUp";
 
 // import { renderToString } from 'react-dom/server';
 
@@ -231,9 +231,13 @@ export class DatavPlugin {
 export default (props: CommonWidgetProps) => {
   const { widget } = props;
 
-  const containerRef = React.useRef<HTMLDivElement>(null);
+  // const containerRef = React.useRef<HTMLDivElement>(null);
 
-  const { title, counter = {} as ICounter, dataConfig } = _.merge({},defaultProps.props, widget.props);
+  const {
+    title,
+    counter = {} as ICounter,
+    dataConfig,
+  } = _.merge({}, defaultProps.props, widget.props);
   const { numbers, prefix, suffix, fontFamily, justifyContent, margin } =
     counter;
 
@@ -251,23 +255,15 @@ export default (props: CommonWidgetProps) => {
     }
   }, []);
 
+  const plugin = useMemo(() => {
+    return new DatavPlugin(numbers)
+  },[props])
+
   const titleStyle = getTextStyle(title?.textStyle);
   const prefixStyle = getTextStyle(prefix?.textStyle);
   const suffixStyle = getTextStyle(suffix?.textStyle);
   const numbersStyle = getTextStyle(numbers?.textStyle);
 
-  useEffect(() => {
-    const countUp = new CountUpJs(containerRef.current!, value, {
-      separator: numbers.separatingChart ? numbers.separatingSymbol : undefined,
-      // decimals: numbers.decimal,
-      // decimalPlaces
-      decimal: numbers.decimalSymbol,
-      decimalPlaces: numbers.rounding ? 0 : numbers.decimal,
-      duration: numbers.animation ? numbers.duration / 1000 : 0,
-      plugin: new DatavPlugin(numbers),
-    });
-    countUp.start();
-  }, []);
   return (
     <>
       {title.content && <div style={titleStyle}>{title.content}</div>}
@@ -290,15 +286,7 @@ export default (props: CommonWidgetProps) => {
           </span>
         )}
 
-        <div
-          ref={containerRef}
-          style={numbersStyle}
-          className={css`
-            letter-spacing: ${numbers.marginRight}em;
-            display: flex;
-          `}
-        ></div>
-        {/* <CountUp
+        <CountUp
           end={value}
           preserveValue={true}
           separator={
@@ -308,10 +296,11 @@ export default (props: CommonWidgetProps) => {
           duration={numbers.duration / 1000}
           style={numbersStyle}
           className={css`
+            display: flex;
             letter-spacing: ${numbers.marginRight}em;
           `}
-          plugin={new SomePlugin(numbers)}
-        /> */}
+          plugin={plugin}
+        />
         {suffix.content && (
           <span
             style={suffixStyle}
