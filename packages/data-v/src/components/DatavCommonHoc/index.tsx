@@ -47,6 +47,9 @@ const DataWrapper = (props: CommonWidgetProps) => {
     const dataRequire = source.dataRequire;
 
     var dataSource = dataSourceType[dataSourceType.$type];
+    if (!dataSource) {
+      return [];
+    }
 
     const dataRequireMapping = (data: any) => {
       const { mapping = {}} = dataRequire.extension || {}
