@@ -61,8 +61,8 @@ export type IAttr = {
   deg?: number;
   flipH?: boolean;
   flipV?: boolean;
-  hUnit: string;
-  wUnit: string;
+  hUnit?: string;
+  wUnit?: string;
   // opacity?: number
   sizeLock?: boolean;
   xUnit?: string;
@@ -119,7 +119,7 @@ export type IHooks = {};
 export type IEventState = {};
 export type IProps = {
   filter?: string;
-  background: string | IBackground;
+  background?: string | IBackground;
   title?: ITitle;
   global?: IGlobal;
   counter?: ICounter;
@@ -149,7 +149,7 @@ export type IProps = {
   backgroundStyle?: IBackgroundStyle;
   display?: Display;
   backgroundColor?: string;
-  backgroundImage?: null;
+  backgroundImage?: string;
   dataConfig?: IDataConfig;
 };
 
