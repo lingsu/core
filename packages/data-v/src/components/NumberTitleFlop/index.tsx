@@ -18,10 +18,10 @@ import CountUp from "../../CountUp";
 
 const defaultProps = {
   attr: {
-    h: 64,
-    w: 300,
-    x: 203.5170893054024,
-    y: 159.0474090407938,
+    h: 0,
+    w: 0,
+    x: 0,
+    y: 0,
     deg: 0,
     hUnit: "px",
     wUnit: "px",
@@ -228,7 +228,7 @@ export class DatavPlugin {
     elem.innerHTML = spans.join("");
   }
 }
-export default (props: CommonWidgetProps) => {
+const NumberTitleFlop = (props: Partial<CommonWidgetProps>) => {
   const { widget } = props;
 
   // const containerRef = React.useRef<HTMLDivElement>(null);
@@ -236,18 +236,21 @@ export default (props: CommonWidgetProps) => {
   const {
     title,
     counter = {} as ICounter,
-    dataConfig,
-  } = _.merge({}, defaultProps.props, widget.props);
+  } = _.merge({}, defaultProps.props, widget!.props);
   const { numbers, prefix, suffix, fontFamily, justifyContent, margin } =
     counter;
 
   const dataSource = useContext(DatavDataSourceContext);
   // const value = getValue(dataSource.data, dataConfig!.source.dataRequire)
-  const value =
-    dataConfig!.source.dataRequire.type == "array"
-      ? dataSource.data[0].value
-      : dataSource.data.value;
-
+  // const value =
+  //   dataConfig!.source.dataRequire.type == "array"
+  //     ? dataSource.data[0].value
+  //     : dataSource.data.value;
+  // console.log("dataSource", dataSource);
+  const value = dataSource.data[0].value;
+  const titleValue = dataSource.data[0].name || title.content;
+  const prefixValue = dataSource.data[0].prefix || prefix.content;
+  const suffixValue = dataSource.data[0].suffix || suffix.content;
   const wrapper = useContext(DatavComWrapperContext);
   useEffect(() => {
     if (wrapper.container?.current) {
@@ -256,8 +259,8 @@ export default (props: CommonWidgetProps) => {
   }, []);
 
   const plugin = useMemo(() => {
-    return new DatavPlugin(numbers)
-  },[props])
+    return new DatavPlugin(numbers);
+  }, [props]);
 
   const titleStyle = getTextStyle(title?.textStyle);
   const prefixStyle = getTextStyle(prefix?.textStyle);
@@ -266,7 +269,7 @@ export default (props: CommonWidgetProps) => {
 
   return (
     <>
-      {title.content && <div style={titleStyle}>{title.content}</div>}
+      {titleValue && <div style={titleStyle}>{titleValue}</div>}
       <div
         style={{
           display: "flex",
@@ -275,14 +278,14 @@ export default (props: CommonWidgetProps) => {
           alignItems: suffix?.suffixArrange || "baseline",
         }}
       >
-        {prefix.content && (
+        {prefixValue && (
           <span
             style={prefixStyle}
             className={css`
               margin-right: ${margin.preNum}px;
             `}
           >
-            {prefix.content}
+            {prefixValue}
           </span>
         )}
 
@@ -301,17 +304,20 @@ export default (props: CommonWidgetProps) => {
           `}
           plugin={plugin}
         />
-        {suffix.content && (
+        {suffixValue && (
           <span
             style={suffixStyle}
             className={css`
               margin-left: ${margin.numSuff}px;
             `}
           >
-            {suffix.content}
+            {suffixValue}
           </span>
         )}
       </div>
     </>
   );
 };
+NumberTitleFlop.displayName = "NumberTitleFlop";
+NumberTitleFlop.defaultProps = defaultProps;
+export default NumberTitleFlop;

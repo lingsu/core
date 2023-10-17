@@ -25,7 +25,6 @@ export const createCountUpInstance = (
     scrollSpyOnce,
     plugin,
   } = props;
-  console.log('props',props)
 
   return new CountUp(el, end, {
     startVal: start,

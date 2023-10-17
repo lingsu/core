@@ -1,4 +1,4 @@
-import { CommonWidgetProps } from "../../typing";
+import { CommonWidgetProps, IDataConfig, ISource } from "../../typing";
 import DatavComWrapper from "../DatavComWrapper";
 import useSWR from "swr";
 import { DatavDataSourceContextProvider } from "./context";
@@ -22,26 +22,56 @@ const DefaultLoading = () => {
 };
 
 const DataWrapper = (props: CommonWidgetProps) => {
-  const source = props.widget.props.dataConfig!.source;
+  // console.log(
+  //   "DataWrapper",
+  //   props.widget,
+  //   (props.children! as any).type.defaultProps?.dataConfig
+  // );
+
+  const dataConfig: IDataConfig = _.merge(
+    {},
+    (props.children! as any).type.defaultProps?.dataConfig,
+    props.widget?.props?.dataConfig
+  );
+  const source = dataConfig.source;
+  // console.log("DataWrapper", dataConfig);
+  const dataSourceType = source.dataSource[source.dataSourceType];
+
   var id =
-    source.dataSource.multiple.$type == "static"
+    dataSourceType.$type == "static"
       ? props.widget.id + "/source"
-      : source.dataSource.multiple.api!.url;
+      : dataSourceType.api!.url;
   const { data, isLoading } = useSWR(id, () => {
     // return [];
 
-    var dataSource =
-      source.dataSource.multiple[source.dataSource.multiple.$type];
+    const dataRequire = source.dataRequire;
+
+    var dataSource = dataSourceType[dataSourceType.$type];
+
+    const dataRequireMapping = (data: any) => {
+      const { mapping = {}} = dataRequire.extension || {}
+      // console.log('data',data, mapping, Object.keys(data[0]))
+      return data.map((it:any)=> {
+        return Object.keys(it).reduce((acc:any,key:string) => {
+          if (key in mapping) {
+            acc[mapping[key]] = it[key];
+          }else{
+            acc[key] = it[key];
+          }
+          return acc;
+        },{} as any)
+      });
+    };
 
     if (dataSource.type === "static") {
-      return dataSource.data;
+      return dataRequireMapping(dataSource.data);
     }
 
     return new Promise((res) => {
       _.delay(
         function (text) {
           console.log(text);
-          res([]);
+          res(dataRequireMapping([]));
         },
         3000,
         []
@@ -66,7 +96,6 @@ export default ({
 }: MainColorBlockProps) => {
   const { common, props, attr, id } = widget;
   const { hide = false, degree = 0, opacity = 1 } = { ...common };
-  // console.log("dataConfig", widget);
   return (
     <div
       className="datav-common-hoc"
@@ -83,7 +112,7 @@ export default ({
       }}
     >
       <DatavComWrapper widget={widget}>
-        {props.dataConfig?.source?.name ? (
+        {props?.dataConfig?.source?.name ? (
           <DataWrapper widget={widget} LoadingComponent={LoadingComponent}>
             {children}
           </DataWrapper>

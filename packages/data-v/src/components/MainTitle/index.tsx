@@ -4,8 +4,129 @@ import { DatavComWrapperContext } from "../DatavComWrapper/context";
 import getBackgroundStyle from "../../utils/getBackgroundStyle";
 import getBackground from "../../utils/getBackground";
 import getTextStyle from "../../utils/getTextStyle";
+import _ from "lodash";
 
-type MainColorBlockProps = {} & CommonWidgetProps;
+type MainTitleProps = {} & CommonWidgetProps;
+
+const defaultProps = {
+  attr: {
+    h: 0,
+    w: 0,
+    x: 0,
+    y: 0,
+    deg: 0,
+    hUnit: "px",
+    wUnit: "px",
+    xUnit: "px",
+    yUnit: "px",
+  },
+  list: [],
+  name: "main-title",
+  type: "ui",
+  props: {
+    content: "我是标题数据",
+    ellipsis: false,
+    textAlign: {
+      horiAlign: "center",
+      vertiAlign: "center",
+    },
+    textStyle: {
+      color: "#fff",
+      fontSize: 24,
+      fontFamily: "arial",
+      fontWeight: "normal",
+    },
+    urlConfig: {
+      url: "",
+      ifBlank: false,
+    },
+    textShadow: [],
+    writingMode: "horizontal-tb",
+    letterSpacing: 0,
+    backgroundStyle: {
+      show: false,
+      bgColor: "#008bff",
+      bgBorder: {
+        color: "#fff",
+        curve: "polyline",
+        style: "solid",
+        width: 1,
+      },
+      borderRadius: 10,
+    },
+  },
+  common: {
+    hide: false,
+    flipH: false,
+    flipV: false,
+    degree: 0,
+    filter: {
+      hue: 0,
+      enable: false,
+      opacity: 100,
+      contrast: 100,
+      saturate: 100,
+      brightness: 100,
+    },
+    opacity: 1,
+    transform: {
+      scale3d: {
+        x: 1,
+        y: 1,
+        z: 1,
+        lock: false,
+      },
+      rotate3d: {
+        deg: 30,
+        axis: "y",
+      },
+      translate3d: {
+        x: 0,
+        y: 0,
+        z: 0,
+      },
+    },
+  },
+  dataConfig: {
+    source: {
+      name: "数据接口",
+      handler: "render",
+      dataSource: {
+        multiple: {
+          $type: "static",
+        },
+      },
+      dataRequire: {
+        type: "array",
+        items: {
+          type: "object",
+          required: [],
+          properties: {
+            url: {
+              type: ["string"],
+              extension: {
+                description: "超链接地址",
+              },
+            },
+            value: {
+              type: ["string", "number"],
+              extension: {
+                description: "值",
+              },
+            },
+          },
+        },
+        extension: {},
+      },
+      description: "数据接口",
+      dataSourceType: "multiple",
+    },
+  },
+  interaction: {
+    events: [],
+    logicNodes: [],
+  },
+};
 
 const getCustomStyle = (style: IBackgroundStyle) => {
   if (style?.show === true) {
@@ -32,9 +153,10 @@ const getEllipsisStyle = (ellipsis?: boolean) => {
   return {};
 };
 
-export default (props: MainColorBlockProps) => {
+const MainTitle = (props: MainTitleProps) => {
   const { widget } = props;
 
+  const weightProps = _.merge({}, defaultProps.props, widget!.props);
   const {
     filter,
     ellipsis = false,
@@ -48,9 +170,9 @@ export default (props: MainColorBlockProps) => {
     writingMode = "horizontal-tb",
     letterSpacing = 0,
     backgroundStyle = { show: false } as IBackgroundStyle,
-  } = widget.props;
+    content,
+  } = weightProps;
 
-  const { content } = widget.props;
   const wrapper = useContext(DatavComWrapperContext);
   useEffect(() => {
     if (wrapper.container?.current) {
@@ -61,7 +183,7 @@ export default (props: MainColorBlockProps) => {
       };
 
       var style: CSSProperties = {
-        ...getBackgroundStyle(widget.props),
+        ...getBackgroundStyle(weightProps),
         ...getCustomStyle(backgroundStyle),
         ...getEllipsisStyle(ellipsis),
         ...getTextStyle(textStyle),
@@ -81,3 +203,7 @@ export default (props: MainColorBlockProps) => {
   }, []);
   return <span style={{}}>{content}</span>;
 };
+
+MainTitle.displayName = "MainTitle";
+MainTitle.defaultProps = defaultProps;
+export default MainTitle;

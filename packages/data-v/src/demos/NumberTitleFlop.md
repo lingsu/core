@@ -22,7 +22,7 @@ export default () => (
         id: "number-title-flop_d0upt",
         name: "number-title-flop",
         common: {},
-        attr: { w: 400, h: 50, x: 0, y: 0 },
+        attr: { w: 400, h: 150, x: 0, y: 0 },
         props: {
           title: {
             content: "Typesomething",
