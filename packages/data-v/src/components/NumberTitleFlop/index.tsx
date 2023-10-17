@@ -228,7 +228,7 @@ export class DatavPlugin {
     elem.innerHTML = spans.join("");
   }
 }
-const NumberTitleFlop = (props: Partial<CommonWidgetProps>) => {
+const NumberTitleFlop = (props: CommonWidgetProps) => {
   const { widget } = props;
 
   // const containerRef = React.useRef<HTMLDivElement>(null);
@@ -249,8 +249,8 @@ const NumberTitleFlop = (props: Partial<CommonWidgetProps>) => {
   // console.log("dataSource", dataSource);
   const value = dataSource.data[0].value;
   const titleValue = dataSource.data[0].name || title.content;
-  const prefixValue = dataSource.data[0].prefix || prefix.content;
-  const suffixValue = dataSource.data[0].suffix || suffix.content;
+  const prefixValue = dataSource.data[0].prefix || prefix!.content;
+  const suffixValue = dataSource.data[0].suffix || suffix!.content;
   const wrapper = useContext(DatavComWrapperContext);
   useEffect(() => {
     if (wrapper.container?.current) {
@@ -259,7 +259,7 @@ const NumberTitleFlop = (props: Partial<CommonWidgetProps>) => {
   }, []);
 
   const plugin = useMemo(() => {
-    return new DatavPlugin(numbers);
+    return new DatavPlugin(numbers!);
   }, [props]);
 
   const titleStyle = getTextStyle(title?.textStyle);
@@ -282,7 +282,7 @@ const NumberTitleFlop = (props: Partial<CommonWidgetProps>) => {
           <span
             style={prefixStyle}
             className={css`
-              margin-right: ${margin.preNum}px;
+              margin-right: ${margin!.preNum}px;
             `}
           >
             {prefixValue}
@@ -293,14 +293,14 @@ const NumberTitleFlop = (props: Partial<CommonWidgetProps>) => {
           end={value}
           preserveValue={true}
           separator={
-            numbers.separatingChart ? numbers.separatingSymbol : undefined
+            numbers!.separatingChart ? numbers!.separatingSymbol : undefined
           }
-          decimals={numbers.decimal}
-          duration={numbers.duration / 1000}
+          decimals={numbers!.decimal}
+          duration={numbers!.duration / 1000}
           style={numbersStyle}
           className={css`
             display: flex;
-            letter-spacing: ${numbers.marginRight}em;
+            letter-spacing: ${numbers!.marginRight}em;
           `}
           plugin={plugin}
         />
@@ -308,7 +308,7 @@ const NumberTitleFlop = (props: Partial<CommonWidgetProps>) => {
           <span
             style={suffixStyle}
             className={css`
-              margin-left: ${margin.numSuff}px;
+              margin-left: ${margin!.numSuff}px;
             `}
           >
             {suffixValue}

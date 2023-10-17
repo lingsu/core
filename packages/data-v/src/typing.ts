@@ -192,11 +192,11 @@ export type IInteraction = {
   cursor?: boolean;
 };
 export type ITitle = {
-  content: string;
-  textStyle: ITextStyle;
+  content?: string;
+  textStyle?: ITextStyle;
 };
 export type ITextStyle = {
-  color: string | IColor;
+  color?: string | IColor;
   fontSize?: number;
   textAlign?: string;
   fontWeight?: string;
@@ -210,16 +210,16 @@ export type IGlobal = {
   initShowData: number;
 };
 export type ICounter = {
-  margin: IMargin;
-  prefix: IPrefix;
-  suffix: ISuffix;
-  numbers: INumbers;
-  fontFamily: string;
-  justifyContent: string;
+  margin?: IMargin;
+  prefix?: IPrefix;
+  suffix?: ISuffix;
+  numbers?: INumbers;
+  fontFamily?: string;
+  justifyContent?: string;
 };
 export type IMargin = {
-  preNum: number;
-  numSuff: number;
+  preNum?: number;
+  numSuff?: number;
 };
 export type IPrefix = {
   content?: string;
@@ -254,11 +254,11 @@ export type INumbers = {
 };
 export type IColor = {
   type: string;
-  value: string;
+  value?: string;
 };
 export type IBackgroundColor = {
   type: string;
-  value: string;
+  value?: string;
 };
 export type ISource = {
   name: string;
