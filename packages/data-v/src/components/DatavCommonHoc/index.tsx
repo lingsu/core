@@ -98,7 +98,7 @@ export default ({
   LoadingComponent,
 }: MainColorBlockProps) => {
   const { common, props, attr, id } = widget;
-  const { hide = false, degree = 0, opacity = 1 } = { ...common };
+  const { hide = false, degree = 0, opacity = 1, flipH, flipV } = { ...common };
   return (
     <div
       className="datav-common-hoc"
@@ -108,7 +108,7 @@ export default ({
         width: "100%",
         opacity: opacity,
         position: "relative",
-        transform: `rotate(${degree}deg) scaleX(1) scaleY(1) rotateZ(360deg)`,
+        transform: `rotate(${degree}deg) scaleX(${flipH ? -1: 1}) scaleY(${flipV ? -1: 1}) rotateZ(360deg)`,
         // onClick={onClick}
         // onMouseEnter={onMouseEnter}
         // onMouseLeave={onMouseLeave}
