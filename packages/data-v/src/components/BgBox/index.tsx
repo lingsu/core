@@ -122,7 +122,7 @@ const defaultProps = {
     logicNodes: [],
   },
 };
-type BgBoxProps = CommonWidgetProps<typeof defaultProps.props>;
+type BgBoxProps = CommonWidgetProps<Partial<typeof defaultProps.props>>;
 
 const BgBox = (props: BgBoxProps) => {
 

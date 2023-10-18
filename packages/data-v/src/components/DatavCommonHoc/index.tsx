@@ -81,7 +81,7 @@ const DataWrapper = (props: CommonWidgetProps) => {
       );
     });
   });
-  // console.log("DataWrapper id", id, data, isLoading);
+  console.log("DataWrapper id", id, data, isLoading);
 
   return (
     <DatavDataSourceContextProvider value={{ data: data }}>
@@ -99,6 +99,7 @@ export default ({
 }: MainColorBlockProps) => {
   const { common, props, attr, id } = widget;
   const { hide = false, degree = 0, opacity = 1, flipH, flipV } = { ...common };
+  console.log('first',props?.dataConfig, props?.dataConfig?.source?.name)
   return (
     <div
       className="datav-common-hoc"

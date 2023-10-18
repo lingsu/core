@@ -19,7 +19,7 @@ const defaultProps = {
   name: "main-img",
   type: "ui",
   props: {
-    cursor: true,
+    cursor: false,
     radius: 0,
     repeat: "no-repeat",
     imageType: "bitmap",
@@ -29,10 +29,8 @@ const defaultProps = {
     },
     vectorFill: "#2483FF",
     "inner-style": {},
-    vectorImage:
-      "https://img.alicdn.com/imgextra/i3/O1CN01I75Td61VcHWaI0C0V_!!6000000002673-55-tps-128-128.svg",
-    "background-image":
-      "https://img.alicdn.com/tfs/TB1J3GkgeH2gK0jSZJnXXaT1FXa-600-360.png",
+    vectorImage: "",
+    "background-image": "",
   },
   common: {
     hide: false,

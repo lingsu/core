@@ -40,11 +40,12 @@ export default ({
   return (
     <div
       style={{
-        width: w,
-        height: h,
-        transform: `translateX(${x}px) translateY(${y}px)`,
+        width: w + wUnit,
+        height: h + hUnit,
+        transform: `translateX(${x}${xUnit}) translateY(${y}${yUnit})`,
         position: "absolute",
         willChange: "transform",
+        pointerEvents:'none'
       }}
       className="datav-layer"
     >
@@ -52,3 +53,4 @@ export default ({
     </div>
   );
 };
+
