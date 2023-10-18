@@ -38,14 +38,15 @@ export type IPageConfig = {
   offset: number[];
   origin: string[];
 };
-export type DatavConfig = {
+
+export type DatavConfig<T> = {
   id?: string;
   attr: IAttr;
   edit?: IEdit;
   list?: DatavItem[];
   name?: string;
   type?: string | string[];
-  props?: IProps;
+  props?: IProps & T;
   common?: ICommon;
   version?: string;
   isPortal?: boolean;
@@ -350,8 +351,8 @@ export type IMeta = {
   loadingBgColor: string;
   passwordEnable: boolean;
 };
-export type CommonWidgetProps = {
-  widget: DatavConfig;
+export type CommonWidgetProps<T = any> = {
+  widget: DatavConfig<T>;
   // pluginManager: U,
   disableLoading?: boolean;
   LoadingComponent?: React.ReactNode;

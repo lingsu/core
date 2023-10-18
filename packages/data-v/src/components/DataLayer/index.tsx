@@ -33,8 +33,8 @@ export default ({
     // degree = 0,
   } = { ...attr };
 
-  // console.log('children',children.type.displayName)
-  if ((children! as any).type.displayName === 'AbsoluteContainer') {
+  // console.log('children',children)
+  if ((children! as any).type?.displayName === 'AbsoluteContainer') {
     return <DatavCommonHoc widget={widget}>{children}</DatavCommonHoc>;
   }
   return (
