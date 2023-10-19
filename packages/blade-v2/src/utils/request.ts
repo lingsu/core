@@ -237,12 +237,14 @@ export const createInstance = (instanceConfig: RequestOption): BladeRequest => {
       [getTokenHeader()]: getToken(),
     });
 
-    if (urlSearchParams.size > 0) {
-      const urlSign = url.indexOf("?") !== -1 ? "&" : "?";
-      url = url + urlSign + urlSearchParams.toString();
-    }
+    var  config = {
+      ...instanceConfig,
+      ...option,
+    };
 
-    return downloadByUrl({ url: url });
+    var path = buildURL(url, urlSearchParams, config);
+    
+    return downloadByUrl({ url: `${config.baseURL}${path}` });
   };
 
   const post = async <T = any>(
