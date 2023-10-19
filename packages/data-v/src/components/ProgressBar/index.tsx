@@ -4,6 +4,17 @@ import _ from "lodash";
 import { DatavComWrapperContext } from "../DatavComWrapper/context";
 import { DatavDataSourceContext } from "../DatavCommonHoc/context";
 
+type ProgressBarType = {
+  progressColor: string;
+  point: PointType;
+};
+type PointType = {
+  show: boolean;
+  color: string;
+  size: number;
+  boxShadow?: string;
+};
+
 const defaultProps = {
   attr: {
     h: 0,
@@ -26,7 +37,6 @@ const defaultProps = {
       show: false,
       color: "#fff",
       size: 4,
-      boxShadow: undefined,
     },
   },
   common: {
@@ -102,7 +112,7 @@ const defaultProps = {
   },
 };
 
-type ProgressBarProps = CommonWidgetProps<Partial<typeof defaultProps.props>>;
+type ProgressBarProps = CommonWidgetProps<Partial<ProgressBarType>>;
 
 const ProgressBar = (props: ProgressBarProps) => {
   // const wrapper = useContext(DatavComWrapperContext);
@@ -123,17 +133,19 @@ const ProgressBar = (props: ProgressBarProps) => {
         position: "relative",
       }}
     >
-      {point.show && (<div
-        style={{
-          position: "absolute",
-          height: point.size,
-          width: point.size,
-          borderRadius: point.size,
-          background: point.color,
-          boxShadow: point.boxShadow,
-          left: `calc(${value}% - ${point.size / 2}px)`,
-        }}
-      ></div>)}
+      {point.show && (
+        <div
+          style={{
+            position: "absolute",
+            height: point.size,
+            width: point.size,
+            borderRadius: point.size,
+            background: point.color,
+            boxShadow: point.boxShadow,
+            left: `calc(${value}% - ${point.size / 2}px)`,
+          }}
+        ></div>
+      )}
 
       <div
         style={{

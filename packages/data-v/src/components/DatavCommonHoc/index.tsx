@@ -99,7 +99,7 @@ export default ({
 }: MainColorBlockProps) => {
   const { common, props, attr, id } = widget;
   const { hide = false, degree = 0, opacity = 1, flipH, flipV } = { ...common };
-  console.log('first',props?.dataConfig, props?.dataConfig?.source?.name)
+  // console.log('first',props?.dataConfig, props?.dataConfig?.source?.name)
   return (
     <div
       className="datav-common-hoc"

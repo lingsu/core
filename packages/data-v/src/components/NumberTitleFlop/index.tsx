@@ -16,6 +16,82 @@ import CountUp from "../../CountUp";
 // "main-title_qeqfb/source":{"type": "static", "isError":false,"data":[]},
 // "number-title-flop_d0upt/source":{"type": "static", "isError":false,"data":[{"name":"","value":232425}]}}
 
+type NumberTitleFlopType = {
+  title: ITitle;
+  global: IGlobal;
+  counter: ICounter;
+  interaction: IInteraction;
+};
+type ITitle = {
+  content: string;
+  textStyle?: ITextStyle;
+};
+type ITextStyle = {
+  color: string | IColor;
+  fontSize?: number;
+  textAlign?: string;
+  fontWeight?: string;
+  fontFamily?: string;
+};
+type IGlobal = {
+  distance: number;
+  textStyle: ITextStyle;
+  arrangement: string;
+  abnormalData: number;
+  initShowData: number;
+};
+type ICounter = {
+  margin: IMargin;
+  prefix: IPrefix;
+  suffix: ISuffix;
+  numbers: INumbers;
+  fontFamily: string;
+  textShadow: any[];
+  justifyContent: string;
+};
+type IMargin = {
+  preNum: number;
+  numSuff: number;
+};
+type IPrefix = {
+  content: string;
+  textStyle: ITextStyle;
+};
+type ISuffix = {
+  content: string;
+  textStyle: ITextStyle;
+  suffixArrange: string;
+};
+type INumbers = {
+  digit: number;
+  decimal: number;
+  duration: number;
+  rounding: boolean;
+  animation: boolean;
+  increment: boolean;
+  textStyle: ITextStyle;
+  fixedWidth: number;
+  marginRight: number;
+  sameDataFlip: boolean;
+  decimalSymbol: string;
+  backgroundColor: IBackgroundColor;
+  separatingChart: boolean;
+  backgroundRadius: number;
+  separatingSymbol: string;
+  separatingBackground: boolean;
+};
+type IColor = {
+  type: string;
+  value: string;
+};
+type IBackgroundColor = {
+  type: string;
+  value: string;
+};
+type IInteraction = {
+  cursor: boolean;
+};
+
 const defaultProps = {
   attr: {
     h: 0,
@@ -228,15 +304,19 @@ export class DatavPlugin {
     elem.innerHTML = spans.join("");
   }
 }
-const NumberTitleFlop = (props: CommonWidgetProps) => {
+
+type NumberTitleFlopProps = CommonWidgetProps<Partial<NumberTitleFlopType>>;
+
+const NumberTitleFlop = (props: NumberTitleFlopProps) => {
   const { widget } = props;
 
   // const containerRef = React.useRef<HTMLDivElement>(null);
 
-  const {
-    title,
-    counter = {} as ICounter,
-  } = _.merge({}, defaultProps.props, widget!.props);
+  const { title, counter = {} as ICounter } = _.merge(
+    {},
+    defaultProps.props,
+    widget!.props
+  );
   const { numbers, prefix, suffix, fontFamily, justifyContent, margin } =
     counter;
 

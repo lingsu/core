@@ -47,7 +47,7 @@ export type DatavConfig<T> = {
   name?: string;
   type?: string | string[];
   props?: IProps & T;
-  common?: ICommon;
+  common?: Partial<ICommon>;
   version?: string;
   isPortal?: boolean;
   relation?: IRelation;
