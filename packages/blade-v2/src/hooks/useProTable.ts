@@ -1,18 +1,18 @@
 import { ActionType, ProTableProps } from "@ant-design/pro-components";
 import { useErrorBoundary } from "react-error-boundary";
-import request from "../utils/request";
 import { useRef } from "react";
+import useReactBlade from "./useReactBlade";
 
 type UseProTableProps<DataType, Params, ValueType> = {
   url: string;
 } & ProTableProps<DataType, Params, ValueType>;
 
-export default <DataType = any, Params=any, ValueType = any>(
+export default <DataType = any, Params = any, ValueType = any>(
   props: UseProTableProps<DataType, Params, ValueType>
 ) => {
   const { url, ...rest } = props;
   const actionRef = useRef<ActionType>();
-
+  const bladeApi = useReactBlade();
   const { showBoundary } = useErrorBoundary();
   return [
     {
@@ -32,7 +32,7 @@ export default <DataType = any, Params=any, ValueType = any>(
           size: pageSize,
         };
 
-        return request.getPage<any>(url, {params: urlSearchParams});
+        return bladeApi.request.getPage<any>(url, { params: urlSearchParams });
       },
       search: {
         labelWidth: "auto",
@@ -52,7 +52,7 @@ export default <DataType = any, Params=any, ValueType = any>(
       ...rest,
     } as ProTableProps<DataType, Params, ValueType>,
     {
-      actionRef
-    }
+      actionRef,
+    },
   ];
 };
