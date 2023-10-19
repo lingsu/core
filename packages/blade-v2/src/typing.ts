@@ -51,9 +51,9 @@ export type PageResult<T> = {
   total: number;
   success:boolean;
 };
-export type RequestParams = Omit<RequestInit, "body"> & {
+export type RequestParams = RequestInit & {
   params?: any;
-  data?: any;
+  // data?: any;
 };
 export declare type AntdPage<T> = {
   data: T[] | undefined;

@@ -110,7 +110,7 @@ export const createInstance = (instanceConfig: RequestOption): BladeRequest => {
     init: RequestParams,
     config?: RequestOption
   ) => {
-    var { params, data, ...rest } = init;
+    var { params, body, ...rest } = init;
 
     const requestInit = { ...rest } as RequestInit;
 
@@ -125,7 +125,7 @@ export const createInstance = (instanceConfig: RequestOption): BladeRequest => {
       ...config.headers,
     };
     config.transformRequest.forEach((fn) => {
-      data = fn(config!, data, requestInit.headers);
+      requestInit.body = fn(config!, body, requestInit.headers);
     });
 
     var token = getToken();
@@ -149,7 +149,7 @@ export const createInstance = (instanceConfig: RequestOption): BladeRequest => {
         return res;
       }
 
-      var data = null;
+      var data:any = null;
 
       if (config.responseType === "json") {
         data = await res.json();
