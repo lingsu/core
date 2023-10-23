@@ -53,6 +53,7 @@ export type DatavConfig<T> = {
   relation?: IRelation;
   interaction?: IInteraction;
   extension?: IExtension;
+  dataConfig?: IDataConfig;
 };
 export type IAttr = {
   h: number;
@@ -151,7 +152,6 @@ export type IProps = {
   display?: Display;
   backgroundColor?: string;
   backgroundImage?: string;
-  dataConfig?: IDataConfig;
 };
 
 export enum Display {

@@ -19,10 +19,10 @@ import {
 const defaultProps = {
   id: "pie-comparison-with-counter_bm1km",
   attr: {
-    h: 240,
-    w: 400,
-    x: 882.2303093991181,
-    y: 389.05926991455374,
+    h: 200,
+    w: 200,
+    x: 0,
+    y: 0,
     hUnit: "px",
     wUnit: "px",
     xUnit: "px",
@@ -55,10 +55,19 @@ const defaultProps = {
     },
     series: {
       serie1: {
-        "serie-color": "#1b81fe",
+        "serie-color": "#EB0000",
       },
       serie2: {
-        "serie-color": "#ff6a00",
+        "serie-color": "#21BE76",
+      },
+    },
+    innerSeries: {
+      show: true,
+      serie1: {
+        "serie-color": "rgba(235, 0, 0, 0.30)",
+      },
+      serie2: {
+        "serie-color": "rgba(33, 190, 118, 0.30)",
       },
     },
     animation: {
@@ -70,6 +79,7 @@ const defaultProps = {
     container: {
       padding: 0,
     },
+   
   },
   common: {
     hide: false,
@@ -103,47 +113,49 @@ const defaultProps = {
       },
     },
   },
-
-  dataConfig: {
-    source: {
-      name: "指标对比饼图接口",
-      handler: "render",
-      dataSource: {
-        multiple: {
-          static:[{"x":"女","y":1000},{"x":"男","y":2000}],
-          $type: "static",
+   dataConfig: {
+      source: {
+        name: "指标对比饼图接口",
+        handler: "render",
+        dataSource: {
+          multiple: {
+            static: [
+              { x: "女", y: 1000 },
+              { x: "男", y: 2000 },
+            ],
+            $type: "static",
+          },
         },
-      },
-      dataRequire: {
-        type: "array",
-        items: {
-          type: "object",
-          required: ["x", "y"],
-          properties: {
-            x: {
-              type: ["string"],
-              extension: {
-                description: "类目",
+        dataRequire: {
+          type: "array",
+          items: {
+            type: "object",
+            required: ["x", "y"],
+            properties: {
+              x: {
+                type: ["string"],
+                extension: {
+                  description: "类目",
+                },
               },
-            },
-            y: {
-              type: [],
-              extension: {
-                description: "值",
+              y: {
+                type: [],
+                extension: {
+                  description: "值",
+                },
               },
             },
           },
+          extension: {},
         },
-        extension: {},
+        description: "指标对比饼图接口",
+        dataSourceType: "multiple",
       },
-      description: "指标对比饼图接口",
-      dataSourceType: "multiple",
     },
-  },
-  interaction: {
-    events: [],
-    logicNodes: [],
-  },
+    interaction: {
+      events: [],
+      logicNodes: [],
+    },
 };
 export default () => {
   const [pieProps, setPieProps] = useState(defaultProps);
@@ -160,20 +172,7 @@ export default () => {
         }}
       >
         <PieComparisonWithCounter
-          widget={{
-            common: {},
-            attr: { w: 100, h: 100, x: 10, y: 10 },
-            props: {
-              border: {
-                flat: {
-                  color: "#008bff",
-                  curve: "polyline",
-                  style: "solid",
-                  width: 2,
-                },
-              },
-            },
-          }}
+          widget={pieProps}
         ></PieComparisonWithCounter>
       </AbsoluteContainer>
     </Stage>

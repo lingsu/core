@@ -86,62 +86,58 @@ export default () => (
             fontFamily: "Microsoft Yahei",
             justifyContent: "flex-start",
           },
-          dataConfig: {
-            source: {
-              name: "数据接口",
-              handler: "render",
-              useFilter: false,
-              dataSource: {
-                multiple: {
-                  api: {},
-                  $type: "static",
-                  static: {
-                    type: "static",
-                    isError: false,
-                    data: [{ name: "", value: 232425 }],
-                  },
-                  $iterator: false,
-                },
-              },
-              dataRequire: {
-                type: "array",
-                items: {
-                  type: "object",
-                  required: ["value"],
-                  properties: {
-                    name: {
-                      type: ["string"],
-                      extension: {
-                        description: "标题",
-                      },
-                    },
-                    value: {
-                      type: ["number"],
-                      extension: {
-                        description: "数值",
-                      },
-                    },
-                    prefix: {
-                      type: ["string"],
-                      extension: {
-                        description: "前缀",
-                      },
-                    },
-                    suffix: {
-                      type: ["string"],
-                      extension: {
-                        description: "后缀",
-                      },
-                    },
-                  },
-                },
-              },
-              description: "数据接口",
-              dataSourceType: "multiple",
-            },
-          },
-          interaction: { cursor: false },
         },
+        dataConfig: {
+          source: {
+            name: "数据接口",
+            handler: "render",
+            useFilter: false,
+            dataSource: {
+              multiple: {
+                api: {},
+                $type: "static",
+                static: [{ name: "", value: 232425 }],
+                $iterator: false,
+              },
+            },
+            dataRequire: {
+              type: "array",
+              items: {
+                type: "object",
+                required: ["value"],
+                properties: {
+                  name: {
+                    type: ["string"],
+                    extension: {
+                      description: "标题",
+                    },
+                  },
+                  value: {
+                    type: ["number"],
+                    extension: {
+                      description: "数值",
+                    },
+                  },
+                  prefix: {
+                    type: ["string"],
+                    extension: {
+                      description: "前缀",
+                    },
+                  },
+                  suffix: {
+                    type: ["string"],
+                    extension: {
+                      description: "后缀",
+                    },
+                  },
+                },
+              },
+            },
+            description: "数据接口",
+            dataSourceType: "multiple",
+          },
+        },
+        interaction: { cursor: false },
       }}
     ></NumberTitleFlop>
   </Stage>

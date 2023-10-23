@@ -2,14 +2,72 @@ import { useContext } from "react";
 import { CommonWidgetProps } from "../../typing";
 import _ from "lodash";
 import ReactECharts from "echarts-for-react";
+import { DatavDataSourceContext } from "../DatavCommonHoc/context";
 
 export type PieComparisonWithCounterType = {
   chart?: IChart;
   labels?: ILabels;
   series?: ISeries;
+  innerSeries?: ISeries & { show?: boolean };
   animation?: IAnimation;
   container?: IContainer;
+  statistic?: Statistic;
 };
+export type Statistic = {
+  statisticText?: IStatisticText;
+};
+export type IStatisticText = {
+  show: boolean;
+  title: string;
+  titleOffset: ITitleOffset;
+  contentOffset: IContentOffset;
+  statisticDesc: IStatisticDesc;
+  staTitleTextStyle: IStaTitleTextStyle;
+  staContentTextStyle: IStaContentTextStyle;
+};
+export type ITitleOffset = {
+  offsetX: number;
+  offsetY: number;
+};
+export type IContentOffset = {
+  offsetX: number;
+  offsetY: number;
+};
+export type IStatisticDesc = {
+  statPrefix: string;
+  statSuffix: string;
+};
+export type IStaTitleTextStyle = {
+  color: string;
+  fontSize: number;
+  fontFamily: string;
+  fontWeight: string;
+};
+export type IStaContentTextStyle = {
+  color: string;
+  fontSize: number;
+  fontFamily: string;
+  fontWeight: string;
+};
+export type IStatisticImage = {
+  show: boolean;
+  imageSrc: string;
+  imageStyle: IImageStyle;
+  imageOffset: IImageOffset;
+};
+export type IImageStyle = {
+  width: number;
+  height: number;
+  opacity: number;
+  borderRadius: number;
+};
+export type IImageOffset = {
+  offsetX: number;
+  offsetY: number;
+  positionX: number;
+  positionY: number;
+};
+
 export type IChart = {
   color?: string;
   margin?: IMargin;
@@ -33,15 +91,17 @@ export type ILabels = {
   fontWeight?: string;
 };
 export type ISeries = {
-  serie1?: ISerie1;
-  serie2?: ISerie2;
+  serie1?: ISerie;
+  serie2?: ISerie;
 };
-export type ISerie1 = {
+export type ISerie = {
   "serie-color"?: string;
+  radiusGroup?: {
+    innerRadius: number;
+    outerRadius: number;
+  };
 };
-export type ISerie2 = {
-  "serie-color"?: string;
-};
+
 export type IAnimation = {
   show?: boolean;
   animationEasing?: string;
@@ -54,27 +114,24 @@ export type IContainer = {
 
 const defaultProps = {
   attr: {
-    h: 240,
-    w: 400,
-    x: 882.2303093991181,
-    y: 389.05926991455374,
+    h: 100,
+    w: 100,
+    x: 0,
+    y: 0,
     hUnit: "px",
     wUnit: "px",
     xUnit: "px",
     yUnit: "px",
   },
-
-  name: "pie-comparison-with-counter",
-  type: "ui",
   props: {
     chart: {
       color: "#ffffff",
-      margin: {
-        top: 40,
-        left: 40,
-        right: 20,
-        bottom: 50,
-      },
+      // margin: {
+      //   top: 40,
+      //   left: 40,
+      //   right: 20,
+      //   bottom: 50,
+      // },
       radius: 1,
       "font-size": 14,
       fontWeight: "normal",
@@ -88,7 +145,54 @@ const defaultProps = {
       fontSize: 14,
       fontWeight: "normal",
     },
+    statistic: {
+      statisticText: {
+        show: true,
+        title: "",
+        titleOffset: {
+          offsetX: 0,
+          offsetY: 0,
+        },
+        contentOffset: {
+          offsetX: 0,
+          offsetY: 0,
+        },
+        statisticDesc: {
+          statPrefix: "",
+          statSuffix: "",
+        },
+        staTitleTextStyle: {
+          color: "#ddd",
+          fontSize: 16,
+          fontFamily: "Microsoft Yahei",
+          fontWeight: "normal",
+        },
+        staContentTextStyle: {
+          color: "#ddd",
+          fontSize: 40,
+          fontFamily: "Microsoft Yahei",
+          fontWeight: "normal",
+        },
+      },
+    },
     series: {
+      radiusGroup: {
+        innerRadius: 70,
+        outerRadius: 100,
+      },
+      serie1: {
+        "serie-color": "#1b81fe",
+      },
+      serie2: {
+        "serie-color": "#ff6a00",
+      },
+    },
+    innerSeries: {
+      show: false,
+      radiusGroup: {
+        innerRadius: 50,
+        outerRadius: 70,
+      },
       serie1: {
         "serie-color": "#1b81fe",
       },
@@ -180,14 +284,160 @@ const defaultProps = {
   },
 };
 
-type PieComparisonWithCounterProps = CommonWidgetProps<PieComparisonWithCounterType>;
+type PieComparisonWithCounterProps =
+  CommonWidgetProps<PieComparisonWithCounterType>;
 
 const PieComparisonWithCounter = (props: PieComparisonWithCounterProps) => {
-  const normal = 16;
-  const lagged = 16;
-  const total = normal + lagged;
-  const normalPercent = Math.round(total * 0.02);
 
+  const dataSource = useContext(DatavDataSourceContext);
+  const series1 = dataSource.data[0];
+  const series2 = dataSource.data[1];
+
+
+  const total = series1.y + series2.y;
+  const percent = Math.round(total * 0.02);
+
+
+  const { widget } = props;
+  const weightProps = _.merge({}, defaultProps.props, widget.props);
+
+  const { series, innerSeries, statistic} = weightProps;
+
+
+  const eChartsOption = {
+    // tooltip: {
+    //   trigger: "item",
+    // },
+
+    title: statistic.statisticText.show ? {
+      text: total.toString(),
+      top: "center",
+      left: "center",
+      textStyle: {
+        color: "white",
+      },
+    }: undefined,
+    series: [
+      innerSeries.show
+        ? {
+            hoverAnimation: false,
+            type: "pie",
+            radius: [
+              innerSeries.radiusGroup.innerRadius + "%",
+              innerSeries.radiusGroup.outerRadius + "%",
+            ],
+            avoidLabelOverlap: false,
+            label: {
+              show: false,
+              position: "center",
+            },
+            // itemStyle: {
+            //   borderColor: "#0C0D3F",
+            //   borderWidth: 3,
+            // },
+            emphasis: {
+              label: {
+                show: false,
+                fontSize: 40,
+                fontWeight: "bold",
+              },
+            },
+            labelLine: {
+              show: false,
+            },
+            data: [
+              {
+                value: series1.y,
+
+                itemStyle: {
+                  color: innerSeries.serie1["serie-color"],
+                },
+              },
+              {
+                value: percent,
+
+                itemStyle: {
+                  color: "rgba(235, 0, 0, 0)",
+                },
+              },
+              {
+                value: series2.y,
+
+                itemStyle: {
+                  color: innerSeries.serie2["serie-color"],
+                },
+              },
+              {
+                value: percent,
+
+                itemStyle: {
+                  color: "rgba(235, 0, 0, 0)",
+                },
+              },
+            ],
+          }
+        : undefined,
+      {
+        type: "pie",
+        hoverAnimation: false,
+        radius: [
+          series.radiusGroup.innerRadius + "%",
+          series.radiusGroup.outerRadius + "%",
+        ],
+        avoidLabelOverlap: false,
+        label: {
+          show: false,
+          position: "center",
+        },
+        // itemStyle: {
+        //   borderColor: "#0C0D3F",
+        //   borderWidth: 3,
+        // },
+        emphasis: {
+          label: {
+            show: false,
+            fontSize: 40,
+            fontWeight: "bold",
+          },
+        },
+        labelLine: {
+          show: false,
+        },
+        data: [
+          {
+            value: series1.y,
+
+            itemStyle: {
+              color: series.serie1["serie-color"],
+            },
+          },
+          {
+            value: percent,
+
+            itemStyle: {
+              color: "rgba(33, 190, 118, 0)",
+            },
+          },
+          {
+            value: series2.y,
+
+            itemStyle: {
+              color: series.serie2["serie-color"],
+            },
+          },
+          {
+            value: percent,
+
+            itemStyle: {
+              color: "rgba(33, 190, 118, 0)",
+            },
+          },
+        ],
+      },
+    ],
+  }
+
+  // console.log('eChartsOption',eChartsOption)
   return (
     <div
       style={{
@@ -196,130 +446,7 @@ const PieComparisonWithCounter = (props: PieComparisonWithCounterProps) => {
       }}
     >
       <ReactECharts
-        option={{
-          // tooltip: {
-          //   trigger: "item",
-          // },
-
-          title: {
-            text: total.toString(),
-            top: "center",
-            left: "center",
-            textStyle: {
-              color: "white",
-            },
-          },
-          series: [
-            {
-              hoverAnimation: false,
-              type: "pie",
-              radius: ["50%", "70%"],
-              avoidLabelOverlap: false,
-              label: {
-                show: false,
-                position: "center",
-              },
-              // itemStyle: {
-              //   borderColor: "#0C0D3F",
-              //   borderWidth: 3,
-              // },
-              emphasis: {
-                label: {
-                  show: false,
-                  fontSize: 40,
-                  fontWeight: "bold",
-                },
-              },
-              labelLine: {
-                show: false,
-              },
-              data: [
-                {
-                  value: lagged,
-                  name: "滞后",
-                  itemStyle: {
-                    color: "rgba(235, 0, 0, 0.30)",
-                  },
-                },
-                {
-                  value: normalPercent,
-                  name: "滞后",
-                  itemStyle: {
-                    color: "rgba(235, 0, 0, 0)",
-                  },
-                },
-                {
-                  value: normal,
-                  name: "正常",
-                  itemStyle: {
-                    color: "rgba(33, 190, 118, 0.30)",
-                  },
-                },
-                {
-                  value: normalPercent,
-                  name: "滞后",
-                  itemStyle: {
-                    color: "rgba(235, 0, 0, 0)",
-                  },
-                },
-              ],
-            },
-            {
-              type: "pie",
-              hoverAnimation: false,
-              radius: ["70%", "100%"],
-              avoidLabelOverlap: false,
-              label: {
-                show: false,
-                position: "center",
-              },
-              // itemStyle: {
-              //   borderColor: "#0C0D3F",
-              //   borderWidth: 3,
-              // },
-              emphasis: {
-                label: {
-                  show: false,
-                  fontSize: 40,
-                  fontWeight: "bold",
-                },
-              },
-              labelLine: {
-                show: false,
-              },
-              data: [
-                {
-                  value: lagged,
-                  name: "滞后",
-                  itemStyle: {
-                    color: "#EB0000",
-                  },
-                },
-                {
-                  value: normalPercent,
-                  name: "正常",
-                  itemStyle: {
-                    color: "rgba(33, 190, 118, 0)",
-                  },
-                },
-                {
-                  value: normal,
-                  name: "正常",
-                  itemStyle: {
-                    color: "#21BE76",
-                  },
-                },
-                {
-                  value: normalPercent,
-                  name: "正常",
-                  itemStyle: {
-                    color: "rgba(33, 190, 118, 0)",
-                  },
-                },
-              ],
-            },
-          ],
-        }}
+        option={eChartsOption}
         style={{
           width: "100%",
           height: "100%",

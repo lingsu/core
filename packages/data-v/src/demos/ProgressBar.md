@@ -41,7 +41,8 @@ export default () => (
               color:'#fff',
               boxShadow:'0px 0px 4px 1px rgba(33,190,118,0.8)',
             },
-            dataConfig: {
+          },
+           dataConfig: {
               source: {
                 name: "数据接口",
                 handler: "render",
@@ -50,11 +51,7 @@ export default () => (
                   multiple: {
                     api: {},
                     $type: "static",
-                    static: {
-                      type: "static",
-                      isError: false,
-                      data: [{ value: 46 }],
-                    },
+                    static: [{ value: 46 }],
                     $iterator: false,
                   },
                 },
@@ -77,7 +74,6 @@ export default () => (
                 dataSourceType: "multiple",
               },
             },
-          },
         }}
       ></ProgressBar>
     </AbsoluteContainer>
