@@ -1,12 +1,9 @@
-import { useContext, useEffect, useMemo, useState } from "react";
-import { CommonWidgetProps, ICounter, INumbers } from "../../typing";
+import { useContext, useEffect, useMemo, } from "react";
+import { CommonWidgetProps, } from "../../typing";
 import { DatavComWrapperContext } from "../DatavComWrapper/context";
 import getTextStyle from "../../utils/getTextStyle";
 import { css } from "@emotion/css";
-import React from "react";
-import { CountUp as CountUpJs } from "countup.js";
 import { DatavDataSourceContext } from "../DatavCommonHoc/context";
-import getValue from "../../utils/getValue";
 import _ from "lodash";
 import CountUp from "../../CountUp";
 

@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { CommonWidgetProps } from "../../typing";
 import _ from "lodash";
-import { DatavComWrapperContext } from "../DatavComWrapper/context";
 import { DatavDataSourceContext } from "../DatavCommonHoc/context";
 
 type ProgressBarType = {
