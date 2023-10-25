@@ -353,13 +353,14 @@ const PieComparisonWithCounter = (props: PieComparisonWithCounterProps) => {
                   color: innerSeries.serie1["serie-color"],
                 },
               },
+              series1.y> 0 && series2.y > 0 ?
               {
                 value: percent,
 
                 itemStyle: {
                   color: "rgba(235, 0, 0, 0)",
                 },
-              },
+              }: null,
               {
                 value: series2.y,
 
@@ -367,13 +368,14 @@ const PieComparisonWithCounter = (props: PieComparisonWithCounterProps) => {
                   color: innerSeries.serie2["serie-color"],
                 },
               },
+              series1.y> 0 && series2.y > 0 ?
               {
                 value: percent,
 
                 itemStyle: {
                   color: "rgba(235, 0, 0, 0)",
                 },
-              },
+              }: null,
             ],
           }
         : undefined,
@@ -411,13 +413,14 @@ const PieComparisonWithCounter = (props: PieComparisonWithCounterProps) => {
               color: series.serie1["serie-color"],
             },
           },
+          series1.y> 0 && series2.y > 0 ?
           {
             value: percent,
 
             itemStyle: {
-              color: "rgba(33, 190, 118, 0)",
+              color: "rgba(235, 0, 0, 0)",
             },
-          },
+          }: null,
           {
             value: series2.y,
 
@@ -425,13 +428,14 @@ const PieComparisonWithCounter = (props: PieComparisonWithCounterProps) => {
               color: series.serie2["serie-color"],
             },
           },
+          series1.y> 0 && series2.y > 0 ?
           {
             value: percent,
 
             itemStyle: {
-              color: "rgba(33, 190, 118, 0)",
+              color: "rgba(235, 0, 0, 0)",
             },
-          },
+          }: null,
         ],
       },
     ],
