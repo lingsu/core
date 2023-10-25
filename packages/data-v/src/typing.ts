@@ -277,6 +277,7 @@ export type IDataSource = Record<
 export type IMultiple = {
   $type: string;
   api?: { url?: string };
+  static?: any;
 };
 export type IDataRequire = {
   type: string;
@@ -286,15 +287,14 @@ export type IDataRequire = {
 export type IItems = {
   type: string;
   required: string[];
-  properties: IProperties;
+  properties?: Record<string, {
+    type: string[],
+    extension?: {
+      description?: string,
+    },
+  }>;
 };
-export type IProperties = {
-  name?: IName;
-  value: DatavConfig;
-  prefix?: IPrefix;
-  suffix?: ISuffix;
-  url?: IUrl;
-};
+
 export type IName = {
   type: string[];
   extension: IExtension;
