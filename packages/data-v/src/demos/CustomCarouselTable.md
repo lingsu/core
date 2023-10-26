@@ -11,7 +11,7 @@ group: data-v
 import { useState } from "react";
 import {
   AbsoluteContainer,
-  CarouselTableCustom,
+  CustomCarouselTable,
   Stage,
   Display,
 } from "@q25a25q/data-v";
