@@ -32,9 +32,9 @@ const defaultProps = {
   name: "custom-carousel-table",
   type: "ui",
   props: {
-    itemHeaderRender: (item, index) => {
+    itemRender: (item, index) => {
       return (
-        <div style={{ background: "#319cff", margin: '10px 0' }}>
+        <div style={{ background: "#319cff", paddingBottom: 10 }}>
           {item.name}
         </div>
       );

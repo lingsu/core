@@ -1,11 +1,11 @@
-import React, { forwardRef, useRef, useEffect, useCallback } from "react";
+import React, { forwardRef, useRef, useEffect, useCallback, memo } from "react";
 import { CommonWidgetProps } from "../../typing";
 import toArray from "rc-util/lib/Children/toArray";
 import DataLayer from "../DataLayer";
 
 type StageProps = {} & CommonWidgetProps;
 
-export default ({ children }: Partial<StageProps>) => {
+const Stage = ({ children }: Partial<StageProps>) => {
   const childNodes = toArray(children, { keepEmpty: true });
   var nodes = childNodes.map((child, i) => {
     var key = (child && child.key) || `item-${i}`;
@@ -29,3 +29,7 @@ export default ({ children }: Partial<StageProps>) => {
     </div>
   );
 };
+
+Stage.displayName = "Stage";
+
+export default memo(Stage);

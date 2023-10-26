@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useEffect, useCallback } from "react";
+import React, { forwardRef, useRef, useEffect, useCallback, memo } from "react";
 import { css } from "@emotion/css";
 import _ from "lodash";
 import toArray from "rc-util/lib/Children/toArray";
@@ -191,7 +191,7 @@ const AbsoluteContainer = forwardRef(
     const childNodes = toArray(children, { keepEmpty: true });
     var nodes = childNodes.map((child, i) => {
       var key = (child && child.key) || `item-${i}`;
-      console.log('child',child)
+      console.log('child',key, child)
       return (
         <DataLayer
           key={key}
@@ -201,7 +201,7 @@ const AbsoluteContainer = forwardRef(
         </DataLayer>
       );
     });
-
+    console.log('finish');
     return (
       <div
         ref={absolutePagWp}
@@ -250,4 +250,4 @@ const AbsoluteContainer = forwardRef(
 
 AbsoluteContainer.displayName = "AbsoluteContainer";
 
-export default AbsoluteContainer;
+export default memo(AbsoluteContainer);

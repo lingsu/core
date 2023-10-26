@@ -8,6 +8,7 @@ export { default as BgBox } from "./components/BgBox";
 export { default as ProgressBar } from "./components/ProgressBar";
 export { default as PieComparisonWithCounter } from "./components/PieComparisonWithCounter";
 export { default as CustomCarouselTable } from "./components/CustomCarouselTable";
+export { default as CustomLayer } from "./components/CustomLayer";
 
 
 export { Display } from "./typing";

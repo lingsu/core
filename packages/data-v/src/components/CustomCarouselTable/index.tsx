@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { Fragment, useContext } from "react";
 import UpMarquee from "../../UpMarquee";
 import { DatavDataSourceContext } from "../DatavCommonHoc/context";
 import _ from "lodash";
@@ -18,12 +18,12 @@ const defaultProps = {
   },
   type: "ui",
   props: {
-    // itemHeaderRender: (data:any) => <span></span>,
+    // itemRender: (data:any) => <span></span>,
   },
 };
 
 type CarouselTableCustomType = {
-  itemHeaderRender: (data: any, index: number) => JSX.Element;
+  itemRender: (data: any, index: number) => JSX.Element;
 }
 type CarouselTableCustomProps =
   CommonWidgetProps<CarouselTableCustomType>;
@@ -34,7 +34,7 @@ const CarouselTableCustom = (props: CarouselTableCustomProps) => {
 
   const { widget } = props;
   const weightProps = _.merge({}, defaultProps.props, widget.props);
-  const { itemHeaderRender } = weightProps;
+  const { itemRender } = weightProps;
   return (
     <div
       style={{
@@ -45,9 +45,9 @@ const CarouselTableCustom = (props: CarouselTableCustomProps) => {
     >
       <UpMarquee>
         {dataSource.data?.map((item:any, index:any) => {
-          return <div key={index}>
-            {itemHeaderRender(item,index)}
-          </div>
+          return <Fragment key={index}>
+            {itemRender(item,index)}
+          </Fragment>
         })}
       </UpMarquee>
     </div>

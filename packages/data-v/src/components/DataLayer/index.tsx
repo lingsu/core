@@ -1,5 +1,5 @@
 import { css } from "@emotion/css";
-import { CSSProperties } from "react";
+import { CSSProperties, memo } from "react";
 
 import { CommonWidgetProps, DatavConfig, IAttr, ICommon } from "../../typing";
 import DatavCommonHoc from "../DatavCommonHoc";
@@ -11,7 +11,7 @@ type DataLayerProps = {
   style?: CSSProperties;
 } & CommonWidgetProps;
 
-export default ({
+const DataLayer = ({
   onClick,
   onMouseEnter,
   onMouseLeave,
@@ -53,4 +53,5 @@ export default ({
     </div>
   );
 };
-
+DataLayer.displayName = "DataLayer";
+export default memo(DataLayer);
