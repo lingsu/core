@@ -7,6 +7,7 @@ export { default as NumberTitleFlop } from "./components/NumberTitleFlop";
 export { default as BgBox } from "./components/BgBox";
 export { default as ProgressBar } from "./components/ProgressBar";
 export { default as PieComparisonWithCounter } from "./components/PieComparisonWithCounter";
+export { default as CustomCarouselTable } from "./components/CustomCarouselTable";
 
 
 export { Display } from "./typing";

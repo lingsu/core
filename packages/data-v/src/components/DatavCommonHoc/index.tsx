@@ -64,7 +64,7 @@ const DataWrapper = (props: CommonWidgetProps) => {
     props.widget?.dataConfig
   );
   const source = dataConfig.source;
-  // console.log("DataWrapper", dataConfig);
+  // console.log("DataWrapper", dataConfig,props.widget);
   const dataSourceType = source.dataSource[source.dataSourceType];
   // console.log("dataSourceType",props, dataSourceType);
   var id =
@@ -74,7 +74,7 @@ const DataWrapper = (props: CommonWidgetProps) => {
   const { data, isLoading } = useSWR(id, () => {
     // return [];
 
-    const dataRequire = source.dataRequire;
+    // const dataRequire = source.dataRequire;
 
     var dataSource = dataSourceType[dataSourceType.$type];
     if (!dataSource) {
@@ -82,7 +82,7 @@ const DataWrapper = (props: CommonWidgetProps) => {
     }
     const dataRequireMapping = (data: any) => {
 
-      const { mapping = {} } = dataRequire.extension || {};
+      const { mapping = {} } = source.dataRequire?.extension || {};
       // console.log('data',data, mapping, Object.keys(data[0]))
       return data.map((it: any) => {
         return Object.keys(it).reduce((acc: any, key: string) => {
