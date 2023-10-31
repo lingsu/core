@@ -1,14 +1,19 @@
+import { BladeUser } from "../services/system/bladeUserService";
 import useReactBlade from "./useReactBlade";
 import useSWR from "swr";
 
 export default () => {
-    
   const bladeApi = useReactBlade();
 
-  const { data,mutate  } = useSWR<any>(
+  const { data, mutate } = useSWR<BladeUser>(
     `/blade-user/info`,
     bladeApi.services.bladeUser.getUserInfo
   );
-  
-  return [data,mutate];
-}
+
+  const updateUserInfo = async (user: BladeUser) => {
+    await bladeApi.services.bladeUser.updateInfo(user);
+    mutate();
+  };
+
+  return [data, updateUserInfo];
+};
