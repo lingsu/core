@@ -13,7 +13,7 @@ export default {
   switchMode: false, // 是否开启部门切换模式
   lockPage: '/lock',
   apiUrl: '/api',
-  uploadUrl: '/uploadUrl',
+  uploadUrl: '/blade-resource/oss/endpoint/put-file',
   tokenTime: 3000,
   tokenHeader: 'Blade-Auth',
   //http的status默认放行列表
