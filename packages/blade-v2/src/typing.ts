@@ -54,7 +54,7 @@ export type MenuProps = {
 export type PageResult<T> = {
   records: T[];
   total: number;
-  success:boolean;
+  success: boolean;
 };
 export type RequestParams = RequestInit & {
   params?: any;
@@ -135,10 +135,8 @@ export type ReactBladeState = {
     // menu: MenuService;
     region: RegionService;
     file: FileService;
-  }
+  };
 } & BladeConfig;
-
-
 
 export type BladeUser = {
   id: string;
@@ -275,4 +273,12 @@ export type Region = {
    * 排序
    */
   sort: number;
+};
+
+export type PutFile = {
+  link: string;
+  domain: string;
+  name: string;
+  originalName: string;
+  attachId: number;
 };

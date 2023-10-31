@@ -1,4 +1,5 @@
 import { BladeConfig, BladeRequest } from "../../typing";
+import type { PutFile } from "../../typing";
 
 export type Captcha = {
   image: string;
@@ -7,7 +8,7 @@ export type Captcha = {
 
 export type FileService = {
   // download: (url: string) => Promise<boolean>;
-  uploadFile: (body: any, url?: string) => Promise<any>;
+  uploadFile: (body: any, url?: string) => Promise<PutFile>;
 };
 export const fileService = (
   request: BladeRequest,
@@ -28,7 +29,7 @@ export const fileService = (
   // };
 
   const uploadFile = (body: any, url: string = config.uploadUrl) => {
-    return request.post(url, {
+    return request.post<PutFile>(url, {
       body,
       headers: {
         "Content-type": "multipart/form-data;charset=UTF-8",
