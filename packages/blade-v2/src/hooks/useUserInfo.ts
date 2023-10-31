@@ -2,7 +2,7 @@ import { BladeUser } from "../typing";
 import useReactBlade from "./useReactBlade";
 import useSWR from "swr";
 
-export default () => {
+export default ():[BladeUser | undefined, (bladeUser: BladeUser) => Promise<void>] => {
   const bladeApi = useReactBlade();
 
   const { data, mutate } = useSWR<BladeUser>(
