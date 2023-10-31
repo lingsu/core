@@ -2,7 +2,7 @@ import UpMarquee from "../../UpMarquee";
 import { DatavDataSourceContext } from "../DatavCommonHoc/context";
 import _ from "lodash";
 import { CommonWidgetProps } from "../../typing";
-import { memo } from "react";
+import { memo, useMemo } from "react";
 
 const defaultProps = {
   attr: {
@@ -35,7 +35,7 @@ const CustomLayer = (props: CustomLayerProps) => {
   const { widget } = props;
   const weightProps = _.merge({}, defaultProps.props, widget.props);
   const { itemRender } = weightProps;
-  const Render = itemRender;
+  const Render = useMemo(() => itemRender, []);
   return (
     <div
       style={{

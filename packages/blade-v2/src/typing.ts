@@ -1,3 +1,8 @@
+import { BladeUserService } from "./services/system/bladeUserService";
+import { DictService } from "./services/system/dictService";
+import { FileService } from "./services/system/fileService";
+import { RegionService } from "./services/system/regionService";
+
 export type BladeConfig = {
   title: string;
   logo: string;
@@ -123,4 +128,12 @@ export type BladeRequest = {
 export type ReactBladeState = {
   setState: (state: any) => void;
   request: BladeRequest;
+  services: {
+    // oauth: OauthService;
+    bladeUser: BladeUserService;
+    dict: DictService;
+    // menu: MenuService;
+    region: RegionService;
+    file: FileService;
+  }
 } & BladeConfig;

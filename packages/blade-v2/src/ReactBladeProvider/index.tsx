@@ -2,6 +2,7 @@ import * as React from "react";
 import { Provider } from "../contexts/BladeContext";
 import defaultConfig from "../defaultConfig";
 import { DefaultOption, createInstance } from "../utils/request";
+import { createServices } from "../services";
 
 const ReactBladeProvider: React.FC<React.PropsWithChildren<unknown>> = ({
   children,
@@ -16,13 +17,14 @@ const ReactBladeProvider: React.FC<React.PropsWithChildren<unknown>> = ({
       });
       return instance;
     };
-
+    const req = request();
     return {
       ...value,
       setState: (state: any) => {
         setValue((pre) => ({ ...pre, ...state }));
       },
-      request: request(),
+      request: req,
+      services: createServices(req, value),
     };
   }, [value]);
 
