@@ -1,4 +1,4 @@
-import { BladeUser } from "../services/system/bladeUserService";
+import { BladeUser } from "../typing";
 import useReactBlade from "./useReactBlade";
 import useSWR from "swr";
 

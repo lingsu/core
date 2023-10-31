@@ -1,39 +1,6 @@
-import { BladeConfig, BladeRequest } from "../../typing";
+import { BladeConfig, BladeRequest, BladeUser } from "../../typing";
 
-export type BladeUser = {
-  id: string;
-  createUser: string;
-  createDept: string;
-  createTime: string;
-  updateUser: string;
-  updateTime: string;
-  status: number;
-  isDeleted: number;
-  tenantId: string;
-  code: string;
-  userType: number;
-  account: string;
-  name: string;
-  realName: string;
-  avatar: string;
-  email: string;
-  phone: string;
-  birthday: string;
-  sex: number;
-  roleId: string;
-  deptId: string;
-  postId: string;
-  areaCode: string;
-  companyNumber: string;
-  companyName: string;
-  tenantName: string;
-  userTypeName: string;
-  roleName: string;
-  deptName: string;
-  postName: string;
-  sexName: string;
-  userExt: string;
-};
+
 
 export type BladeUserService = {
   getUserInfo: () => Promise<BladeUser>;
@@ -149,7 +116,7 @@ export const bladeUserService = (request: BladeRequest, config: BladeConfig) => 
       headers: {
         "Content-Type": "application/json",
       },
-      body: bladeUser,
+      body: bladeUser as any,
     });
   };
   // export const grant = (userIds, roleIds) => {

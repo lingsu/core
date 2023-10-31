@@ -137,3 +137,142 @@ export type ReactBladeState = {
     file: FileService;
   }
 } & BladeConfig;
+
+
+
+export type BladeUser = {
+  id: string;
+  createUser: string;
+  createDept: string;
+  createTime: string;
+  updateUser: string;
+  updateTime: string;
+  status: number;
+  isDeleted: number;
+  tenantId: string;
+  code: string;
+  userType: number;
+  account: string;
+  name: string;
+  realName: string;
+  avatar: string;
+  email: string;
+  phone: string;
+  birthday: string;
+  sex: number;
+  roleId: string;
+  deptId: string;
+  postId: string;
+  areaCode: string;
+  companyNumber: string;
+  companyName: string;
+  tenantName: string;
+  userTypeName: string;
+  roleName: string;
+  deptName: string;
+  postName: string;
+  sexName: string;
+  userExt: string;
+};
+
+export type Dict = {
+  /**
+   * undefined
+   */
+  children: Dict[];
+  /**
+   * 字典码
+   */
+  code: string;
+  /**
+   * 字典值
+   */
+  dictKey: string;
+  /**
+   * 字典名称
+   */
+  dictValue: string;
+  /**
+   * undefined
+   */
+  hasChildren: boolean;
+  /**
+   * undefined
+   */
+  id: number;
+  /**
+   * 是否已删除
+   */
+  isDeleted: number;
+  /**
+   * 是否已封存
+   */
+  isSealed: number;
+  /**
+   * undefined
+   */
+  parentId: number;
+  /**
+   * undefined
+   */
+  parentName: string;
+  /**
+   * 字典备注
+   */
+  remark: string;
+  /**
+   * 排序
+   */
+  sort: number;
+};
+
+export type Region = {
+  /**
+   * undefined
+   */
+  children: Region[];
+  /**
+   * 字典码
+   */
+  code: string;
+  /**
+   * 字典值
+   */
+  dictKey: string;
+  /**
+   * 字典名称
+   */
+  dictValue: string;
+  /**
+   * undefined
+   */
+  hasChildren: boolean;
+  /**
+   * undefined
+   */
+  id: number;
+  /**
+   * 是否已删除
+   */
+  isDeleted: number;
+  /**
+   * 是否已封存
+   */
+  isSealed: number;
+  /**
+   * undefined
+   */
+  parentId: number;
+  /**
+   * undefined
+   */
+  parentName: string;
+  /**
+   * 字典备注
+   */
+  remark: string;
+  /**
+   * 排序
+   */
+  sort: number;
+};

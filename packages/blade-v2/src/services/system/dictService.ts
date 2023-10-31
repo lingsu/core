@@ -1,55 +1,5 @@
-import { BladeRequest, BladeConfig } from "../../typing";
+import { BladeRequest, BladeConfig, Dict } from "../../typing";
 
-export type Dict = {
-  /**
-   * undefined
-   */
-  children: Dict[];
-  /**
-   * 字典码
-   */
-  code: string;
-  /**
-   * 字典值
-   */
-  dictKey: string;
-  /**
-   * 字典名称
-   */
-  dictValue: string;
-  /**
-   * undefined
-   */
-  hasChildren: boolean;
-  /**
-   * undefined
-   */
-  id: number;
-  /**
-   * 是否已删除
-   */
-  isDeleted: number;
-  /**
-   * 是否已封存
-   */
-  isSealed: number;
-  /**
-   * undefined
-   */
-  parentId: number;
-  /**
-   * undefined
-   */
-  parentName: string;
-  /**
-   * 字典备注
-   */
-  remark: string;
-  /**
-   * 排序
-   */
-  sort: number;
-};
 
 export type DictParams = {
   code?: string;
