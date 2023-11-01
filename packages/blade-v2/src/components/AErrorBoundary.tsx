@@ -1,6 +1,10 @@
-import { ErrorBoundary, FallbackProps } from "react-error-boundary";
+import {
+  ErrorBoundary,
+  ErrorBoundaryProps,
+  FallbackProps,
+} from "react-error-boundary";
 import { Button, Result, Space } from "antd";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 
 // export function setWithExpiry(key, value, ttl) {
 //   const item = {
@@ -25,19 +29,19 @@ import { useNavigate } from "react-router-dom";
 //   return item.value;
 // }
 
-const logError = (error: Error, info: { componentStack: string }) => {
+export const logError = (error: Error, info: { componentStack: string }) => {
   // Do something with the error, e.g. log to an external API
   console.log("error log", error, info);
 };
 
-function fallbackRender({ error, resetErrorBoundary }: FallbackProps) {
-  const navigate = useNavigate();
+export function fallbackRender({ error, resetErrorBoundary }: FallbackProps) {
+  // const navigate = useNavigate();
 
   // Call resetErrorBoundary() to reset the error boundary and retry the render.
   // console.log('log', error)
 
   // console.log("error instanceof HttpError", error instanceof HttpError);
-  if (error.name === 'ApiError') {
+  if (error.name === "ApiError") {
     if (error.status === 500) {
       return (
         <Result
@@ -61,7 +65,10 @@ function fallbackRender({ error, resetErrorBoundary }: FallbackProps) {
               <Button
                 type="primary"
                 key="console"
-                onClick={() => navigate("/login", { replace: true })}
+                onClick={() => {
+                  // navigate("/login", { replace: true })
+                  window.location.href = "/login";
+                }}
               >
                 前往登录
               </Button>
@@ -101,14 +108,18 @@ function fallbackRender({ error, resetErrorBoundary }: FallbackProps) {
   // );
 }
 
-export default (props: { children: React.ReactNode }) => {
+export default ({
+  FallbackComponent = fallbackRender,
+  onError = logError,
+  children,
+}: React.PropsWithChildren<ErrorBoundaryProps>) => {
   return (
     <ErrorBoundary
       // fallbackRender={<div>123</div>}
-      FallbackComponent={fallbackRender}
-      onError={logError}
+      FallbackComponent={FallbackComponent}
+      onError={onError}
     >
-      {props.children}
+      {children}
     </ErrorBoundary>
   );
 };
