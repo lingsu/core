@@ -1,7 +1,8 @@
 import defaultConfig from "../defaultConfig";
+import WebStorage from "./cache";
 
 let userCache: null | Record<string, any>;
-
+const xsrfHeaderName = "Authorization";
 
 export const getTokenHeader = () => {
   return defaultConfig.tokenHeader;
@@ -9,7 +10,9 @@ export const getTokenHeader = () => {
 
 export function getUser() {
   if (userCache == undefined) {
-    const user = localStorage.getItem("user");
+    var user = WebStorage.get(xsrfHeaderName);
+
+    // const user = localStorage.getItem("user");
     if (!user) {
       userCache = null;
     } else {
@@ -20,11 +23,16 @@ export function getUser() {
 }
 export function setUser(data: any) {
   userCache = data;
-  localStorage.setItem("user", JSON.stringify(data));
+  
+  WebStorage.set(xsrfHeaderName, data, data.expires_in);
+
+  // localStorage.setItem("user", JSON.stringify(data));
 }
 export function removeUser() {
   userCache = null;
-  localStorage.removeItem("user");
+  WebStorage.remove(xsrfHeaderName);
+
+  // localStorage.removeItem("user");
 }
 
 export function getToken() {
