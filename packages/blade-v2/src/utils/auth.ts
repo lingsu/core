@@ -16,7 +16,8 @@ export function getUser() {
     if (!user) {
       userCache = null;
     } else {
-      userCache = JSON.parse(user);
+      // userCache = JSON.parse(user);
+      userCache = user;
     }
   }
   return userCache;
