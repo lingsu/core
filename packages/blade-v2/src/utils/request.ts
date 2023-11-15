@@ -1,6 +1,5 @@
 import { message } from "antd";
 import downloadByUrl from "./downloadByUrl";
-import { RequestData } from "@ant-design/pro-components";
 import { getToken, getTokenHeader } from "./auth";
 import { AntdPage, BladeRequest, PageResult, RequestOption, RequestParams } from "../typing";
 
