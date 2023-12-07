@@ -48,6 +48,9 @@
       "@q25a25q/enn-flow": [
         "packages/enn-flow/src/index.ts"
       ],
+      "@q25a25q/react-datav": [
+        "packages/react-datav/src/index.ts"
+      ],
     }
   },
   "include": [
