@@ -7,6 +7,8 @@ hero:
       link: /
     - text: enn-flow
       link: /enn-flow
+    - text: react-datav
+      link: /react-datav
 features:
   - title: Hello
     emoji: 💎
