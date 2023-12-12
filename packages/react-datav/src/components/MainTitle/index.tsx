@@ -38,6 +38,7 @@ type MainTitleProps = {
     | "vertical-rl";
   letterSpacing?: number;
   backgroundStyle?: BackgroundStyle;
+  handleClick?: () => void;
 } & LayerOption;
 
 const defaultProps = {
@@ -119,7 +120,7 @@ const MainTitle = (props: MainTitleProps) => {
   }, []);
   return (
     <Layer {...props}>
-      <div style={style}>
+      <div style={style} onClick={props.handleClick}>
         <span>{content}</span>
       </div>
     </Layer>
