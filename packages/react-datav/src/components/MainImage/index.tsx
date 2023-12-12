@@ -10,19 +10,23 @@ const defaultProps = {
   imageType: "bitmap",
   vectorFill: "#2483FF",
   "inner-style": {
-    "no-repeat":"100% 100%",
-    "repeat-x":"auto 100%",
-    "repeat-y":"100% auto",
-    "repeat":"auto auto",
+    "no-repeat": "100% 100%",
+    "repeat-x": "auto 100%",
+    "repeat-y": "100% auto",
+    repeat: "auto auto",
   },
   // vectorImage: "",
   "background-image": "",
-  interaction: {
-    events: [],
-  },
+  // interaction: {
+  //   events: [],
+  // },
+  // handleClick: () => { },
 };
 type MainImageProps = typeof defaultProps & {
   urlConfig: UrlConfig;
+  handleClick?: () => void;
+  mouseEnter?: () => void;
+  mouseLeave?: () => void;
 } & LayerOption;
 
 const MainImage = (props: MainImageProps) => {
@@ -60,7 +64,6 @@ const MainImage = (props: MainImageProps) => {
     return style;
   }, [props]);
 
-  
   // if (urlConfig && urlConfig.url) {
   //   return (
   //     <a
@@ -76,7 +79,12 @@ const MainImage = (props: MainImageProps) => {
   // }
   return (
     <Layer {...props}>
-      <div style={style}>
+      <div
+        style={style}
+        onClick={props.handleClick}
+        onMouseEnter={props.mouseEnter}
+        onMouseLeave={props.mouseLeave}
+      >
         {urlConfig && urlConfig.url && (
           <a
             href={urlConfig.url}
