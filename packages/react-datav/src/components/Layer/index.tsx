@@ -1,31 +1,18 @@
-import { CSSProperties, memo } from "react";
+import {  memo } from "react";
+import { LayerOption } from "../../typing";
 
-type LayerProps = {
-  x: number;
-  y: number;
-  degree: number;
-  opacity: number;
-  flipH: boolean;
-  flipV: boolean;
-  h: number;
-  w: number;
-  hUnit: "px";
-  wUnit: "px";
-  xUnit: "px";
-  yUnit: "px";
-  style?: CSSProperties;
-} & React.PropsWithChildren<unknown>;
+type LayerProps = React.PropsWithChildren<LayerOption>;
 
 const Layer = ({
   children,
+  h,
+  w,
   x = 0,
   y = 0,
   degree = 0,
   opacity = 1,
   flipH = false,
   flipV = false,
-  h,
-  w,
   hUnit = "px",
   wUnit = "px",
   xUnit = "px",

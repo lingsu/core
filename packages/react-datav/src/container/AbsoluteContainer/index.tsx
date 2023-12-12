@@ -1,6 +1,7 @@
 import React, { forwardRef, useRef, useEffect, useCallback, memo } from "react";
 import { css } from "@emotion/css";
 import _ from "lodash";
+import { Viewport } from "../../typing";
 
 type HtmlNode = HTMLElement & {
   innerWidth?: number;
@@ -117,13 +118,7 @@ export enum Display {
   ScaleToCenter,
   ResizeByPixel,
 }
-type AbsoluteContainerProps = {
-  display: Display;
-  background: any;
-  h: number;
-  w: number;
-
-} & React.PropsWithChildren<unknown>;
+type AbsoluteContainerProps = React.PropsWithChildren<Viewport>;
 const AbsoluteContainer = forwardRef(
   (
     {
@@ -135,7 +130,6 @@ const AbsoluteContainer = forwardRef(
     }: AbsoluteContainerProps,
     __
   ) => {
-
     const { type, value } =
       (typeof background == "string"
         ? { type: "flat", value: background }

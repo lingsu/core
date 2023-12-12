@@ -1,5 +1,6 @@
 import React, { memo } from "react";
 import AbsoluteContainer, { Display } from "../AbsoluteContainer";
+import { Viewport } from "../../typing";
 
 const Preview = ({
   children,
@@ -7,18 +8,7 @@ const Preview = ({
   h,
   background,
   display = Display.ScaleByWidth,
-}: React.PropsWithChildren<{
-  w: number;
-  h: number;
-  //   degree: number;
-  //   opacity: number;
-  //   flipH: boolean;
-  //   flipV: boolean;
-  //   xUnit: string;
-  //   yUnit: string;
-  background: string;
-  display?: Display;
-}>) => {
+}: React.PropsWithChildren<Viewport>) => {
   return (
     <div
       className="datav-preview"
