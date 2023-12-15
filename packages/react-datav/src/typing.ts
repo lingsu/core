@@ -91,4 +91,13 @@ export type LayerOption = {
   flipV?: boolean;
 
   style?: CSSProperties;
-} & Position & Size;
+} & Position &
+  Size;
+
+export type EchartColor = {
+  to?: string;
+  from?: string;
+  angle?: number;
+  style: string;
+  value: string;
+};

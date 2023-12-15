@@ -4,6 +4,7 @@ import Layer from './components/Layer';
 import MainTitle from './components/MainTitle';
 import BgBox from './components/BgBox';
 import MainImage from './components/MainImage';
+import EchartsLineCategory from './components/EchartsLineCategory';
 
 
 export {
@@ -13,5 +14,6 @@ export {
     MainTitle,
     BgBox,
     MainImage,
+    EchartsLineCategory,
     Display
 }
