@@ -5,6 +5,7 @@ import MainTitle from './components/MainTitle';
 import BgBox from './components/BgBox';
 import MainImage from './components/MainImage';
 import EchartsLineCategory from './components/EchartsLineCategory';
+import Marquee from './components/Marquee';
 
 
 export {
@@ -15,5 +16,6 @@ export {
     BgBox,
     MainImage,
     EchartsLineCategory,
+    Marquee,
     Display
 }
