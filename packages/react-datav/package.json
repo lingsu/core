@@ -1,6 +1,6 @@
 {
   "name": "@q25a25q/react-datav",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "大屏开发组件",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -30,10 +30,10 @@
     "access": "public"
   },
   "peerDependencies": {
-    "react-fast-marquee": "^1.6.2",
+    "@emotion/css": "^11.11.2",
     "echarts": "^5.4.3",
     "echarts-for-react": "^3.0.2",
-    "@emotion/css": "^11.11.2",
-    "lodash": ">=4.17.15"
+    "lodash": ">=4.17.15",
+    "react-fast-marquee": "^1.6.2"
   }
 }
