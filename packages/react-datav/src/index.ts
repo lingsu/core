@@ -8,6 +8,7 @@ import EchartsLineCategory from './components/EchartsLineCategory';
 import EchartsPictorialBarVelocity from './components/EchartsPictorialBarVelocity';
 import EchartsBarAnimationDelay from './components/EchartsBarAnimationDelay';
 import Marquee from './components/Marquee';
+import Paragraph from './components/Paragraph';
 
 
 export {
@@ -21,5 +22,6 @@ export {
     Marquee,
     EchartsPictorialBarVelocity,
     EchartsBarAnimationDelay,
+    Paragraph,
     Display
 }
