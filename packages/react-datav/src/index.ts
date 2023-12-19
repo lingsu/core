@@ -6,6 +6,7 @@ import BgBox from './components/BgBox';
 import MainImage from './components/MainImage';
 import EchartsLineCategory from './components/EchartsLineCategory';
 import EchartsPictorialBarVelocity from './components/EchartsPictorialBarVelocity';
+import EchartsBarAnimationDelay from './components/EchartsBarAnimationDelay';
 import Marquee from './components/Marquee';
 
 
@@ -19,5 +20,6 @@ export {
     EchartsLineCategory,
     Marquee,
     EchartsPictorialBarVelocity,
+    EchartsBarAnimationDelay,
     Display
 }
