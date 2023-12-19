@@ -37,7 +37,11 @@ const EchartsLineCategory = (props: EchartsLineCategoryProps) => {
         series: _.map(series, (s) => {
           return s
             ? {
-                data: s.map((it) => it.y),
+                data: s.map((it) => {
+                  var data = { ...it, value: it.y };
+                  delete data.y;
+                  return data;
+                }),
               }
             : {
                 data: null,
