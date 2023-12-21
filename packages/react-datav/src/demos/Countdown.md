@@ -17,13 +17,33 @@ import { Preview, Countdown } from "@q25a25q/react-datav";
 
 const props = {
   endTime: "2023-12-21 15:53:30",
-  textStyle: {
-    color: "#ffffff",
-    fontSize: 24,
-    fontFamily: "Microsoft Yahei",
-    fontWeight: "normal",
+ time: {
+    padding: 0,
+    textStyle: {
+      color: "#FFFFFF",
+      fontSize: 24,
+      fontFamily: "Microsoft Yahei",
+      fontWeight: "normal",
+    },
   },
-  letterSpacing: 1,
+  dayUnit: {
+    textStyle: {
+      color: "#FFFFFF",
+      fontSize: 24,
+      fontFamily: "Microsoft Yahei",
+      fontWeight: "normal",
+    },
+    marginLeft: 12.5,
+    marginRight: 12.5,
+  },
+  dayNumbers: {
+    textStyle: {
+      color: "#FFFFFF",
+      fontSize: 24,
+      fontFamily: "Microsoft Yahei",
+      fontWeight: "normal",
+    },
+  },
 };
 export default () => (
   <div style={{ width: 600, height: 300 }}>
