@@ -9,6 +9,7 @@ import EchartsPictorialBarVelocity from './components/EchartsPictorialBarVelocit
 import EchartsBarAnimationDelay from './components/EchartsBarAnimationDelay';
 import Marquee from './components/Marquee';
 import Paragraph from './components/Paragraph';
+import Countdown from './components/Countdown';
 
 
 export {
@@ -23,5 +24,6 @@ export {
     EchartsPictorialBarVelocity,
     EchartsBarAnimationDelay,
     Paragraph,
+    Countdown,
     Display
 }
