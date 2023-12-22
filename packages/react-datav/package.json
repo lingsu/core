@@ -35,5 +35,11 @@
     "echarts-for-react": "^3.0.2",
     "lodash": ">=4.17.15",
     "react-fast-marquee": "^1.6.2"
+  },
+  "dependencies": {
+    "wordcloud": "^1.2.2"
+  },
+  "devDependencies": {
+    "@types/wordcloud": "^1.2.2"
   }
 }

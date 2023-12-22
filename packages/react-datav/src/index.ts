@@ -10,6 +10,7 @@ import EchartsBarAnimationDelay from './components/EchartsBarAnimationDelay';
 import Marquee from './components/Marquee';
 import Paragraph from './components/Paragraph';
 import Countdown from './components/Countdown';
+import WordCloud from './components/WordCloud';
 
 
 export {
@@ -25,5 +26,6 @@ export {
     EchartsBarAnimationDelay,
     Paragraph,
     Countdown,
+    WordCloud,
     Display
 }
