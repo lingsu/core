@@ -11,6 +11,7 @@ import Marquee from './components/Marquee';
 import Paragraph from './components/Paragraph';
 import Countdown from './components/Countdown';
 import WordCloud from './components/WordCloud';
+import Time from './components/Time';
 
 
 export {
@@ -27,5 +28,6 @@ export {
     Paragraph,
     Countdown,
     WordCloud,
+    Time,
     Display
 }

@@ -1,6 +1,6 @@
-import { IBackground, IColor } from "../typing";
+import { Background, Color } from "../typing";
 
-export default (background: string | IBackground | IColor) => {
+export default (background: string | Background | Color) => {
   if (!background) {
     return "rgba(255,255,255,0)";
   }

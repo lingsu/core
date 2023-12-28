@@ -1,7 +1,7 @@
-import { ITextStyle } from "../typing";
+import { TextStyle } from "../typing";
 import getBackground from "./getBackground";
 
-export default (textStyle?: ITextStyle) => {
+export default (textStyle?: TextStyle) => {
   if (textStyle) {
     return {
       fontWeight: textStyle.fontWeight,
