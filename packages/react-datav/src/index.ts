@@ -12,6 +12,7 @@ import Paragraph from './components/Paragraph';
 import Countdown from './components/Countdown';
 import WordCloud from './components/WordCloud';
 import Time from './components/Time';
+import ProgressTable from './components/ProgressTable';
 
 
 export {
@@ -29,5 +30,6 @@ export {
     Countdown,
     WordCloud,
     Time,
+    ProgressTable,
     Display
 }
