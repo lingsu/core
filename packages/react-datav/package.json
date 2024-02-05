@@ -1,6 +1,6 @@
 {
   "name": "@q25a25q/react-datav",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "大屏开发组件",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -37,13 +37,13 @@
     "react-fast-marquee": "^1.6.2"
   },
   "dependencies": {
+    "animejs": "^3.2.2",
     "react-transition-group": "^4.4.5",
-    "wordcloud": "^1.2.2",
-    "animejs":"^3.2.2"
+    "wordcloud": "^1.2.2"
   },
   "devDependencies": {
+    "@types/animejs": "^3.1.12",
     "@types/react-transition-group": "^4.4.10",
-    "@types/wordcloud": "^1.2.2",
-    "@types/animejs": "^3.1.12"
+    "@types/wordcloud": "^1.2.2"
   }
 }
