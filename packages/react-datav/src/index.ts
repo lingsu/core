@@ -13,6 +13,7 @@ import Countdown from './components/Countdown';
 import WordCloud from './components/WordCloud';
 import Time from './components/Time';
 import ProgressTable from './components/ProgressTable';
+import ProgressCircle from './components/ProgressCircle';
 
 
 export {
@@ -31,5 +32,6 @@ export {
     WordCloud,
     Time,
     ProgressTable,
+    ProgressCircle,
     Display
 }
