@@ -73,7 +73,7 @@ export const regionService = ({ httpClient }: ServiceParams): RegionService => {
   };
 
   const getRegionLazyTree = (parentCode?: any) => {
-    return httpClient.get<Region[]>("https://hatching.ouhaihr.com/api/blade-system/region/lazy-tree", {
+    return httpClient.get<Region[]>("/api/blade-system/region/lazy-tree", {
       params: {
         parentCode,
       },
